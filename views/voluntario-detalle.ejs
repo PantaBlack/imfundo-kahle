@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Sé voluntario en Imfundo Kahle. Comparte lo que sabes y construyamos oportunidades juntos en Lima e Iquitos.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/voluntario-detalle.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="vol-detalle-page">
+        <!-- 1. Hero Split Card -->
+        <section class="vol-hero-section">
+            <div class="vol-hero-wrap">
+                <div class="vol-split-card">
+                    <div class="vol-split-copy">
+                        <h1 class="vol-split-title">Sé voluntario</h1>
+                        <h2 class="vol-split-subtitle">Comparte lo que sabes.<br>Construyamos oportunidades juntos</h2>
+                        <p class="vol-split-desc">Puedes colaborar con nuestras iniciativas educativas y comunitarias, participar en actividades de aprendizaje, compartir conocimientos y contribuir al desarrollo de proyectos que promueven la educación, la creatividad y el cuidado del medioambiente.</p>
+                    </div>
+                    <div class="vol-split-visual">
+                        <img src="/img/se%20voluntario%20principal%20seccion.png" alt="Voluntarias y niños sonrientes en jornada de Imfundo Kahle" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Comparte tus conocimientos y habilidades -->
+        <section class="vol-skills-section">
+            <div class="skills-wrap">
+                <h2 class="skills-heading"><span class="coral">Comparte tus conocimientos</span> y habilidades</h2>
+                
+                <div class="skills-grid">
+                    <!-- 1. Inglés u otros idiomas -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="28" cy="34" r="18" />
+                                <ellipse cx="28" cy="34" rx="8" ry="18" />
+                                <path d="M12 28h32M12 40h32" />
+                                <path d="M42 16a9 9 0 0 1 12 11c0 2-.8 3.5-1.5 4.5L54 36l-4.5-1.5c-1 .3-2 .5-3.5.5a9 9 0 0 1-4-17" />
+                                <circle cx="45" cy="24" r="1.2" fill="#ffffff" stroke="none"/>
+                                <circle cx="49" cy="24" r="1.2" fill="#ffffff" stroke="none"/>
+                                <circle cx="53" cy="24" r="1.2" fill="#ffffff" stroke="none"/>
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Inglés u otros<br>idiomas</h3>
+                    </div>
+
+                    <!-- 2. Matemáticas y Ciencias -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="20" y="8" width="30" height="40" rx="3" />
+                                <path d="M26 8v40M20 18h30" />
+                                <!-- formula √x and (x+y) -->
+                                <path d="M29 27l2 4 4-8h4" />
+                                <path d="M29 37c-1-2-1-4 0-6M41 37c1-2 1-4 0-6M31 34h8M35 31v6" stroke-width="2" />
+                                <!-- set square triangle ruler -->
+                                <path d="M10 56h26L10 30v26z" fill="rgba(255,255,255,0.18)" />
+                                <path d="M15 51h10L15 41v10z" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Matemáticas<br>y Ciencias</h3>
+                    </div>
+
+                    <!-- 3. Lecturas y Comunicación -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M32 18c-4-4-10-5-18-5v24c8 0 14 1 18 5 4-4 10-5 18-5V13c-8 0-14 1-18 5z" />
+                                <path d="M32 18v24" />
+                                <path d="M19 20v12M24 22v10M40 20v12M45 22v10" stroke-width="2" />
+                                <!-- hands holding the book -->
+                                <path d="M14 43c-3 1-5 4-4 8 1 3 4 5 8 4l12-3" />
+                                <path d="M50 43c3 1 5 4 4 8-1 3-4 5-8 4l-12-3" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Lecturas y<br>Comunicación</h3>
+                    </div>
+
+                    <!-- 4. Arte y Creatividad -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M32 12C20 12 12 20 12 31c0 8 5 13 11 13 3 0 5-2 6-4 1-2 2-3 4-3 5 0 8 4 8 9 0 3-1 6-3 8 7-1 16-8 16-21 0-13-10-21-22-21z" />
+                                <circle cx="23" cy="22" r="2.5" fill="#ffffff" />
+                                <circle cx="33" cy="19" r="2.5" fill="#ffffff" />
+                                <circle cx="41" cy="25" r="2.5" fill="#ffffff" />
+                                <circle cx="21" cy="32" r="2.5" fill="#ffffff" />
+                                <!-- brush -->
+                                <path d="M46 44l8-8c2-2 2-5 0-7l-1-1c-2-2-5-2-7 0l-8 8" />
+                                <path d="M43 41l-3 7 7-3z" fill="#ffffff" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Arte y<br>Creatividad</h3>
+                    </div>
+
+                    <!-- 5. Tecnología -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="32" cy="32" r="9" />
+                                <path d="M32 15v8M32 41v8M15 32h8M41 32h8" />
+                                <path d="M20 20l6 6M38 38l6 6M20 44l6-6M38 26l6-6" />
+                                <circle cx="15" cy="15" r="2.5" fill="#ffffff" />
+                                <circle cx="49" cy="15" r="2.5" fill="#ffffff" />
+                                <circle cx="15" cy="49" r="2.5" fill="#ffffff" />
+                                <circle cx="49" cy="49" r="2.5" fill="#ffffff" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Tecnología</h3>
+                    </div>
+
+                    <!-- 6. Educación ambiental -->
+                    <div class="skill-item">
+                        <div class="skill-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="32" cy="32" r="19" stroke-dasharray="3 3" />
+                                <path d="M32 46c-4-3-9-4-16-4v10c7 0 12 1 16 4 4-3 9-4 16-4V42c-7 0-12 1-16 4z" />
+                                <path d="M32 44V22" stroke-width="3" />
+                                <path d="M32 28c-6-8-12-2-12 4 4 4 9 0 12-4z" fill="rgba(255,255,255,0.25)" />
+                                <path d="M32 24c6-8 12-2 12 4-4 4-9 0-12-4z" fill="rgba(255,255,255,0.25)" />
+                            </svg>
+                        </div>
+                        <h3 class="skill-label">Educación<br>ambiental</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección "¿Dónde?" -->
+        <section class="vol-donde-section">
+            <div class="donde-wrap">
+                <div class="donde-grid">
+                    <div class="donde-visual">
+                        <img src="/img/voluntario%20foot.png" alt="Voluntarios de Imfundo Kahle compartiendo al aire libre" loading="lazy">
+                    </div>
+                    <div class="donde-copy-card">
+                        <h2 class="donde-title">¿Dónde?</h2>
+                        
+                        <div class="donde-block">
+                            <h3>En Iquitos</h3>
+                            <p>Participa en nuestras iniciativas educativas y comunitarias dictando clases de inglés, matemáticas, arte, lectura o reciclaje, y contribuye a proyectos que promueven la creatividad y el cuidado del medioambiente.</p>
+                        </div>
+
+                        <div class="donde-block">
+                            <h3>En Villa María, Lima</h3>
+                            <p>Comparte tus conocimientos y habilidades en actividades educativas dirigidas a niños, adolescentes y mujeres, contribuyendo a su aprendizaje y desarrollo personal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="donde-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                    <a class="button button-primary" href="mailto:contacto@imfundokahle.org?subject=Quiero%20ser%20voluntario%20en%20Imfundo%20Kahle">Quiero ser voluntario</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

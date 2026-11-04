@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Sé un voluntario en Imfundo Kahle. Comparte tu conocimiento, tu tiempo y tu talento para transformar vidas a través de la educación en Lima e Iquitos.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/se-un-voluntario.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="voluntario-page">
+        <!-- 1. Imagen Hero Banner -->
+        <section class="voluntario-hero-banner" aria-label="Voluntarios de Imfundo Kahle">
+            <img src="/img/se%20voluntario%20main.png" alt="Equipo de voluntarios y niños de Imfundo Kahle" fetchpriority="high">
+        </section>
+
+        <!-- 2. Párrafo Introductorio -->
+        <section class="voluntario-intro">
+            <div class="voluntario-intro-inner">
+                <p>En Imfundo Kahle creemos que todas las personas tienen algo valioso que aportar. Un conocimiento, una habilidad, una experiencia profesional o, sencillamente, el deseo de compartir y aprender junto a otros puede convertirse en el punto de partida de una experiencia enriquecedora. Trabajamos con comunidades que enfrentan dificultades para acceder a oportunidades educativas, y lo hacemos desde una convicción: las personas no necesitan que otros decidan por ellas, sino que se generen espacios donde puedan desarrollar sus capacidades, descubrir nuevas posibilidades y participar activamente en su propio crecimiento.</p>
+            </div>
+        </section>
+
+        <!-- 3. Título con barras laterales y Cuadrícula de 6 Tarjetas -->
+        <section class="voluntario-participar">
+            <div class="participar-header-wrap">
+                <span class="participar-line" aria-hidden="true"></span>
+                <h2 class="participar-title">¿Cómo puedes participar?</h2>
+                <span class="participar-line" aria-hidden="true"></span>
+            </div>
+
+            <div class="participar-grid">
+                <!-- Tarjeta 01 -->
+                <article class="part-card">
+                    <div class="part-card-badge">01</div>
+                    <h3 class="part-card-title">Sé voluntario</h3>
+                    <p class="part-card-desc">Comparte lo que sabes. Transforma oportunidades.</p>
+                    <a class="part-card-btn" href="/se-un-voluntario/voluntariado">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+
+                <!-- Tarjeta 02 -->
+                <article class="part-card">
+                    <div class="part-card-badge">02</div>
+                    <h3 class="part-card-title">Apadrina un niño</h3>
+                    <p class="part-card-desc">Ayúdanos a abrir caminos a través de la educación.</p>
+                    <a class="part-card-btn" href="/se-un-voluntario/apadrina-un-nino">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+
+                <!-- Tarjeta 03 -->
+                <article class="part-card">
+                    <div class="part-card-badge">03</div>
+                    <h3 class="part-card-title">Contribuye con desayuno</h3>
+                    <p class="part-card-desc">¡Más niños comienzan el día alimentados!</p>
+                    <a class="part-card-btn" href="/se-un-voluntario/contribuye-con-desayuno">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+
+                <!-- Tarjeta 04 -->
+                <article class="part-card">
+                    <div class="part-card-badge">04</div>
+                    <h3 class="part-card-title">Implementa un espacio educativo</h3>
+                    <p class="part-card-desc">Hagamos realidad un espacio para aprender</p>
+                    <a class="part-card-btn" href="/como-ayudar#campanas-activas">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+
+                <!-- Tarjeta 05 -->
+                <article class="part-card">
+                    <div class="part-card-badge">05</div>
+                    <h3 class="part-card-title">Dona libros</h3>
+                    <p class="part-card-desc">Un libro que ya leíste, puede abrir un mundo nuevo</p>
+                    <a class="part-card-btn" href="/como-ayudar#especie">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+
+                <!-- Tarjeta 06 -->
+                <article class="part-card">
+                    <div class="part-card-badge">06</div>
+                    <h3 class="part-card-title">Apoya los emprendimientos Ainbo</h3>
+                    <p class="part-card-desc">Tu compra impulsa sus iniciativas emprendedoras</p>
+                    <a class="part-card-btn" href="/proyectos/ainbo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

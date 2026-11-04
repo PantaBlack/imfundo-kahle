@@ -1,0 +1,267 @@
+/* Estilos para la página de Proyecto Butterfly */
+
+.butterfly-page {
+    background: #ffffff;
+    color: #1e2022;
+}
+
+.butterfly-wrap {
+    width: min(1140px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+/* 1. Hero Principal y Logo Flotante */
+.butterfly-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.butterfly-hero > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.butterfly-logo {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    z-index: 2;
+    margin: -70px auto 0;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.16));
+    background: #ffffff;
+    border-radius: 50%;
+    border: 3.5px solid #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.butterfly-logo img {
+    width: 82%;
+    height: 82%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 2. Introducción */
+.butterfly-intro {
+    padding-top: 36px;
+    padding-bottom: 28px;
+    text-align: center;
+}
+
+.butterfly-intro h1 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(34px, 4.2vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #111111;
+}
+
+.butterfly-coral {
+    color: var(--coral);
+}
+
+/* 2.1 Cuadrícula Texto + Foto (mid butterfly) */
+.butterfly-intro-grid {
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    gap: 36px;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.butterfly-intro-text p {
+    margin: 0;
+    font-size: clamp(17px, 1.35vw, 19.5px);
+    line-height: 1.65;
+    color: #2b2c2e;
+}
+
+.butterfly-intro-photo {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.butterfly-intro-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* 3. Tarjeta destacada con cita (Fondo salmón cálido) */
+.butterfly-quote-card {
+    background: #f0b8b1;
+    border-radius: 20px;
+    padding: 26px 42px;
+    margin: 32px auto 48px;
+    max-width: 980px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    box-shadow: 0 6px 20px rgba(223, 75, 58, 0.15);
+}
+
+.butterfly-quote-card p {
+    margin: 0;
+    font-family: var(--font);
+    font-size: clamp(19px, 1.9vw, 24px);
+    font-weight: 700;
+    line-height: 1.45;
+    color: #111111;
+    text-align: center;
+}
+
+.quote-mark {
+    font-family: var(--display);
+    font-size: clamp(40px, 4vw, 54px);
+    font-weight: 800;
+    color: var(--coral);
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* 4. Espacios para crear, expresarse y crecer juntas */
+.butterfly-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 40px 0 28px;
+    text-align: center;
+}
+
+.butterfly-line {
+    flex: 1;
+    height: 2.5px;
+    background: #f4c2ba;
+    max-width: 140px;
+}
+
+.butterfly-section-title h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 800;
+    color: #111111;
+}
+
+/* 4.1 Banner grupal (foot butterfly) */
+.butterfly-banner {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 28px;
+}
+
+.butterfly-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* 5. Tarjeta inferior gris suave */
+.butterfly-bottom-card {
+    background: #e5e5e3;
+    border-radius: 20px;
+    padding: 28px 40px;
+    margin: 28px auto 64px;
+    max-width: 980px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.butterfly-bottom-card p {
+    margin: 0;
+    font-family: var(--font);
+    font-size: clamp(16px, 1.25vw, 18.5px);
+    line-height: 1.6;
+    color: #2b2c2e;
+    text-align: center;
+}
+
+/* ==========================================================
+   Responsive Breakpoints
+   ========================================================== */
+
+@media (max-width: 900px) {
+    .butterfly-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .butterfly-intro-photo img {
+        max-height: 380px;
+        width: 100%;
+    }
+
+    .butterfly-section-title h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 680px) {
+    .butterfly-wrap {
+        width: min(100% - 32px, 520px);
+    }
+
+    .butterfly-hero > img {
+        min-height: 190px;
+        object-fit: cover;
+    }
+
+    .butterfly-logo {
+        width: 105px;
+        height: 105px;
+        margin-top: -52px;
+    }
+
+    .butterfly-intro h1 {
+        font-size: 28px;
+    }
+
+    .butterfly-intro-text p {
+        font-size: 16.5px;
+    }
+
+    .butterfly-quote-card {
+        padding: 20px 22px;
+        gap: 10px;
+        margin: 24px auto 36px;
+    }
+
+    .butterfly-quote-card p {
+        font-size: 17px;
+    }
+
+    .quote-mark {
+        font-size: 32px;
+    }
+
+    .butterfly-line {
+        display: none;
+    }
+
+    .butterfly-section-title h2 {
+        font-size: 24px;
+    }
+
+    .butterfly-bottom-card {
+        padding: 22px 20px;
+        margin: 20px auto 44px;
+    }
+
+    .butterfly-bottom-card p {
+        font-size: 15px;
+    }
+}

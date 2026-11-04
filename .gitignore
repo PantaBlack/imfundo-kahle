@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Entorno local
+.env
+*.env.local
+
+# Compilación estática
+dist/
+
+# Archivos temporales o de generación
+temp_opt_img/
+base64_images.json
+images_to_optimize.json
+public/img/originals_before_lines/
+*.log
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Sé voluntario (Detalle) - Imfundo Kahle
+   ========================================================================== */
+
+.vol-detalle-page {
+    overflow-x: hidden;
+    width: 100%;
+    padding-block: 24px 70px;
+    background: #ffffff;
+}
+
+.vol-hero-wrap,
+.skills-wrap,
+.donde-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-inline: 24px;
+}
+
+/* 1. Hero Split Card */
+.vol-split-card {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    background: #f7dbd4; /* Tono rosa/blush suave idéntico al diseño */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.vol-split-copy {
+    padding: 38px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vol-split-title {
+    color: #cf4836; /* Coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(32px, 3.8vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin: 0 0 20px;
+}
+
+.vol-split-subtitle {
+    color: #151515;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+.vol-split-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15.5px;
+    line-height: 1.62;
+    margin: 0;
+}
+
+.vol-split-visual {
+    line-height: 0;
+    position: relative;
+}
+
+.vol-split-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+}
+
+/* 2. Sección "Comparte tus conocimientos y habilidades" */
+.vol-skills-section {
+    padding-block: 54px 44px;
+}
+
+.skills-heading {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin: 0 0 38px;
+}
+
+.skills-heading .coral {
+    color: #cf4836;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.skill-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: #deb0a7; /* Círculo rosa viejo/salmón */
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(222, 176, 167, 0.4);
+    margin-bottom: 14px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.skill-circle:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(222, 176, 167, 0.55);
+}
+
+.skill-circle svg {
+    width: 48px;
+    height: 48px;
+}
+
+.skill-label {
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* 3. Sección "¿Dónde?" */
+.vol-donde-section {
+    padding-block: 20px 30px;
+}
+
+.donde-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.donde-visual {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+}
+
+.donde-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.donde-copy-card {
+    background: #f7dbd4; /* Mismo fondo rosa suave */
+    border-radius: 20px;
+    padding: 38px 36px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.donde-title {
+    color: #cf4836;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(32px, 3.6vw, 42px);
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin: 0 0 22px;
+}
+
+.donde-block {
+    margin-bottom: 22px;
+}
+
+.donde-block:last-child {
+    margin-bottom: 0;
+}
+
+.donde-block h3 {
+    color: #111111;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 18.5px;
+    font-weight: 800;
+    margin: 0 0 8px;
+}
+
+.donde-block p {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15px;
+    line-height: 1.58;
+    margin: 0;
+}
+
+/* Acciones inferiores */
+.donde-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 940px) {
+    .vol-split-card {
+        grid-template-columns: 1fr;
+    }
+
+    .vol-split-visual img {
+        max-height: 380px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 20px;
+    }
+
+    .donde-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .donde-visual img {
+        max-height: 380px;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .vol-hero-wrap,
+    .skills-wrap,
+    .donde-wrap {
+        padding-inline: 18px;
+    }
+
+    .vol-split-copy,
+    .donde-copy-card {
+        padding: 28px 20px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 14px;
+    }
+
+    .skill-circle {
+        width: 82px;
+        height: 82px;
+    }
+
+    .skill-circle svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .skill-label {
+        font-size: 13.5px;
+    }
+
+    .donde-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .donde-actions .button {
+        width: 100%;
+        text-align: center;
+    }
+}

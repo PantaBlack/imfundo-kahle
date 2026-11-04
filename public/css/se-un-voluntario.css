@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Sé un voluntario - Imfundo Kahle
+   ========================================================================== */
+
+.voluntario-page {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* 1. Hero Banner */
+.voluntario-hero-banner {
+    width: 100%;
+    max-width: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.voluntario-hero-banner img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 640px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+/* 2. Intro Text */
+.voluntario-intro {
+    padding: 42px 24px 20px;
+    background: #ffffff;
+}
+
+.voluntario-intro-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+}
+
+.voluntario-intro-inner p {
+    color: #262626;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: clamp(15.5px, 1.25vw, 17.5px);
+    line-height: 1.65;
+    letter-spacing: -0.1px;
+    margin: 0;
+}
+
+/* 3. Sección "¿Cómo puedes participar?" */
+.voluntario-participar {
+    background: #ffffff;
+    padding-bottom: 70px;
+    overflow-x: hidden;
+}
+
+.participar-header-wrap {
+    max-width: 1040px;
+    margin: 35px auto 42px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+}
+
+.participar-line {
+    flex: 1;
+    height: 5px;
+    min-width: 16px;
+    background-color: #f7b2a6; /* Barra lateral color salmón/coral suave */
+    border-radius: 4px;
+}
+
+.participar-title {
+    color: #cf4836; /* Color coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(22px, 3.6vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+    text-align: center;
+}
+
+@media (min-width: 641px) {
+    .participar-title {
+        white-space: nowrap;
+    }
+}
+
+/* Grilla de 6 tarjetas (3 x 2) */
+.participar-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.part-card {
+    background: #ffffff;
+    border-radius: 26px;
+    border: 1px solid #efe4e2;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.03);
+    padding: 26px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.part-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.13), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.part-card-badge {
+    align-self: flex-start;
+    background: #fff6f4;
+    border: 1.5px solid #fadcd6;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(207, 72, 54, 0.07);
+    color: #cf4836;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1;
+    padding: 7px 14px;
+    margin-bottom: 18px;
+}
+
+.part-card-title {
+    color: #1a1a1a;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 10px;
+}
+
+.part-card-desc {
+    color: #3b3b3b;
+    font-size: 15px;
+    line-height: 1.45;
+    margin: 0 0 22px;
+    flex-grow: 1;
+}
+
+.part-card-btn {
+    width: 100%;
+    background: linear-gradient(180deg, #cb4735 0%, #b83726 100%);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(184, 55, 38, 0.28);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.part-card-btn:hover {
+    background: linear-gradient(180deg, #b83726 0%, #9e2a1b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(184, 55, 38, 0.38);
+    color: #ffffff;
+}
+
+.part-card-btn .arrow {
+    font-size: 19px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.part-card-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .participar-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+    }
+
+    .voluntario-intro {
+        padding: 30px 20px 15px;
+    }
+
+    .voluntario-participar {
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 640px) {
+    .participar-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 18px;
+    }
+
+    .participar-header-wrap {
+        gap: 12px;
+        margin: 24px auto 26px;
+        padding: 0 16px;
+    }
+
+    .participar-line {
+        height: 3.5px;
+        min-width: 12px;
+    }
+
+    .participar-title {
+        white-space: normal;
+        text-align: center;
+        font-size: clamp(20px, 5.5vw, 24px);
+        line-height: 1.15;
+    }
+
+    .voluntario-participar {
+        padding-bottom: 40px;
+    }
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Contribuye con los desayunos en Imfundo Kahle. Nutrir para aprender y crecer en nuestras comunidades de Lima e Iquitos.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/desayuno-detalle.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="desayuno-page">
+        <!-- 1. Hero Split Card -->
+        <section class="desayuno-hero-section">
+            <div class="desayuno-hero-wrap">
+                <div class="desayuno-split-card">
+                    <div class="desayuno-split-copy">
+                        <h1 class="desayuno-split-title">Contribuye con los<br>desayuno</h1>
+                        <h2 class="desayuno-split-subtitle">Nutrir para aprender y crecer</h2>
+                        <p class="desayuno-split-desc">Buscamos brindar desayunos nutritivos a niños de nuestras comunidades para que puedan iniciar sus actividades educativas con bienestar. Queremos que nuestros espacios sean también lugares de cuidado y convivencia, por lo que necesitamos el apoyo de personas y organizaciones que hagan posible sostener esta iniciativa.</p>
+                    </div>
+                    <div class="desayuno-split-visual">
+                        <img src="/img/repartiendo%20desayuno.png" alt="Voluntarios de Imfundo Kahle repartiendo desayunos nutritivos" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección "¿Cómo puedes colaborar?" -->
+        <section class="desayuno-colab-section">
+            <div class="desayuno-colab-wrap">
+                <h2 class="colab-heading"><span class="coral">¿Cómo puedes</span> colaborar?</h2>
+
+                <div class="colab-grid">
+                    <!-- 1. Aporte puntual -->
+                    <div class="colab-item">
+                        <div class="colab-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M32 50s-16-10-20-20c-3-8 3-16 11-16 5 0 9 4 9 7 0-3 4-7 9-7 8 0 14 8 11 16-4 10-20 20-20 20z" />
+                            </svg>
+                        </div>
+                        <h3 class="colab-label">Aporte puntual</h3>
+                    </div>
+
+                    <!-- 2. Aporte periódico -->
+                    <div class="colab-item">
+                        <div class="colab-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="12" y="14" width="34" height="36" rx="4" />
+                                <path d="M12 24h34" />
+                                <path d="M22 10v8M36 10v8" />
+                                <circle cx="20" cy="32" r="1.5" fill="#ffffff" stroke="none" />
+                                <circle cx="28" cy="32" r="1.5" fill="#ffffff" stroke="none" />
+                                <circle cx="20" cy="40" r="1.5" fill="#ffffff" stroke="none" />
+                                <circle cx="44" cy="44" r="11" fill="#deb0a7" stroke="#ffffff" stroke-width="2.6" />
+                                <path d="M44 38v6l4 2" />
+                            </svg>
+                        </div>
+                        <h3 class="colab-label">Aporte periódico</h3>
+                    </div>
+
+                    <!-- 3. Con tu empresa o emprendimiento -->
+                    <div class="colab-item">
+                        <div class="colab-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="#ffffff" stroke="none">
+                                <circle cx="32" cy="22" r="6" />
+                                <path d="M22 44c0-5.5 4.5-10 10-10s10 4.5 10 10v2H22v-2z" />
+                                <circle cx="18" cy="26" r="4.5" />
+                                <path d="M11 44c0-4 3.2-7.5 7.5-7.5 1.5 0 2.9.4 4 1.2-.5 1.8-.5 3.8-.5 6.3H11z" />
+                                <circle cx="46" cy="26" r="4.5" />
+                                <path d="M42 44c0-2.5 0-4.5-.5-6.3 1.1-.8 2.5-1.2 4-1.2 4.3 0 7.5 3.5 7.5 7.5H42z" />
+                            </svg>
+                        </div>
+                        <h3 class="colab-label">Con tu empresa o<br>emprendimiento</h3>
+                    </div>
+
+                    <!-- 4. Organiza una colecta -->
+                    <div class="colab-item">
+                        <div class="colab-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="14" y="27" width="36" height="25" rx="2" fill="rgba(255,255,255,0.18)" />
+                                <rect x="11" y="20" width="42" height="7" rx="1.5" />
+                                <path d="M32 20v32" stroke-width="3" />
+                                <path d="M14 39h36" />
+                                <path d="M32 20c-3-6-9-8-12-5s-1 10 12 5z" fill="rgba(255,255,255,0.25)" />
+                                <path d="M32 20c3-6 9-8 12-5s1 10-12 5z" fill="rgba(255,255,255,0.25)" />
+                            </svg>
+                        </div>
+                        <h3 class="colab-label">Organiza una<br>colecta</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Inferior -->
+        <section class="desayuno-foot-section">
+            <div class="desayuno-foot-wrap">
+                <div class="desayuno-bottom-grid">
+                    <div class="desayuno-bottom-visual">
+                        <img src="/img/ni%C3%B1as%20desayunando.png" alt="Niñas disfrutando de un desayuno nutritivo en Imfundo Kahle" loading="lazy">
+                    </div>
+                    <div class="desayuno-bottom-card">
+                        <p class="bottom-card-desc">Puedes colaborar mediante una contribución económica, estableciendo alianzas con tu empresa o emprendimiento, organizando campañas solidarias o realizando aportes periódicos que permitan dar continuidad al programa. Cada esfuerzo suma para brindar desayunos nutritivos a más niños, fortalecer sus espacios de aprendizaje y convivencia, y construir juntos mejores oportunidades para su desarrollo.</p>
+                        
+                        <div class="bottom-card-btn-wrap">
+                            <a class="desayuno-btn" href="/como-ayudar#donar">Quiero contribuir con desayunos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="desayuno-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

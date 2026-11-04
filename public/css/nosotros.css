@@ -1,0 +1,108 @@
+.about-page { color: var(--ink); background: #fff; }
+.about-wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
+.about-intro { padding-block: 60px 46px; display: grid; grid-template-columns: .85fr 1.15fr; column-gap: 42px; row-gap: 20px; align-items: start; }
+.about-intro-copy { padding-top: 18px; }
+.about-intro-copy h1 { max-width: 440px; margin: 0 0 20px; font-family: var(--display); font-size: 64px; font-weight: 800; line-height: .96; }
+.about-intro-copy h1 span { display: block; color: var(--coral); }
+.about-intro-copy > p:not(.eyebrow) { max-width: 470px; margin-bottom: 18px; color: #343434; font-size: 16px; line-height: 1.65; }
+.about-lead-image { height: 335px; margin: 0; overflow: hidden; border-radius: 3px; background: #eee; }
+.about-lead-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 46%; }
+.about-gallery { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.about-gallery img { width: 100%; height: 132px; object-fit: cover; }
+.about-mission { padding-block: 24px 48px; text-align: center; }
+.about-mission > p:first-child { max-width: 960px; margin: 0 auto 24px; color: #333; font-size: 17px; line-height: 1.65; }
+.mission-rule { width: 45px; height: 3px; margin: 0 auto 17px; display: block; background: var(--coral); }
+.about-mission .eyebrow { margin-bottom: 0; }
+.about-section-heading { margin-bottom: 28px; }
+.about-section-heading .eyebrow { margin-bottom: 8px; }
+.about-section-heading h2 { margin: 0; color: var(--coral); font-family: var(--display); font-size: 42px; font-weight: 800; line-height: 1.05; }
+.about-partners { padding-block: 16px 64px; }
+.partner-logos { display: grid; gap: 34px; }
+.partner-logo-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; align-items: center; }
+.partner-logo-row img { width: 100%; height: 112px; object-fit: contain; }
+.partner-logo-row-centered { display: flex; justify-content: center; gap: 34px; }
+.partner-logo-row-centered img { width: calc((100% - 102px) / 4); flex: 0 0 calc((100% - 102px) / 4); }
+.about-recognition { padding-block: 22px 72px; }
+.recognition-row { padding-block: 26px; display: grid; grid-template-columns: minmax(260px, .9fr) 1.1fr; gap: 28px; align-items: start; border-top: 1px solid #e8e4e0; }
+.recognition-visual { min-height: 280px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f3f0ed; }
+.recognition-visual > img { width: 100%; height: 280px; object-fit: cover; }
+.recognition-photo { min-height: 0; aspect-ratio: 4 / 3; }
+.recognition-photo > img { height: 100%; object-fit: contain; }
+.recognition-visual > span { padding: 10px 18px; position: absolute; right: 12px; bottom: 12px; left: 12px; border-radius: 8px; color: white; background: var(--coral); font-family: var(--display); font-size: 16px; font-weight: 700; text-align: center; }
+.recognition-copy h3 { margin: 0 0 12px; font-family: var(--display); font-size: 24px; font-weight: 700; line-height: 1.2; }
+.recognition-copy p { margin: 0 0 13px; color: #444; font-size: 15px; line-height: 1.65; }
+.recognition-row-reverse { grid-template-columns: minmax(260px, .9fr) 1.1fr; }
+.recognition-logos { padding: 35px; display: flex; flex-direction: row; gap: 25px; }
+.recognition-logos > img { width: min(42%, 180px); height: 130px; object-fit: contain; }
+.recognition-logos > span { bottom: 12px; }
+.about-team { padding-block: 64px 70px; background: #f7f5f2; }
+.team-heading { text-align: center; }
+.team-admin { margin-top: 0; }
+.team-admin > h3 { margin: 0 0 20px; color: var(--coral); font-family: var(--display); font-size: 30px; text-align: center; }
+.team-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 15px; }
+.team-grid article { min-height: 230px; padding: 16px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; background: var(--coral); text-align: center; }
+.team-grid article > img { width: 130px; height: 130px; margin-bottom: 10px; object-fit: contain; }
+.team-grid h4 { margin: 0 0 5px; font-family: var(--display); font-size: 17px; }
+.team-grid p { margin: 0; font-size: 13px; line-height: 1.4; }
+.annual-reports { padding-block: 70px 90px; }
+.reports-heading { margin-bottom: 28px; }
+.reports-heading > p:last-child { margin: 12px 0 0; color: #4f4f4f; font-size: 15px; line-height: 1.55; }
+.report-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 18px; }
+.report-card { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; align-items: center; color: inherit; }
+.report-card img { width: 100%; height: 170px; grid-column: 1 / -1; object-fit: cover; object-position: top; background: #f5f2ef; }
+.report-card > span { padding-top: 9px; font-family: var(--display); font-size: 21px; font-weight: 800; }
+.report-card > strong { padding-top: 9px; color: var(--coral); font-size: 12px; }
+.report-card:hover img { filter: brightness(.96); }
+
+@media (max-width: 900px) {
+    .about-intro { grid-template-columns: .9fr 1.1fr; gap: 24px; }
+    .about-intro-copy h1 { font-size: 54px; }
+    .about-lead-image { height: 300px; }
+    .about-gallery img { height: 110px; }
+    .partner-logos { gap: 20px; }
+    .recognition-row, .recognition-row-reverse { grid-template-columns: .9fr 1.1fr; gap: 22px; }
+    .team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .report-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+    .about-wrap { width: min(100% - 38px, 500px); }
+    .about-intro { padding-block: 38px 26px; grid-template-columns: 1fr; gap: 18px; }
+    .about-intro-copy { padding-top: 0; }
+    .about-intro-copy h1 { margin-bottom: 15px; font-size: 48px; }
+    .about-intro-copy > p:not(.eyebrow) { font-size: 15px; }
+    .about-lead-image { height: 250px; }
+    .about-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .about-gallery img { height: 118px; }
+    .about-mission { padding-block: 21px 38px; }
+    .about-mission > p:first-child { font-size: 15px; }
+    .about-section-heading h2 { font-size: 34px; }
+    .about-partners { padding-block: 10px 46px; }
+    .partner-logos { gap: 16px; }
+    .partner-logo-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .partner-logo-row img { height: 90px; }
+    .partner-logo-row-centered { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .partner-logo-row-centered img { width: 100%; flex: initial; }
+    .partner-logo-row-centered img:last-child { width: calc(50% - 8px); grid-column: 1 / -1; justify-self: center; }
+    .about-recognition { padding-block: 10px 48px; }
+    .recognition-row, .recognition-row-reverse { padding-block: 21px; grid-template-columns: 1fr; gap: 18px; }
+    .recognition-visual, .recognition-visual > img { min-height: 210px; height: 210px; }
+    .recognition-photo { min-height: 0; height: auto; aspect-ratio: 4 / 3; }
+    .recognition-photo > img { min-height: 0; height: 100%; }
+    .recognition-logos { min-height: 210px; padding: 20px; }
+    .recognition-logos > img { height: 110px; }
+    .recognition-copy h3 { font-size: 21px; }
+    .recognition-copy p { font-size: 14px; }
+    .about-team { padding-block: 45px 50px; }
+    .team-admin { margin-top: 0; }
+    .team-admin > h3 { font-size: 26px; }
+    .team-grid { gap: 10px; }
+    .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .team-grid article { min-height: 205px; padding: 14px 10px; }
+    .team-grid article > img { width: 108px; height: 108px; }
+    .annual-reports { padding-block: 46px 60px; }
+    .report-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+    .report-card img { height: 145px; }
+    .report-card > span { font-size: 18px; }
+    .report-card > strong { font-size: 10px; }
+}

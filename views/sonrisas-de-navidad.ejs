@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Conoce Sonrisas de Navidad, un proyecto de Imfundo Kahle que comparte alegría y construye oportunidades para niños y familias en el Perú.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/sonrisas-de-navidad.css">
+</head>
+<body class="navidad-page">
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+                        <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-current="page" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. Hero Principal y Logo superpuesto -->
+        <section class="navidad-hero">
+            <img src="/img/MAIN%20SONRISAS%20NAVIDAD.png" alt="Niños y voluntarios celebrando Sonrisas de Navidad" fetchpriority="high">
+            <div class="navidad-logo">
+                <img src="/img/logo%20navidad_Mesa%20de%20trabajo%201%20%281%29.png" alt="Logo de Sonrisas de Navidad">
+            </div>
+        </section>
+
+        <!-- 2. Introducción -->
+        <section class="navidad-intro navidad-wrap">
+            <h1>Compartimos <span class="navidad-red">alegría</span>, sembramos <span class="navidad-red">oportunidades</span></h1>
+            <p>Hay sonrisas que nos recuerdan por qué hacemos lo que hacemos. Cada Navidad, nos reunimos con cientos de niños y sus familias para compartir una celebración llena de juegos, sorpresas, regalos y, sobre todo, momentos de alegría que permanecen en nuestros recuerdos.</p>
+
+            <!-- Foto doble de la actividad (2da foto navidad) -->
+            <div class="navidad-duo-photo-wrap">
+                <img src="/img/2da%20foto%20navidad.png" alt="Comunidad y equipo de Imfundo Kahle celebrando Navidad" loading="lazy">
+            </div>
+        </section>
+
+        <!-- 3. Compartir que transforma -->
+        <section class="navidad-transforma navidad-wrap">
+            <div class="navidad-transforma-heading">
+                <h2><span class="navidad-red">Compartir</span> que <span class="navidad-red">transforma</span></h2>
+            </div>
+
+            <!-- Galería de 3 fotos verticales -->
+            <div class="navidad-vertical-grid">
+                <div class="vertical-card">
+                    <img src="/img/NAVIDAD%20EXTRA.png" alt="Niñas sonriendo y disfrutando de la chocolatada navideña" loading="lazy">
+                </div>
+                <div class="vertical-card">
+                    <img src="/img/navidad%20extra%202.png" alt="Entrega de regalos a familias de la comunidad" loading="lazy">
+                </div>
+                <div class="vertical-card">
+                    <img src="/img/navidad%20extra%203.png" alt="Actividad educativa y entrega de obsequios en aula" loading="lazy">
+                </div>
+            </div>
+
+            <!-- Fila de Impacto y Comunidades -->
+            <div class="navidad-impact-row">
+                <div class="navidad-metric">
+                    <div class="metric-number-group">
+                        <svg class="metric-double-bar" viewBox="0 0 46 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M3 6C14 5 32 6 43 6" stroke="#cf4330" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M3 18C15 17 31 18 43 18" stroke="#cf4330" stroke-width="6" stroke-linecap="round"/>
+                        </svg>
+                        <strong>1,000</strong>
+                    </div>
+                    <p class="metric-label">Niños y niñas</p>
+                </div>
+                <div class="navidad-reach-card">
+                    <p>Nuestra celebración llega a cerca de 1000 niños de distintas comunidades del Perú, entre ellas Villa María del Triunfo, en Lima; Belén, el asentamiento humano Amistad y comunidades de la zona de Pacaya Samiria, en Loreto; y Las Pampas, en Piura.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Diciembre & Marzo -->
+        <section class="navidad-seasons navidad-wrap">
+            <div class="season-col">
+                <h3>Diciembre</h3>
+                <div class="season-img-wrap">
+                    <img src="/img/ni%C3%B1os%20con%20globos.png" alt="Celebración navideña con chocolatada y juegos" loading="lazy">
+                </div>
+                <p>Con el cariño y compromiso de nuestros voluntarios, organizamos juegos, actividades recreativas y una tradicional chocolatada navideña. Cada niño recibe un juguete y un libro, porque creemos que una sonrisa alegra el momento, pero un libro puede abrir un mundo de posibilidades.</p>
+            </div>
+            <div class="season-col">
+                <h3>Marzo</h3>
+                <div class="season-img-wrap">
+                    <img src="/img/ni%C3%B1os%20con%20regalos.png" alt="Entrega de útiles y libros de lectura en marzo" loading="lazy">
+                </div>
+                <p>En marzo, cuando comienza un nuevo año escolar, volvemos a encontrarnos con los niños para entregarles un paquete de útiles escolares y un libro de lectura. Queremos que inicien sus clases con entusiasmo, confianza y herramientas que los acompañen en su aprendizaje.</p>
+            </div>
+        </section>
+
+        <!-- 5. Tres Pilares de Impacto -->
+        <section class="navidad-pillars navidad-wrap">
+            <div class="pillar-col">
+                <div class="pillar-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <p>Construimos vínculos, confianza y nuevas oportunidades junto a cada comunidad.</p>
+            </div>
+            <div class="pillar-divider" aria-hidden="true"></div>
+            <div class="pillar-col">
+                <div class="pillar-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                </div>
+                <p>Acompañamos, estamos presente también al inicio del año escolar</p>
+            </div>
+            <div class="pillar-divider" aria-hidden="true"></div>
+            <div class="pillar-col">
+                <div class="pillar-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1h-2V5c0-.55.45-1 1-1zM9 4c.55 0 1 .45 1 1v1H8c-.55 0-1-.45-1-1s.45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76V14h2V8.76L15.38 12 17 10.83 14.92 8H20v6z"/></svg>
+                </div>
+                <p>Compartimos juguetes, libros, útiles y momentos especiales.</p>
+            </div>
+        </section>
+
+        <!-- 6. Súmate a Sonrisas de Navidad -->
+        <section class="navidad-cta-section">
+            <div class="navidad-wrap">
+                <div class="navidad-cta-inner">
+                    <div class="cta-girl-wrapper">
+                        <img src="/img/ni%C3%B1a%20final%20sin%20fondo.png" alt="Niña de la comunidad en Sonrisas de Navidad" loading="lazy">
+                    </div>
+                    <div class="cta-content-wrapper">
+                        <h2 class="cta-title">Súmate a <span class="accent-dark">Sonrisas de Navidad</span></h2>
+                        <div class="cta-quote-container">
+                            <div class="cta-splash-icon cta-splash-left" aria-hidden="true">
+                                <svg viewBox="0 0 36 36"><path d="M10 18c-3-2-8-1-10 1 2 2 7 3 10-1zm3-6C9 9 5 7 2 8c2 3 6 5 11 4zm3-6C13 3 8 0 5 0c1 3 5 7 11 6zm-2 18c-4 3-7 7-6 10 3-1 6-5 6-10z"/></svg>
+                            </div>
+                            <p class="cta-quote-text">
+                                En diciembre compartimos sonrisas.<br>
+                                En marzo acompañamos nuevos comienzos.<br>
+                                Y en cada encuentro, seguimos construyendo oportunidades juntos.
+                            </p>
+                            <div class="cta-splash-icon cta-splash-right" aria-hidden="true">
+                                <svg viewBox="0 0 36 36"><path d="M10 18c-3-2-8-1-10 1 2 2 7 3 10-1zm3-6C9 9 5 7 2 8c2 3 6 5 11 4zm3-6C13 3 8 0 5 0c1 3 5 7 11 6zm-2 18c-4 3-7 7-6 10 3-1 6-5 6-10z"/></svg>
+                            </div>
+                        </div>
+                        <a class="button button-navidad-cta" href="https://www.paypal.com/donate?hosted_button_id=QUAX4SMYQ957A" target="_blank" rel="noopener noreferrer">Quiero ser parte <span aria-hidden="true">&gt;&gt;</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="/" aria-label="Imfundo Kahle, volver al inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

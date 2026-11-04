@@ -1,0 +1,278 @@
+/* Estilos para la página de Languages for Hope */
+
+.languages-page {
+    background: #ffffff;
+    color: #1e2022;
+}
+
+.languages-wrap {
+    width: min(1140px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+/* 1. Hero Principal y Logo Flotante */
+.languages-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.languages-hero > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.languages-logo {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    z-index: 2;
+    margin: -70px auto 0;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.16));
+    background: #ffffff;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.languages-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 2. Introducción */
+.languages-intro {
+    padding-top: 36px;
+    padding-bottom: 28px;
+    text-align: center;
+}
+
+.languages-intro h1 {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(34px, 4.2vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #111111;
+}
+
+.languages-coral {
+    color: var(--coral);
+}
+
+.languages-intro p {
+    margin: 0 auto;
+    max-width: 980px;
+    font-size: clamp(17.5px, 1.4vw, 21px);
+    line-height: 1.6;
+    font-weight: 500;
+    color: #2c2d30;
+}
+
+/* 3. Sección ¿Qué hacemos? */
+.languages-que-hacemos {
+    padding-top: 10px;
+}
+
+.languages-section-title {
+    margin: 28px 0 24px;
+    display: inline-block;
+}
+
+.languages-section-title h2 {
+    margin: 0 0 6px;
+    font-family: var(--display);
+    font-size: clamp(30px, 3.4vw, 42px);
+    font-weight: 800;
+    color: var(--coral);
+    line-height: 1.15;
+}
+
+.languages-teal-line {
+    display: block;
+    width: 100%;
+    height: 3.5px;
+    background: #82c8c4;
+    border-radius: 2px;
+}
+
+/* Fila 1: Tarjeta coral + Foto media */
+.languages-row-top {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 28px;
+    align-items: stretch;
+    margin-bottom: 32px;
+}
+
+.languages-card-coral {
+    background: #f7c2b8;
+    border-radius: 22px;
+    padding: 36px 32px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 6px 20px rgba(223, 75, 58, 0.12);
+}
+
+.languages-card-coral p {
+    margin: 0;
+    font-family: var(--font);
+    font-size: clamp(16px, 1.25vw, 18.5px);
+    line-height: 1.65;
+    color: #222426;
+}
+
+.languages-card-coral strong {
+    font-weight: 700;
+    color: #111111;
+}
+
+.languages-photo-box {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.languages-photo-box img {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+/* Fila 2: Foto alta + Bloque de textos y foto concurso */
+.languages-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 28px;
+    align-items: stretch;
+    margin-bottom: 68px;
+}
+
+.languages-photo-tall {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.languages-photo-tall img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+.languages-col-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.languages-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.languages-text-block p {
+    margin: 0;
+    font-family: var(--font);
+    font-size: clamp(15.5px, 1.15vw, 17.5px);
+    line-height: 1.6;
+    color: #2a2c2e;
+}
+
+.languages-text-block strong {
+    font-weight: 700;
+    color: #111111;
+}
+
+.languages-photo-concurso {
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    margin-top: auto;
+}
+
+.languages-photo-concurso img {
+    width: 100%;
+    height: auto;
+    max-height: 360px;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+/* ==========================================================
+   Responsive Breakpoints
+   ========================================================== */
+
+@media (max-width: 900px) {
+    .languages-row-top {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .languages-photo-box img {
+        height: clamp(260px, 45vw, 380px);
+        min-height: auto;
+    }
+
+    .languages-row-bottom {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .languages-photo-tall img {
+        height: clamp(340px, 50vw, 480px);
+        min-height: auto;
+    }
+}
+
+@media (max-width: 680px) {
+    .languages-wrap {
+        width: min(100% - 32px, 520px);
+    }
+
+    .languages-hero > img {
+        min-height: 190px;
+        object-fit: cover;
+    }
+
+    .languages-logo {
+        width: 105px;
+        height: 105px;
+        margin-top: -52px;
+    }
+
+    .languages-intro h1 {
+        font-size: 28px;
+    }
+
+    .languages-intro p {
+        font-size: 16.5px;
+    }
+
+    .languages-section-title h2 {
+        font-size: 26px;
+    }
+
+    .languages-card-coral {
+        padding: 24px 20px;
+    }
+
+    .languages-text-block p {
+        font-size: 15px;
+    }
+}
