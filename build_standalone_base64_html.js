@@ -5,45 +5,48 @@ const ejs = require('ejs');
 const rootDir = __dirname;
 const viewsDir = path.join(rootDir, 'views');
 const publicDir = path.join(rootDir, 'public');
+const imgDir = path.join(publicDir, 'img');
 const cssDir = path.join(publicDir, 'css');
 
-// Cargar diccionario Base64
-const jsonPath = path.join(rootDir, 'base64_images.json');
-let rawDict = fs.readFileSync(jsonPath, 'utf8').replace(/^\uFEFF/, '');
-const base64Dict = JSON.parse(rawDict);
+// Cache en memoria para Base64
+const memoryCache = new Map();
 
-console.log('Diccionario Base64 cargado. Total de claves:', Object.keys(base64Dict).length);
-
-// Función auxiliar para obtener Base64 Data URI de un nombre de imagen
 function getBase64Uri(rawName) {
     if (!rawName) return '';
     const clean = rawName.split('?')[0].trim();
     const decoded = decodeURIComponent(clean);
-    const encoded = encodeURIComponent(decoded);
-    const encodedUri = encodeURI(decoded);
 
-    const match = base64Dict[clean] || 
-                  base64Dict[decoded] || 
-                  base64Dict[encoded] || 
-                  base64Dict[encodedUri];
-    if (match) return match;
+    if (memoryCache.has(decoded)) {
+        return memoryCache.get(decoded);
+    }
 
-    // Búsqueda case-insensitive
-    const lowerKey = decoded.toLowerCase();
-    for (const key of Object.keys(base64Dict)) {
-        if (key.toLowerCase() === lowerKey) {
-            return base64Dict[key];
+    // Buscar archivo en public/img
+    let targetPath = path.join(imgDir, decoded);
+    if (!fs.existsSync(targetPath)) {
+        // Intento case-insensitive
+        const allFiles = fs.readdirSync(imgDir);
+        const found = allFiles.find(f => f.toLowerCase() === decoded.toLowerCase());
+        if (found) {
+            targetPath = path.join(imgDir, found);
         }
     }
 
-    console.warn('⚠️ No se encontró Base64 para imagen:', rawName);
+    if (fs.existsSync(targetPath) && fs.statSync(targetPath).isFile()) {
+        const ext = path.extname(targetPath).toLowerCase();
+        const mime = ext === '.png' ? 'image/png' : ext === '.svg' ? 'image/svg+xml' : 'image/jpeg';
+        const buffer = fs.readFileSync(targetPath);
+        const uri = `data:${mime};base64,${buffer.toString('base64')}`;
+        memoryCache.set(decoded, uri);
+        memoryCache.set(rawName, uri);
+        return uri;
+    }
+
+    console.warn('⚠️ Imagen no encontrada en disco:', decoded);
     return `public/img/${clean}`;
 }
 
-// Reemplazar rutas de imágenes en un texto (HTML o CSS)
 function replaceImagesWithBase64(text) {
     let result = text;
-
     // 1. Reemplazar src="..." y data-news-image="..."
     result = result.replace(/(src|data-news-image)=["'](?:(?:\/|public\/)?img\/)([^"']+)["']/g, (m, attr, imgName) => {
         const uri = getBase64Uri(imgName);
@@ -61,118 +64,31 @@ function replaceImagesWithBase64(text) {
 
 // Lista completa de las 15 páginas con sus IDs y títulos
 const pageConfigs = [
-    {
-        id: 'inicio',
-        view: 'index.ejs',
-        title: 'Inicio - Imfundo Kahle',
-        label: '🏠 Inicio'
-    },
-    {
-        id: 'nosotros',
-        view: 'nosotros.ejs',
-        title: 'Sobre nosotros - Imfundo Kahle',
-        label: '👥 Sobre nosotros'
-    },
-    {
-        id: 'proyectos',
-        view: 'proyectos.ejs',
-        title: 'Nuestros proyectos - Imfundo Kahle',
-        label: '📁 Proyectos (General)'
-    },
-    {
-        id: 'casa-ainbo',
-        view: 'casa-ainbo.ejs',
-        title: 'Casa Ainbo - Imfundo Kahle',
-        label: '🏡 Casa Ainbo'
-    },
-    {
-        id: 'sonrisas-de-navidad',
-        view: 'sonrisas-de-navidad.ejs',
-        title: 'Sonrisas de Navidad - Imfundo Kahle',
-        label: '🎄 Sonrisas de Navidad'
-    },
-    {
-        id: 'guardianes-del-itaya',
-        view: 'guardianes-itaya.ejs',
-        title: 'Guardianes del Itaya - Imfundo Kahle',
-        label: '🌊 Guardianes del Itaya'
-    },
-    {
-        id: 'imfundo-yoga',
-        view: 'imfundo-yoga.ejs',
-        title: 'Imfundo Yoga - Imfundo Kahle',
-        label: '🧘 Imfundo Yoga'
-    },
-    {
-        id: 'languages-for-hope',
-        view: 'languages-for-hope.ejs',
-        title: 'Languages for Hope - Imfundo Kahle',
-        label: '🌍 Languages for Hope'
-    },
-    {
-        id: 'proyecto-butterfly',
-        view: 'proyecto-butterfly.ejs',
-        title: 'Proyecto Butterfly - Imfundo Kahle',
-        label: '🦋 Proyecto Butterfly'
-    },
-    {
-        id: 'ainbo',
-        view: 'ainbo.ejs',
-        title: 'Ainbo - Imfundo Kahle',
-        label: '🎨 Ainbo Emprendimientos'
-    },
-    {
-        id: 'se-un-voluntario',
-        view: 'se-un-voluntario.ejs',
-        title: 'Sé un voluntario - Imfundo Kahle',
-        label: '🤝 Sé un voluntario (Hub 6 tarjetas)'
-    },
-    {
-        id: 'voluntariado',
-        view: 'voluntario-detalle.ejs',
-        title: 'Sé voluntario - Imfundo Kahle',
-        label: '📌 Detalle: Sé voluntario (01)'
-    },
-    {
-        id: 'apadrina-un-nino',
-        view: 'apadrina-detalle.ejs',
-        title: 'Apadrina un niño - Imfundo Kahle',
-        label: '📌 Detalle: Apadrina un niño (02)'
-    },
-    {
-        id: 'contribuye-con-desayuno',
-        view: 'desayuno-detalle.ejs',
-        title: 'Contribuye con desayuno - Imfundo Kahle',
-        label: '📌 Detalle: Contribuye con desayuno (03)'
-    },
-    {
-        id: 'como-ayudar',
-        view: 'como-ayudar.ejs',
-        title: 'Cómo ayudar - Imfundo Kahle',
-        label: '💙 Cómo ayudar'
-    }
+    { id: 'inicio', view: 'index.ejs', title: 'Inicio - Imfundo Kahle', label: '🏠 Inicio' },
+    { id: 'nosotros', view: 'nosotros.ejs', title: 'Sobre nosotros - Imfundo Kahle', label: '👥 Sobre nosotros' },
+    { id: 'proyectos', view: 'proyectos.ejs', title: 'Nuestros proyectos - Imfundo Kahle', label: '📁 Proyectos (General)' },
+    { id: 'casa-ainbo', view: 'casa-ainbo.ejs', title: 'Casa Ainbo - Imfundo Kahle', label: '🏡 Casa Ainbo' },
+    { id: 'sonrisas-de-navidad', view: 'sonrisas-de-navidad.ejs', title: 'Sonrisas de Navidad - Imfundo Kahle', label: '🎄 Sonrisas de Navidad' },
+    { id: 'guardianes-del-itaya', view: 'guardianes-itaya.ejs', title: 'Guardianes del Itaya - Imfundo Kahle', label: '🌊 Guardianes del Itaya' },
+    { id: 'imfundo-yoga', view: 'imfundo-yoga.ejs', title: 'Imfundo Yoga - Imfundo Kahle', label: '🧘 Imfundo Yoga' },
+    { id: 'languages-for-hope', view: 'languages-for-hope.ejs', title: 'Languages for Hope - Imfundo Kahle', label: '🌍 Languages for Hope' },
+    { id: 'proyecto-butterfly', view: 'proyecto-butterfly.ejs', title: 'Proyecto Butterfly - Imfundo Kahle', label: '🦋 Proyecto Butterfly' },
+    { id: 'ainbo', view: 'ainbo.ejs', title: 'Ainbo - Imfundo Kahle', label: '🎨 Ainbo Emprendimientos' },
+    { id: 'se-un-voluntario', view: 'se-un-voluntario.ejs', title: 'Sé un voluntario - Imfundo Kahle', label: '🤝 Sé un voluntario (Hub 6 tarjetas)' },
+    { id: 'voluntariado', view: 'voluntario-detalle.ejs', title: 'Sé voluntario - Imfundo Kahle', label: '📌 Detalle: Sé voluntario (01)' },
+    { id: 'apadrina-un-nino', view: 'apadrina-detalle.ejs', title: 'Apadrina un niño - Imfundo Kahle', label: '📌 Detalle: Apadrina un niño (02)' },
+    { id: 'contribuye-con-desayuno', view: 'desayuno-detalle.ejs', title: 'Contribuye con desayuno - Imfundo Kahle', label: '📌 Detalle: Contribuye con desayuno (03)' },
+    { id: 'como-ayudar', view: 'como-ayudar.ejs', title: 'Cómo ayudar - Imfundo Kahle', label: '💙 Cómo ayudar' }
 ];
 
-// CSS a incluir en orden
 const cssFiles = [
-    'style.css',
-    'nosotros.css',
-    'proyectos.css',
-    'casa-ainbo.css',
-    'sonrisas-de-navidad.css',
-    'guardianes-itaya.css',
-    'imfundo-yoga.css',
-    'languages-for-hope.css',
-    'proyecto-butterfly.css',
-    'ainbo.css',
-    'se-un-voluntario.css',
-    'voluntario-detalle.css',
-    'apadrina-detalle.css',
-    'desayuno-detalle.css',
-    'como-ayudar.css'
+    'style.css', 'nosotros.css', 'proyectos.css', 'casa-ainbo.css', 'sonrisas-de-navidad.css',
+    'guardianes-itaya.css', 'imfundo-yoga.css', 'languages-for-hope.css', 'proyecto-butterfly.css',
+    'ainbo.css', 'se-un-voluntario.css', 'voluntario-detalle.css', 'apadrina-detalle.css',
+    'desayuno-detalle.css', 'como-ayudar.css'
 ];
 
-console.log('Concatenando y reemplazando imágenes en CSS...');
+console.log('Concatenando CSS e incrustando imágenes...');
 let combinedCss = '';
 for (const file of cssFiles) {
     const filePath = path.join(cssDir, file);
@@ -183,7 +99,6 @@ for (const file of cssFiles) {
     }
 }
 
-// Estilos de vista previa y control de vistas
 const previewStyles = `
 /* === ESTILOS PARA LA VISTA PREVIA Y CONMUTACIÓN DE PÁGINAS === */
 .page-view {
@@ -193,7 +108,6 @@ const previewStyles = `
     display: block !important;
 }
 
-/* Barra flotante de revisión rápida */
 #reviewer-bar {
     position: fixed;
     bottom: 24px;
@@ -270,7 +184,6 @@ const previewStyles = `
 }
 `;
 
-// Extraer el header global
 const indexEjsPath = path.join(viewsDir, 'index.ejs');
 const indexContent = fs.readFileSync(indexEjsPath, 'utf8');
 const renderedIndex = ejs.render(indexContent, { titulo: 'Inicio - Imfundo Kahle' }, { filename: indexEjsPath });
@@ -280,22 +193,17 @@ let globalHeader = headerMatch ? headerMatch[0] : '';
 globalHeader = replaceImagesWithBase64(globalHeader);
 globalHeader = globalHeader.replace(/href="\/"/g, `href="#inicio"`);
 
-// Extraer el footer global
 const footerMatch = renderedIndex.match(/<footer class="site-footer">[\s\S]*?<\/footer>/);
 let globalFooter = footerMatch ? footerMatch[0] : '';
 globalFooter = replaceImagesWithBase64(globalFooter);
 globalFooter = globalFooter.replace(/href="\/"/g, `href="#inicio"`);
 
-// Procesar cada vista
-console.log('Procesando e incrustando vistas con imágenes en Base64...');
+console.log('Procesando e incrustando vistas en Base64...');
 const pageViewsHtml = [];
 
 for (const page of pageConfigs) {
     const viewPath = path.join(viewsDir, page.view);
-    if (!fs.existsSync(viewPath)) {
-        console.warn(`Vista no encontrada: ${page.view}`);
-        continue;
-    }
+    if (!fs.existsSync(viewPath)) continue;
 
     const template = fs.readFileSync(viewPath, 'utf8');
     const rendered = ejs.render(template, { titulo: page.title }, { filename: viewPath });
@@ -312,9 +220,7 @@ for (const page of pageConfigs) {
         mainInner = bodyMatch ? bodyMatch[1] : rendered;
     }
 
-    // Incrustar imágenes Base64 en el contenido HTML
     mainInner = replaceImagesWithBase64(mainInner);
-    // Asegurar que las imágenes carguen de inmediato
     mainInner = mainInner.replace(/loading="lazy"/g, 'loading="eager"');
 
     const isActive = page.id === 'inicio' ? 'active' : '';
@@ -329,12 +235,10 @@ for (const page of pageConfigs) {
     </div>`);
 }
 
-// Opciones del selector
 const selectOptions = pageConfigs.map(p => 
     `<option value="${p.id}" ${p.id === 'inicio' ? 'selected' : ''}>${p.label}</option>`
 ).join('\n                    ');
 
-// Script del router de navegación cliente
 const routerScript = `
 <script>
 (function() {
@@ -344,72 +248,21 @@ const routerScript = `
     const reviewerToggle = document.getElementById('reviewer-toggle');
 
     const routeMap = {
-        '': 'inicio',
-        '/': 'inicio',
-        '#inicio': 'inicio',
-        'index.html': 'inicio',
-        
-        '/nosotros': 'nosotros',
-        'nosotros.html': 'nosotros',
-        '#nosotros': 'nosotros',
-        
-        '/proyectos': 'proyectos',
-        'proyectos.html': 'proyectos',
-        '#proyectos': 'proyectos',
-        
-        '/proyectos/casa-ainbo': 'casa-ainbo',
-        'casa-ainbo.html': 'casa-ainbo',
-        '#casa-ainbo': 'casa-ainbo',
-        
-        '/proyectos/sonrisas-de-navidad': 'sonrisas-de-navidad',
-        'sonrisas-de-navidad.html': 'sonrisas-de-navidad',
-        '#sonrisas-de-navidad': 'sonrisas-de-navidad',
-        
-        '/proyectos/guardianes-del-itaya': 'guardianes-del-itaya',
-        'guardianes-del-itaya.html': 'guardianes-del-itaya',
-        '#guardianes-del-itaya': 'guardianes-del-itaya',
-        
-        '/proyectos/imfundo-yoga': 'imfundo-yoga',
-        'imfundo-yoga.html': 'imfundo-yoga',
-        '#imfundo-yoga': 'imfundo-yoga',
-        
-        '/proyectos/languages-for-hope': 'languages-for-hope',
-        'languages-for-hope.html': 'languages-for-hope',
-        '#languages-for-hope': 'languages-for-hope',
-        
-        '/proyectos/proyecto-butterfly': 'proyecto-butterfly',
-        'proyecto-butterfly.html': 'proyecto-butterfly',
-        '#proyecto-butterfly': 'proyecto-butterfly',
-        
-        '/proyectos/ainbo': 'ainbo',
-        'ainbo.html': 'ainbo',
-        '#ainbo': 'ainbo',
-        
-        '/se-un-voluntario': 'se-un-voluntario',
-        'se-un-voluntario.html': 'se-un-voluntario',
-        '#se-un-voluntario': 'se-un-voluntario',
-        
-        '/se-un-voluntario/voluntariado': 'voluntariado',
-        '/se-voluntario': 'voluntariado',
-        'voluntariado.html': 'voluntariado',
-        'se-voluntario.html': 'voluntariado',
-        '#voluntariado': 'voluntariado',
-        '#se-voluntario': 'voluntariado',
-        
-        '/se-un-voluntario/apadrina-un-nino': 'apadrina-un-nino',
-        '/apadrina-un-nino': 'apadrina-un-nino',
-        'apadrina-un-nino.html': 'apadrina-un-nino',
-        '#apadrina-un-nino': 'apadrina-un-nino',
-        '#apadrinamiento': 'apadrina-un-nino',
-        
-        '/se-un-voluntario/contribuye-con-desayuno': 'contribuye-con-desayuno',
-        '/contribuye-con-desayuno': 'contribuye-con-desayuno',
-        'contribuye-con-desayuno.html': 'contribuye-con-desayuno',
-        '#contribuye-con-desayuno': 'contribuye-con-desayuno',
-        
-        '/como-ayudar': 'como-ayudar',
-        'como-ayudar.html': 'como-ayudar',
-        '#como-ayudar': 'como-ayudar'
+        '': 'inicio', '/': 'inicio', '#inicio': 'inicio', 'index.html': 'inicio',
+        '/nosotros': 'nosotros', 'nosotros.html': 'nosotros', '#nosotros': 'nosotros',
+        '/proyectos': 'proyectos', 'proyectos.html': 'proyectos', '#proyectos': 'proyectos',
+        '/proyectos/casa-ainbo': 'casa-ainbo', 'casa-ainbo.html': 'casa-ainbo', '#casa-ainbo': 'casa-ainbo',
+        '/proyectos/sonrisas-de-navidad': 'sonrisas-de-navidad', 'sonrisas-de-navidad.html': 'sonrisas-de-navidad', '#sonrisas-de-navidad': 'sonrisas-de-navidad',
+        '/proyectos/guardianes-del-itaya': 'guardianes-del-itaya', 'guardianes-del-itaya.html': 'guardianes-del-itaya', '#guardianes-del-itaya': 'guardianes-del-itaya',
+        '/proyectos/imfundo-yoga': 'imfundo-yoga', 'imfundo-yoga.html': 'imfundo-yoga', '#imfundo-yoga': 'imfundo-yoga',
+        '/proyectos/languages-for-hope': 'languages-for-hope', 'languages-for-hope.html': 'languages-for-hope', '#languages-for-hope': 'languages-for-hope',
+        '/proyectos/proyecto-butterfly': 'proyecto-butterfly', 'proyecto-butterfly.html': 'proyecto-butterfly', '#proyecto-butterfly': 'proyecto-butterfly',
+        '/proyectos/ainbo': 'ainbo', 'ainbo.html': 'ainbo', '#ainbo': 'ainbo',
+        '/se-un-voluntario': 'se-un-voluntario', 'se-un-voluntario.html': 'se-un-voluntario', '#se-un-voluntario': 'se-un-voluntario',
+        '/se-un-voluntario/voluntariado': 'voluntariado', '/se-voluntario': 'voluntariado', 'voluntariado.html': 'voluntariado', 'se-voluntario.html': 'voluntariado', '#voluntariado': 'voluntariado', '#se-voluntario': 'voluntariado',
+        '/se-un-voluntario/apadrina-un-nino': 'apadrina-un-nino', '/apadrina-un-nino': 'apadrina-un-nino', 'apadrina-un-nino.html': 'apadrina-un-nino', '#apadrina-un-nino': 'apadrina-un-nino', '#apadrinamiento': 'apadrina-un-nino',
+        '/se-un-voluntario/contribuye-con-desayuno': 'contribuye-con-desayuno', '/contribuye-con-desayuno': 'contribuye-con-desayuno', 'contribuye-con-desayuno.html': 'contribuye-con-desayuno', '#contribuye-con-desayuno': 'contribuye-con-desayuno',
+        '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar'
     };
 
     function switchView(targetId, targetAnchor) {
@@ -516,16 +369,13 @@ const routerScript = `
 </script>
 `;
 
-// Script base interactivo (modales, carrusel, acordeón móvil)
 const mainJsPath = path.join(publicDir, 'js', 'main.js');
 let siteJs = '';
 if (fs.existsSync(mainJsPath)) {
     siteJs = fs.readFileSync(mainJsPath, 'utf8');
-    // Ajustar comprobación de chino para que funcione con dataUri
     siteJs = siteJs.replace("card.dataset.newsImage === '/img/chino.jpeg'", "card.dataset.newsTitle.includes('Se-I Kang')");
 }
 
-// Ensamblar HTML completo
 const fullHtml = `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -544,7 +394,6 @@ ${previewStyles}
 </head>
 <body>
 
-    <!-- BARRA FLOTANTE DE REVISIÓN RÁPIDA -->
     <aside id="reviewer-bar" aria-label="Selector de vistas">
         <div class="reviewer-content">
             <span class="reviewer-title">👁 Vista Previa:</span>
@@ -555,18 +404,14 @@ ${previewStyles}
         <button class="reviewer-toggle" id="reviewer-toggle" type="button" title="Minimizar barra">✕</button>
     </aside>
 
-    <!-- HEADER GLOBAL -->
     ${globalHeader}
 
-    <!-- CONTENEDOR DE TODAS LAS PÁGINAS -->
     <div id="pages-container">
         ${pageViewsHtml.join('\n')}
     </div>
 
-    <!-- FOOTER GLOBAL -->
     ${globalFooter}
 
-    <!-- SCRIPTS INTERACTIVOS -->
     <script>
 ${siteJs}
     </script>
@@ -576,12 +421,6 @@ ${siteJs}
 </html>
 `;
 
-// Escribir en la raíz del proyecto
-const outPath = path.join(rootDir, 'sitio_completo.html');
-fs.writeFileSync(outPath, fullHtml, 'utf8');
-console.log(`✓ Generado con éxito: ${outPath} (${(fullHtml.length / (1024 * 1024)).toFixed(2)} MB)`);
-
-// También guardar con nombre explícito para enviar
 const outPresentationPath = path.join(rootDir, 'imfundo_kahle_presentacion.html');
 fs.writeFileSync(outPresentationPath, fullHtml, 'utf8');
 console.log(`✓ Generado con éxito: ${outPresentationPath} (${(fullHtml.length / (1024 * 1024)).toFixed(2)} MB)`);

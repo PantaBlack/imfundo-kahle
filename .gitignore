@@ -13,6 +13,7 @@ temp_opt_img/
 base64_images.json
 images_to_optimize.json
 public/img/originals_before_lines/
+imfundo_kahle_presentacion.html
 *.log
 
 # Archivos de sistema operativo

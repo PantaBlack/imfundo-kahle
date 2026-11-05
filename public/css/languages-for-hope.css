@@ -77,18 +77,18 @@
 
 /* 3. Sección ¿Qué hacemos? */
 .languages-que-hacemos {
-    padding-top: 10px;
+    padding-top: 14px;
 }
 
 .languages-section-title {
-    margin: 28px 0 24px;
+    margin: 0 0 14px;
     display: inline-block;
 }
 
 .languages-section-title h2 {
     margin: 0 0 6px;
     font-family: var(--display);
-    font-size: clamp(30px, 3.4vw, 42px);
+    font-size: clamp(32px, 3.6vw, 44px);
     font-weight: 800;
     color: var(--coral);
     line-height: 1.15;
@@ -96,39 +96,51 @@
 
 .languages-teal-line {
     display: block;
-    width: 100%;
-    height: 3.5px;
+    width: 140px;
+    height: 4px;
     background: #82c8c4;
     border-radius: 2px;
 }
 
-/* Fila 1: Tarjeta coral + Foto media */
+/* Fila 1: ¿Qué hacemos? textos a la izquierda + Foto media a la derecha */
 .languages-row-top {
     display: grid;
-    grid-template-columns: 1fr 1.35fr;
-    gap: 28px;
-    align-items: stretch;
-    margin-bottom: 32px;
-}
-
-.languages-card-coral {
-    background: #f7c2b8;
-    border-radius: 22px;
-    padding: 36px 32px;
-    display: flex;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 36px;
     align-items: center;
-    box-shadow: 0 6px 20px rgba(223, 75, 58, 0.12);
+    margin-bottom: 48px;
 }
 
-.languages-card-coral p {
+.languages-col-que-hacemos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.languages-subheading {
+    margin: 10px 0 24px;
+    font-family: var(--font);
+    font-size: clamp(18px, 1.4vw, 21px);
+    font-weight: 600;
+    color: #1a1c1e;
+    line-height: 1.35;
+}
+
+.languages-intro-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.languages-intro-items p {
     margin: 0;
     font-family: var(--font);
-    font-size: clamp(16px, 1.25vw, 18.5px);
-    line-height: 1.65;
-    color: #222426;
+    font-size: clamp(15.5px, 1.15vw, 17px);
+    line-height: 1.62;
+    color: #2b2d30;
 }
 
-.languages-card-coral strong {
+.languages-intro-items strong {
     font-weight: 700;
     color: #111111;
 }
@@ -141,8 +153,7 @@
 
 .languages-photo-box img {
     width: 100%;
-    height: 100%;
-    min-height: 280px;
+    height: auto;
     object-fit: cover;
     display: block;
     border-radius: 6px;
