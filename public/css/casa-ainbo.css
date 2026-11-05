@@ -87,9 +87,10 @@
     .results-copy h2 { font-size: 42px; }
     .results-copy > strong { font-size: 78px; }
     .results-inner > img { height: auto; }
-    .library-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .library-grid figure:last-of-type { display: none; }
-    .library-grid p { grid-column: 1 / -1; font-size: 48px; }
+    .library-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; align-items: start; }
+    .library-grid figure { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .library-grid figcaption { font-size: clamp(14px, 3.6vw, 18px); margin-top: 8px; line-height: 1.25; }
+    .library-grid p { grid-column: 1 / -1; font-size: clamp(28px, 7vw, 42px); line-height: 1.2; margin-top: 14px; }
     .library-grid img { height: auto; }
     .breakfast-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .breakfast-grid img { height: 330px; }
