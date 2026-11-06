@@ -434,11 +434,36 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 @media (max-width: 960px) {
-    .project-row { flex-wrap: wrap; justify-content: center; gap: 16px; }
-    .project-row .project-tile { width: calc((100% - 16px) / 2); }
-    .project-row-bottom .project-tile { width: calc((100% - 16px) / 2); }
+    .project-list { 
+        display: grid; 
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        gap: 16px; 
+    }
+    .project-row, 
+    .project-row-bottom { 
+        display: contents; 
+    }
+    .project-row .project-tile, 
+    .project-row-bottom .project-tile { 
+        width: 100%; 
+    }
     .project-tile { min-height: 210px; padding: 20px 14px 16px; }
     .project-tile img { height: 120px; }
+
+    /* Orden en móvil y tablet: 2 columnas con Languages for Hope centrado abajo */
+    .tile-casa-ainbo    { order: 1; }
+    .tile-sonrisas      { order: 2; }
+    .tile-guardianes    { order: 3; }
+    .tile-ainbo         { order: 4; }
+    .tile-yoga          { order: 5; }
+    .tile-butterfly     { order: 6; }
+    .tile-languages     { 
+        order: 7; 
+        grid-column: 1 / -1; 
+        width: 100%;
+        max-width: calc((100% - 16px) / 2); 
+        justify-self: center; 
+    }
 }
 
 @media (max-width: 680px) {
@@ -448,12 +473,16 @@ h1, h2, h3, p { margin-top: 0; }
     .projects-hero > img { height: clamp(220px, 55vw, 300px); object-position: center 14%; }
     .projects-intro { padding-block: 14px 18px; }
     .projects-intro p { font-size: 15px; }
-    .project-list { gap: 14px; padding-bottom: 32px; }
-    .project-row, .project-row-bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .project-row .project-tile, .project-row-bottom .project-tile { width: auto; }
+    .project-list { 
+        gap: 12px; 
+        padding-bottom: 32px; 
+    }
     .project-tile { min-height: 180px; padding: 16px 12px 14px; }
     .project-tile img { height: 100px; }
     .project-tile a { min-width: 105px; padding: 6px 12px; font-size: 11px; }
+    .tile-languages {
+        max-width: calc((100% - 12px) / 2);
+    }
 }
 
 
@@ -4827,15 +4856,15 @@ h1, h2, h3, p { margin-top: 0; }
 
         <section class="project-list projects-wrap" id="proyectos" aria-label="Proyectos de Imfundo Kahle">
             <div class="project-row">
-                <article class="project-tile"><img src="public/img/Logo%20Casa%20Ainbo%20(1).png" alt="Casa Ainbo" id="casa-ainbo"><a href="/proyectos/casa-ainbo">Ver proyecto</a></article>
-                <article class="project-tile"><img src="public/img/logo%20navidad_Mesa%20de%20trabajo%201%20%281%29.png" alt="Sonrisas de Navidad" id="sonrisas-de-navidad"><a href="/proyectos/sonrisas-de-navidad">Ver proyecto</a></article>
-                <article class="project-tile"><img src="public/img/guardian.png" alt="Proyecto Guardianes del Itaya" id="guardianes"><a href="/proyectos/guardianes-del-itaya">Ver proyecto</a></article>
-                <article class="project-tile"><img src="public/img/PROYECTO%20BUTTERFLY%20LOGO.png" alt="Proyecto Butterfly" id="butterfly"><a href="/proyectos/proyecto-butterfly">Ver proyecto</a></article>
+                <article class="project-tile tile-casa-ainbo"><img src="public/img/Logo%20Casa%20Ainbo%20(1).png" alt="Casa Ainbo" id="casa-ainbo"><a href="/proyectos/casa-ainbo">Ver proyecto</a></article>
+                <article class="project-tile tile-sonrisas"><img src="public/img/logo%20navidad_Mesa%20de%20trabajo%201%20%281%29.png" alt="Sonrisas de Navidad" id="sonrisas-de-navidad"><a href="/proyectos/sonrisas-de-navidad">Ver proyecto</a></article>
+                <article class="project-tile tile-guardianes"><img src="public/img/guardian.png" alt="Proyecto Guardianes del Itaya" id="guardianes"><a href="/proyectos/guardianes-del-itaya">Ver proyecto</a></article>
+                <article class="project-tile tile-butterfly"><img src="public/img/PROYECTO%20BUTTERFLY%20LOGO.png" alt="Proyecto Butterfly" id="butterfly"><a href="/proyectos/proyecto-butterfly">Ver proyecto</a></article>
             </div>
             <div class="project-row project-row-bottom">
-                <article class="project-tile"><img src="public/img/Imfundo%20yoga.png" alt="Imfundo Yoga" id="yoga"><a href="/proyectos/imfundo-yoga">Ver proyecto</a></article>
-                <article class="project-tile"><img class="project-logo-languages" src="public/img/logo%20png.png" alt="Languages for Hope" id="languages"><a href="/proyectos/languages-for-hope">Ver proyecto</a></article>
-                <article class="project-tile"><img src="public/img/Logo%20Ainbo.png" alt="Ainbo" id="ainbo"><a href="/proyectos/ainbo">Ver proyecto</a></article>
+                <article class="project-tile tile-yoga"><img src="public/img/Imfundo%20yoga.png" alt="Imfundo Yoga" id="yoga"><a href="/proyectos/imfundo-yoga">Ver proyecto</a></article>
+                <article class="project-tile tile-languages"><img class="project-logo-languages" src="public/img/logo%20png.png" alt="Languages for Hope" id="languages"><a href="/proyectos/languages-for-hope">Ver proyecto</a></article>
+                <article class="project-tile tile-ainbo"><img src="public/img/Logo%20Ainbo.png" alt="Ainbo" id="ainbo"><a href="/proyectos/ainbo">Ver proyecto</a></article>
             </div>
         </section>
     
