@@ -3594,6 +3594,407 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 
+/* === ARCHIVO: espacio-educativo-detalle.css === */
+/* ==========================================================================
+   Implementa un espacio educativo (Detalle) - Imfundo Kahle
+   ========================================================================== */
+
+.espacio-page {
+    overflow-x: hidden;
+    width: 100%;
+    padding-block: 24px 70px;
+    background: #ffffff;
+}
+
+.espacio-hero-wrap,
+.espacio-construct-wrap,
+.espacio-foot-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-inline: 24px;
+}
+
+/* 1. Hero Split Card */
+.espacio-split-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    background: #f7dbd4; /* Tono blush suave idéntico al diseño */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.espacio-split-copy {
+    padding: 44px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.espacio-split-title {
+    color: #cf4836; /* Coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(30px, 3.8vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 18px;
+}
+
+.espacio-split-subtitle {
+    color: #151515;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+.espacio-split-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15px;
+    line-height: 1.62;
+    margin: 0;
+}
+
+.espacio-split-visual {
+    line-height: 0;
+    position: relative;
+}
+
+.espacio-split-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* 2. Sección "¿Qué podemos construir juntos?" */
+.espacio-construct-section {
+    padding-block: 50px 40px;
+}
+
+.construct-heading {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin: 0 0 36px;
+}
+
+.construct-heading .coral {
+    color: #cf4836;
+}
+
+.construct-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 28px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.construct-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.construct-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.construct-thumb {
+    width: 124px;
+    height: 82px;
+    border-radius: 14px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: block;
+}
+
+.construct-img-spacer {
+    width: 124px;
+    height: 82px;
+    flex-shrink: 0;
+}
+
+.construct-card {
+    flex: 1;
+    background: #f7dbd4;
+    border-radius: 16px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 82px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.construct-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.construct-card-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.construct-card-icon svg {
+    width: 38px;
+    height: 38px;
+}
+
+.construct-card-body {
+    flex: 1;
+}
+
+.construct-card-title {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #151515;
+    margin: 0 0 3px;
+    line-height: 1.2;
+}
+
+.construct-card-desc {
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 13px;
+    color: #2b2b2b;
+    margin: 0;
+    line-height: 1.35;
+}
+
+/* 3. Sección Inferior: Apoyo Individual y Empresa */
+.espacio-foot-section {
+    padding-block: 20px 30px;
+}
+
+.espacio-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.espacio-bottom-visual {
+    display: flex;
+    gap: 3px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.espacio-bottom-visual img {
+    width: 50%;
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.espacio-bottom-card {
+    background: #f7dbd4;
+    border-radius: 20px;
+    padding: 38px 36px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.support-block:not(:first-child) {
+    margin-top: 20px;
+}
+
+.support-title {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 18px;
+    font-weight: 800;
+    color: #151515;
+    margin: 0 0 8px;
+    line-height: 1.25;
+}
+
+.support-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.bottom-card-btn-wrap {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.espacio-btn {
+    background: linear-gradient(180deg, #cb4735 0%, #b83726 100%);
+    color: #ffffff;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 14px rgba(184, 55, 38, 0.32);
+    display: inline-block;
+    text-align: center;
+}
+
+.espacio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(184, 55, 38, 0.45);
+    filter: brightness(1.04);
+}
+
+.espacio-btn:active {
+    transform: translateY(0);
+}
+
+.espacio-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 960px) {
+    .espacio-split-card {
+        grid-template-columns: 1fr;
+    }
+
+    .espacio-split-visual {
+        max-height: 380px;
+    }
+
+    .construct-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .espacio-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .espacio-bottom-visual img {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 680px) {
+    .espacio-page {
+        padding-block: 16px 50px;
+    }
+
+    .espacio-hero-wrap,
+    .espacio-construct-wrap,
+    .espacio-foot-wrap {
+        padding-inline: 16px;
+    }
+
+    .espacio-split-copy {
+        padding: 30px 22px;
+    }
+
+    .espacio-split-title {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+    .espacio-split-subtitle {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .espacio-split-desc {
+        font-size: 14px;
+    }
+
+    .construct-heading {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    .construct-row-offset .construct-img-spacer {
+        display: none;
+    }
+
+    .construct-thumb {
+        width: 90px;
+        height: 74px;
+        border-radius: 12px;
+    }
+
+    .construct-card {
+        padding: 10px 14px;
+        min-height: 74px;
+        gap: 10px;
+    }
+
+    .construct-card-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .construct-card-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .construct-card-title {
+        font-size: 14px;
+    }
+
+    .construct-card-desc {
+        font-size: 12px;
+    }
+
+    .espacio-bottom-card {
+        padding: 28px 22px;
+    }
+
+    .support-title {
+        font-size: 16.5px;
+    }
+
+    .support-desc {
+        font-size: 13.5px;
+    }
+
+    .espacio-bottom-visual img {
+        min-height: 220px;
+    }
+}
+
+
 /* === ARCHIVO: como-ayudar.css === */
 /* ========================================================
    ESTILOS - PÁGINA CÓMO AYUDAR (IMFUNDO KAHLE)
@@ -4140,6 +4541,7 @@ h1, h2, h3, p { margin-top: 0; }
                     <option value="voluntariado" >📌 Detalle: Sé voluntario (01)</option>
                     <option value="apadrina-un-nino" >📌 Detalle: Apadrina un niño (02)</option>
                     <option value="contribuye-con-desayuno" >📌 Detalle: Contribuye con desayuno (03)</option>
+                    <option value="implementa-un-espacio-educativo" >📌 Detalle: Espacio educativo (04)</option>
                     <option value="como-ayudar" >💙 Cómo ayudar</option>
             </select>
         </div>
@@ -5019,7 +5421,7 @@ h1, h2, h3, p { margin-top: 0; }
                     <div class="part-card-badge">04</div>
                     <h3 class="part-card-title">Implementa un espacio educativo</h3>
                     <p class="part-card-desc">Hagamos realidad un espacio para aprender</p>
-                    <a class="part-card-btn" href="/como-ayudar#campanas-activas">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    <a class="part-card-btn" href="/se-un-voluntario/implementa-un-espacio-educativo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
                 </article>
 
                 <!-- Tarjeta 05 -->
@@ -5427,6 +5829,157 @@ h1, h2, h3, p { margin-top: 0; }
         </div>
 
         <!-- ========================================== -->
+        <!-- VISTA: Implementa un espacio educativo - Imfundo Kahle (ID: implementa-un-espacio-educativo) -->
+        <!-- ========================================== -->
+        <div class="page-view " id="view-implementa-un-espacio-educativo" data-page="implementa-un-espacio-educativo" data-title="Implementa un espacio educativo - Imfundo Kahle">
+            <main  class="espacio-page">
+                
+        <!-- 1. Hero Split Card -->
+        <section class="espacio-hero-section">
+            <div class="espacio-hero-wrap">
+                <div class="espacio-split-card">
+                    <div class="espacio-split-copy">
+                        <h1 class="espacio-split-title">Implementa un<br>espacio educativo</h1>
+                        <h2 class="espacio-split-subtitle">Creando oportunidades de aprendizaje</h2>
+                        <p class="espacio-split-desc">Buscamos brindar a nuestros niños espacios educativos dignos y estimulantes que despierten su curiosidad y potencien sus habilidades. Para ello, necesitamos materiales y recursos que enriquezcan sus experiencias de aprendizaje. Invitamos a aliados a sumarse a esta iniciativa y contribuir a transformar sus oportunidades de desarrollo.</p>
+                    </div>
+                    <div class="espacio-split-visual">
+                        <img src="public/img/espacio%20educativo%201.png" alt="Niños en el espacio educativo de Imfundo Kahle compartiendo dinámicas de aprendizaje" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección "¿Qué podemos construir juntos?" -->
+        <section class="espacio-construct-section">
+            <div class="espacio-construct-wrap">
+                <h2 class="construct-heading"><span class="coral">¿Qué podemos</span> construir juntos?</h2>
+
+                <div class="construct-grid">
+                    <!-- Columna Izquierda -->
+                    <div class="construct-col">
+                        <!-- Fila 1: Área de ciencias -->
+                        <div class="construct-row construct-row-offset">
+                            <div class="construct-img-spacer" aria-hidden="true"></div>
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8h12M24 8v11l-9.5 17.5A2.2 2.2 0 0 0 16.4 40h15.2a2.2 2.2 0 0 0 1.9-3.5L24 19V8" />
+                                        <path d="M16 31h16" />
+                                        <circle cx="21" cy="35" r="1.5" fill="#ffffff" />
+                                        <circle cx="27" cy="34" r="1.5" fill="#ffffff" />
+                                        <circle cx="24" cy="27" r="1.5" fill="#ffffff" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Área de ciencias</h3>
+                                    <p class="construct-card-desc">Materiales y recursos para experimentar y aprender.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Bibliotecas -->
+                        <div class="construct-row">
+                            <img src="public/img/espacio%20educativo%202.png" alt="Niños leyendo en la biblioteca comunitaria" class="construct-thumb" loading="eager">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M8 17L24 8l16 9" />
+                                        <path d="M10 17h28" />
+                                        <path d="M14 17v16M20 17v16M28 17v16M34 17v16" />
+                                        <path d="M10 33h28" />
+                                        <path d="M15 41c3-2 6-2 9 0 3-2 6-2 9 0v-8c-3-2-6-2-9 0-3-2-6-2-9 0v8z" fill="rgba(255,255,255,0.3)" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Bibliotecas</h3>
+                                    <p class="construct-card-desc">Libros y mobiliario para leer, investigar y soñar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="construct-col">
+                        <!-- Fila 1: Centro de cómputo -->
+                        <div class="construct-row">
+                            <img src="public/img/espacio%20educativo%20computo.png" alt="Niños utilizando computadoras y laptops para aprender" class="construct-thumb" loading="eager">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="7" y="10" width="34" height="23" rx="3.5" fill="rgba(255,255,255,0.2)" />
+                                        <path d="M24 33v6M16 39h16" stroke-width="3" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Centro de cómputo</h3>
+                                    <p class="construct-card-desc">Computadoras y equipamiento para ampliar oportunidades.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Espacio ecológico -->
+                        <div class="construct-row">
+                            <img src="public/img/espacio%20educativo%203.png" alt="Niños participando en actividades del espacio ecológico" class="construct-thumb" loading="eager">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M24 23c0-7 6-12 12-12 0 6-5 12-12 12z" fill="rgba(255,255,255,0.28)" />
+                                        <path d="M24 19c-1-6-6-9-11-9 0 5 4 9 11 9z" fill="rgba(255,255,255,0.28)" />
+                                        <path d="M24 23v8" stroke-width="2.6" />
+                                        <path d="M11 36c2 4 6 5 10 3l3-1M37 36c-2 4-6 5-10 3l-3-1" stroke-width="2.6" />
+                                        <path d="M10 28c1-1 3-1 4 1l4 5M38 28c-1-1-3-1-4 1l-4 5" stroke-width="2.6" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Espacio ecológico</h3>
+                                    <p class="construct-card-desc">Recursos para actividades de reciclaje y cuidado del entorno.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Inferior: Apoyo Individual y Empresa -->
+        <section class="espacio-foot-section">
+            <div class="espacio-foot-wrap">
+                <div class="espacio-bottom-grid">
+                    <!-- Visual compuesto: 2 fotos con separación blanca -->
+                    <div class="espacio-bottom-visual">
+                        <img src="public/img/espacio%20educativo%204.png" alt="Niños mostrando sus trabajos y creaciones artísticas" loading="eager">
+                        <img src="public/img/espacio%20educativo%205.png" alt="Voluntario y niño compartiendo un momento de aprendizaje" loading="eager">
+                    </div>
+
+                    <!-- Tarjeta de opciones de apoyo -->
+                    <div class="espacio-bottom-card">
+                        <div class="support-block">
+                            <h3 class="support-title">1. Quiero apoyar individualmente</h3>
+                            <p class="support-desc">¿Te gustaría contribuir a mejorar los espacios educativos de nuestros niños? Cuéntanos cómo te gustaría contribuir y coordinaremos juntos una forma de apoyo según las necesidades educativas de la comunidad.</p>
+                        </div>
+
+                        <div class="support-block">
+                            <h3 class="support-title">2. Quiero apoyar como empresa</h3>
+                            <p class="support-desc">Invitamos a las empresas a impulsar espacios educativos mediante alianzas y donaciones que transformen oportunidades de aprendizaje.</p>
+                        </div>
+
+                        <div class="bottom-card-btn-wrap">
+                            <a class="espacio-btn" href="https://wa.me/51954920068?text=Hola,%20deseo%20apoyar%20en%20la%20implementaci%C3%B3n%20de%20un%20espacio%20educativo" target="_blank" rel="noopener noreferrer">Quiero apoyar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="espacio-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                </div>
+            </div>
+        </section>
+    
+            </main>
+        </div>
+
+        <!-- ========================================== -->
         <!-- VISTA: Cómo ayudar - Imfundo Kahle (ID: como-ayudar) -->
         <!-- ========================================== -->
         <div class="page-view " id="view-como-ayudar" data-page="como-ayudar" data-title="Cómo ayudar - Imfundo Kahle">
@@ -5820,6 +6373,11 @@ newsControls.forEach((control) => {
             '/contribuye-con-desayuno': 'contribuye-con-desayuno',
             'contribuye-con-desayuno.html': 'contribuye-con-desayuno',
             '#contribuye-con-desayuno': 'contribuye-con-desayuno',
+            
+            '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+            '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+            'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo',
+            '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
             
             '/como-ayudar': 'como-ayudar',
             'como-ayudar.html': 'como-ayudar',

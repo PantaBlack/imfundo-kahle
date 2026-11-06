@@ -93,6 +93,12 @@ const pages = [
         aliases: ['se-un-voluntario/contribuye-con-desayuno.html', 'se-un-voluntario/contribuye-con-desayuno/index.html']
     },
     {
+        view: 'espacio-educativo-detalle.ejs',
+        title: 'Implementa un espacio educativo - Imfundo Kahle',
+        file: 'implementa-un-espacio-educativo.html',
+        aliases: ['se-un-voluntario/implementa-un-espacio-educativo.html', 'se-un-voluntario/implementa-un-espacio-educativo/index.html']
+    },
+    {
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
         file: 'como-ayudar.html',

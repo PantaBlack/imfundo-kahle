@@ -108,6 +108,13 @@ const pageConfigs = [
         navMatch: ['/se-un-voluntario/contribuye-con-desayuno', '/contribuye-con-desayuno', 'contribuye-con-desayuno.html']
     },
     {
+        id: 'implementa-un-espacio-educativo',
+        view: 'espacio-educativo-detalle.ejs',
+        title: 'Implementa un espacio educativo - Imfundo Kahle',
+        label: '📌 Detalle: Espacio educativo (04)',
+        navMatch: ['/se-un-voluntario/implementa-un-espacio-educativo', '/implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html']
+    },
+    {
         id: 'como-ayudar',
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
@@ -132,6 +139,7 @@ const cssFiles = [
     'voluntario-detalle.css',
     'apadrina-detalle.css',
     'desayuno-detalle.css',
+    'espacio-educativo-detalle.css',
     'como-ayudar.css'
 ];
 
@@ -379,6 +387,11 @@ function build(isDist = false) {
             '/contribuye-con-desayuno': 'contribuye-con-desayuno',
             'contribuye-con-desayuno.html': 'contribuye-con-desayuno',
             '#contribuye-con-desayuno': 'contribuye-con-desayuno',
+            
+            '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+            '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+            'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo',
+            '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
             
             '/como-ayudar': 'como-ayudar',
             'como-ayudar.html': 'como-ayudar',

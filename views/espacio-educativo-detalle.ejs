@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Implementa un espacio educativo con Imfundo Kahle. Creando oportunidades de aprendizaje dignas y estimulantes para los niños.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/espacio-educativo-detalle.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="espacio-page">
+        <!-- 1. Hero Split Card -->
+        <section class="espacio-hero-section">
+            <div class="espacio-hero-wrap">
+                <div class="espacio-split-card">
+                    <div class="espacio-split-copy">
+                        <h1 class="espacio-split-title">Implementa un<br>espacio educativo</h1>
+                        <h2 class="espacio-split-subtitle">Creando oportunidades de aprendizaje</h2>
+                        <p class="espacio-split-desc">Buscamos brindar a nuestros niños espacios educativos dignos y estimulantes que despierten su curiosidad y potencien sus habilidades. Para ello, necesitamos materiales y recursos que enriquezcan sus experiencias de aprendizaje. Invitamos a aliados a sumarse a esta iniciativa y contribuir a transformar sus oportunidades de desarrollo.</p>
+                    </div>
+                    <div class="espacio-split-visual">
+                        <img src="/img/espacio%20educativo%201.png" alt="Niños en el espacio educativo de Imfundo Kahle compartiendo dinámicas de aprendizaje" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección "¿Qué podemos construir juntos?" -->
+        <section class="espacio-construct-section">
+            <div class="espacio-construct-wrap">
+                <h2 class="construct-heading"><span class="coral">¿Qué podemos</span> construir juntos?</h2>
+
+                <div class="construct-grid">
+                    <!-- Columna Izquierda -->
+                    <div class="construct-col">
+                        <!-- Fila 1: Área de ciencias -->
+                        <div class="construct-row construct-row-offset">
+                            <div class="construct-img-spacer" aria-hidden="true"></div>
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8h12M24 8v11l-9.5 17.5A2.2 2.2 0 0 0 16.4 40h15.2a2.2 2.2 0 0 0 1.9-3.5L24 19V8" />
+                                        <path d="M16 31h16" />
+                                        <circle cx="21" cy="35" r="1.5" fill="#ffffff" />
+                                        <circle cx="27" cy="34" r="1.5" fill="#ffffff" />
+                                        <circle cx="24" cy="27" r="1.5" fill="#ffffff" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Área de ciencias</h3>
+                                    <p class="construct-card-desc">Materiales y recursos para experimentar y aprender.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Bibliotecas -->
+                        <div class="construct-row">
+                            <img src="/img/espacio%20educativo%202.png" alt="Niños leyendo en la biblioteca comunitaria" class="construct-thumb" loading="lazy">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M8 17L24 8l16 9" />
+                                        <path d="M10 17h28" />
+                                        <path d="M14 17v16M20 17v16M28 17v16M34 17v16" />
+                                        <path d="M10 33h28" />
+                                        <path d="M15 41c3-2 6-2 9 0 3-2 6-2 9 0v-8c-3-2-6-2-9 0-3-2-6-2-9 0v8z" fill="rgba(255,255,255,0.3)" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Bibliotecas</h3>
+                                    <p class="construct-card-desc">Libros y mobiliario para leer, investigar y soñar.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="construct-col">
+                        <!-- Fila 1: Centro de cómputo -->
+                        <div class="construct-row">
+                            <img src="/img/espacio%20educativo%20computo.png" alt="Niños utilizando computadoras y laptops para aprender" class="construct-thumb" loading="lazy">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="7" y="10" width="34" height="23" rx="3.5" fill="rgba(255,255,255,0.2)" />
+                                        <path d="M24 33v6M16 39h16" stroke-width="3" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Centro de cómputo</h3>
+                                    <p class="construct-card-desc">Computadoras y equipamiento para ampliar oportunidades.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2: Espacio ecológico -->
+                        <div class="construct-row">
+                            <img src="/img/espacio%20educativo%203.png" alt="Niños participando en actividades del espacio ecológico" class="construct-thumb" loading="lazy">
+                            <div class="construct-card">
+                                <div class="construct-card-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M24 23c0-7 6-12 12-12 0 6-5 12-12 12z" fill="rgba(255,255,255,0.28)" />
+                                        <path d="M24 19c-1-6-6-9-11-9 0 5 4 9 11 9z" fill="rgba(255,255,255,0.28)" />
+                                        <path d="M24 23v8" stroke-width="2.6" />
+                                        <path d="M11 36c2 4 6 5 10 3l3-1M37 36c-2 4-6 5-10 3l-3-1" stroke-width="2.6" />
+                                        <path d="M10 28c1-1 3-1 4 1l4 5M38 28c-1-1-3-1-4 1l-4 5" stroke-width="2.6" />
+                                    </svg>
+                                </div>
+                                <div class="construct-card-body">
+                                    <h3 class="construct-card-title">Espacio ecológico</h3>
+                                    <p class="construct-card-desc">Recursos para actividades de reciclaje y cuidado del entorno.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Inferior: Apoyo Individual y Empresa -->
+        <section class="espacio-foot-section">
+            <div class="espacio-foot-wrap">
+                <div class="espacio-bottom-grid">
+                    <!-- Visual compuesto: 2 fotos con separación blanca -->
+                    <div class="espacio-bottom-visual">
+                        <img src="/img/espacio%20educativo%204.png" alt="Niños mostrando sus trabajos y creaciones artísticas" loading="lazy">
+                        <img src="/img/espacio%20educativo%205.png" alt="Voluntario y niño compartiendo un momento de aprendizaje" loading="lazy">
+                    </div>
+
+                    <!-- Tarjeta de opciones de apoyo -->
+                    <div class="espacio-bottom-card">
+                        <div class="support-block">
+                            <h3 class="support-title">1. Quiero apoyar individualmente</h3>
+                            <p class="support-desc">¿Te gustaría contribuir a mejorar los espacios educativos de nuestros niños? Cuéntanos cómo te gustaría contribuir y coordinaremos juntos una forma de apoyo según las necesidades educativas de la comunidad.</p>
+                        </div>
+
+                        <div class="support-block">
+                            <h3 class="support-title">2. Quiero apoyar como empresa</h3>
+                            <p class="support-desc">Invitamos a las empresas a impulsar espacios educativos mediante alianzas y donaciones que transformen oportunidades de aprendizaje.</p>
+                        </div>
+
+                        <div class="bottom-card-btn-wrap">
+                            <a class="espacio-btn" href="https://wa.me/51954920068?text=Hola,%20deseo%20apoyar%20en%20la%20implementaci%C3%B3n%20de%20un%20espacio%20educativo" target="_blank" rel="noopener noreferrer">Quiero apoyar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="espacio-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

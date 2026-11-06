@@ -90,6 +90,15 @@ app.get('/contribuye-con-desayuno', (req, res) => {
     res.render('desayuno-detalle', { titulo: 'Contribuye con desayuno - Imfundo Kahle' });
 });
 
+// Detalle para Implementa un espacio educativo
+app.get('/se-un-voluntario/implementa-un-espacio-educativo', (req, res) => {
+    res.render('espacio-educativo-detalle', { titulo: 'Implementa un espacio educativo - Imfundo Kahle' });
+});
+
+app.get('/implementa-un-espacio-educativo', (req, res) => {
+    res.render('espacio-educativo-detalle', { titulo: 'Implementa un espacio educativo - Imfundo Kahle' });
+});
+
 // Nueva ruta para Cómo ayudar
 app.get('/como-ayudar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });

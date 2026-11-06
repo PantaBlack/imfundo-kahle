@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Implementa un espacio educativo (Detalle) - Imfundo Kahle
+   ========================================================================== */
+
+.espacio-page {
+    overflow-x: hidden;
+    width: 100%;
+    padding-block: 24px 70px;
+    background: #ffffff;
+}
+
+.espacio-hero-wrap,
+.espacio-construct-wrap,
+.espacio-foot-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-inline: 24px;
+}
+
+/* 1. Hero Split Card */
+.espacio-split-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    background: #f7dbd4; /* Tono blush suave idéntico al diseño */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.espacio-split-copy {
+    padding: 44px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.espacio-split-title {
+    color: #cf4836; /* Coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(30px, 3.8vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 18px;
+}
+
+.espacio-split-subtitle {
+    color: #151515;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+.espacio-split-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15px;
+    line-height: 1.62;
+    margin: 0;
+}
+
+.espacio-split-visual {
+    line-height: 0;
+    position: relative;
+}
+
+.espacio-split-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* 2. Sección "¿Qué podemos construir juntos?" */
+.espacio-construct-section {
+    padding-block: 50px 40px;
+}
+
+.construct-heading {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin: 0 0 36px;
+}
+
+.construct-heading .coral {
+    color: #cf4836;
+}
+
+.construct-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 28px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.construct-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.construct-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.construct-thumb {
+    width: 124px;
+    height: 82px;
+    border-radius: 14px;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    display: block;
+}
+
+.construct-img-spacer {
+    width: 124px;
+    height: 82px;
+    flex-shrink: 0;
+}
+
+.construct-card {
+    flex: 1;
+    background: #f7dbd4;
+    border-radius: 16px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 82px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.construct-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.construct-card-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.construct-card-icon svg {
+    width: 38px;
+    height: 38px;
+}
+
+.construct-card-body {
+    flex: 1;
+}
+
+.construct-card-title {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #151515;
+    margin: 0 0 3px;
+    line-height: 1.2;
+}
+
+.construct-card-desc {
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 13px;
+    color: #2b2b2b;
+    margin: 0;
+    line-height: 1.35;
+}
+
+/* 3. Sección Inferior: Apoyo Individual y Empresa */
+.espacio-foot-section {
+    padding-block: 20px 30px;
+}
+
+.espacio-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.espacio-bottom-visual {
+    display: flex;
+    gap: 3px;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.espacio-bottom-visual img {
+    width: 50%;
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.espacio-bottom-card {
+    background: #f7dbd4;
+    border-radius: 20px;
+    padding: 38px 36px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.support-block:not(:first-child) {
+    margin-top: 20px;
+}
+
+.support-title {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 18px;
+    font-weight: 800;
+    color: #151515;
+    margin: 0 0 8px;
+    line-height: 1.25;
+}
+
+.support-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.bottom-card-btn-wrap {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 24px;
+}
+
+.espacio-btn {
+    background: linear-gradient(180deg, #cb4735 0%, #b83726 100%);
+    color: #ffffff;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 14px rgba(184, 55, 38, 0.32);
+    display: inline-block;
+    text-align: center;
+}
+
+.espacio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(184, 55, 38, 0.45);
+    filter: brightness(1.04);
+}
+
+.espacio-btn:active {
+    transform: translateY(0);
+}
+
+.espacio-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 960px) {
+    .espacio-split-card {
+        grid-template-columns: 1fr;
+    }
+
+    .espacio-split-visual {
+        max-height: 380px;
+    }
+
+    .construct-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .espacio-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .espacio-bottom-visual img {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 680px) {
+    .espacio-page {
+        padding-block: 16px 50px;
+    }
+
+    .espacio-hero-wrap,
+    .espacio-construct-wrap,
+    .espacio-foot-wrap {
+        padding-inline: 16px;
+    }
+
+    .espacio-split-copy {
+        padding: 30px 22px;
+    }
+
+    .espacio-split-title {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+    .espacio-split-subtitle {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .espacio-split-desc {
+        font-size: 14px;
+    }
+
+    .construct-heading {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    .construct-row-offset .construct-img-spacer {
+        display: none;
+    }
+
+    .construct-thumb {
+        width: 90px;
+        height: 74px;
+        border-radius: 12px;
+    }
+
+    .construct-card {
+        padding: 10px 14px;
+        min-height: 74px;
+        gap: 10px;
+    }
+
+    .construct-card-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .construct-card-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .construct-card-title {
+        font-size: 14px;
+    }
+
+    .construct-card-desc {
+        font-size: 12px;
+    }
+
+    .espacio-bottom-card {
+        padding: 28px 22px;
+    }
+
+    .support-title {
+        font-size: 16.5px;
+    }
+
+    .support-desc {
+        font-size: 13.5px;
+    }
+
+    .espacio-bottom-visual img {
+        min-height: 220px;
+    }
+}
