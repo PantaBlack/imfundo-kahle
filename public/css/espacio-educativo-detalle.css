@@ -124,12 +124,6 @@
     display: block;
 }
 
-.construct-img-spacer {
-    width: 124px;
-    height: 82px;
-    flex-shrink: 0;
-}
-
 .construct-card {
     flex: 1;
     background: #f7dbd4;
@@ -346,9 +340,7 @@
         margin-bottom: 24px;
     }
 
-    .construct-row-offset .construct-img-spacer {
-        display: none;
-    }
+
 
     .construct-thumb {
         width: 90px;
