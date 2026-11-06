@@ -78,6 +78,7 @@ const pageConfigs = [
     { id: 'voluntariado', view: 'voluntario-detalle.ejs', title: 'Sé voluntario - Imfundo Kahle', label: '📌 Detalle: Sé voluntario (01)' },
     { id: 'apadrina-un-nino', view: 'apadrina-detalle.ejs', title: 'Apadrina un niño - Imfundo Kahle', label: '📌 Detalle: Apadrina un niño (02)' },
     { id: 'contribuye-con-desayuno', view: 'desayuno-detalle.ejs', title: 'Contribuye con desayuno - Imfundo Kahle', label: '📌 Detalle: Contribuye con desayuno (03)' },
+    { id: 'implementa-un-espacio-educativo', view: 'espacio-educativo-detalle.ejs', title: 'Implementa un espacio educativo - Imfundo Kahle', label: '📌 Detalle: Espacio educativo (04)' },
     { id: 'como-ayudar', view: 'como-ayudar.ejs', title: 'Cómo ayudar - Imfundo Kahle', label: '💙 Cómo ayudar' }
 ];
 
@@ -85,7 +86,7 @@ const cssFiles = [
     'style.css', 'nosotros.css', 'proyectos.css', 'casa-ainbo.css', 'sonrisas-de-navidad.css',
     'guardianes-itaya.css', 'imfundo-yoga.css', 'languages-for-hope.css', 'proyecto-butterfly.css',
     'ainbo.css', 'se-un-voluntario.css', 'voluntario-detalle.css', 'apadrina-detalle.css',
-    'desayuno-detalle.css', 'como-ayudar.css'
+    'desayuno-detalle.css', 'espacio-educativo-detalle.css', 'como-ayudar.css'
 ];
 
 console.log('Concatenando CSS e incrustando imágenes...');
@@ -262,6 +263,7 @@ const routerScript = `
         '/se-un-voluntario/voluntariado': 'voluntariado', '/se-voluntario': 'voluntariado', 'voluntariado.html': 'voluntariado', 'se-voluntario.html': 'voluntariado', '#voluntariado': 'voluntariado', '#se-voluntario': 'voluntariado',
         '/se-un-voluntario/apadrina-un-nino': 'apadrina-un-nino', '/apadrina-un-nino': 'apadrina-un-nino', 'apadrina-un-nino.html': 'apadrina-un-nino', '#apadrina-un-nino': 'apadrina-un-nino', '#apadrinamiento': 'apadrina-un-nino',
         '/se-un-voluntario/contribuye-con-desayuno': 'contribuye-con-desayuno', '/contribuye-con-desayuno': 'contribuye-con-desayuno', 'contribuye-con-desayuno.html': 'contribuye-con-desayuno', '#contribuye-con-desayuno': 'contribuye-con-desayuno',
+        '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo', '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
         '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar'
     };
 
