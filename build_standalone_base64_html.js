@@ -79,6 +79,8 @@ const pageConfigs = [
     { id: 'apadrina-un-nino', view: 'apadrina-detalle.ejs', title: 'Apadrina un niño - Imfundo Kahle', label: '📌 Detalle: Apadrina un niño (02)' },
     { id: 'contribuye-con-desayuno', view: 'desayuno-detalle.ejs', title: 'Contribuye con desayuno - Imfundo Kahle', label: '📌 Detalle: Contribuye con desayuno (03)' },
     { id: 'implementa-un-espacio-educativo', view: 'espacio-educativo-detalle.ejs', title: 'Implementa un espacio educativo - Imfundo Kahle', label: '📌 Detalle: Espacio educativo (04)' },
+    { id: 'dona-libros', view: 'dona-libros-detalle.ejs', title: 'Dona libros - Imfundo Kahle', label: '📌 Detalle: Dona libros (05)' },
+    { id: 'apoya-los-emprendimientos-ainbo', view: 'apoya-ainbo-detalle.ejs', title: 'Apoya a las mujeres Ainbo - Imfundo Kahle', label: '📌 Detalle: Apoya mujeres Ainbo (06)' },
     { id: 'como-ayudar', view: 'como-ayudar.ejs', title: 'Cómo ayudar - Imfundo Kahle', label: '💙 Cómo ayudar' }
 ];
 
@@ -86,7 +88,7 @@ const cssFiles = [
     'style.css', 'nosotros.css', 'proyectos.css', 'casa-ainbo.css', 'sonrisas-de-navidad.css',
     'guardianes-itaya.css', 'imfundo-yoga.css', 'languages-for-hope.css', 'proyecto-butterfly.css',
     'ainbo.css', 'se-un-voluntario.css', 'voluntario-detalle.css', 'apadrina-detalle.css',
-    'desayuno-detalle.css', 'espacio-educativo-detalle.css', 'como-ayudar.css'
+    'desayuno-detalle.css', 'espacio-educativo-detalle.css', 'dona-libros-detalle.css', 'apoya-ainbo-detalle.css', 'como-ayudar.css'
 ];
 
 console.log('Concatenando CSS e incrustando imágenes...');
@@ -264,6 +266,8 @@ const routerScript = `
         '/se-un-voluntario/apadrina-un-nino': 'apadrina-un-nino', '/apadrina-un-nino': 'apadrina-un-nino', 'apadrina-un-nino.html': 'apadrina-un-nino', '#apadrina-un-nino': 'apadrina-un-nino', '#apadrinamiento': 'apadrina-un-nino',
         '/se-un-voluntario/contribuye-con-desayuno': 'contribuye-con-desayuno', '/contribuye-con-desayuno': 'contribuye-con-desayuno', 'contribuye-con-desayuno.html': 'contribuye-con-desayuno', '#contribuye-con-desayuno': 'contribuye-con-desayuno',
         '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo', '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+        '/se-un-voluntario/dona-libros': 'dona-libros', '/dona-libros': 'dona-libros', 'dona-libros.html': 'dona-libros', '#dona-libros': 'dona-libros',
+        '/se-un-voluntario/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-los-emprendimientos-ainbo.html': 'apoya-los-emprendimientos-ainbo', '/se-un-voluntario/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-ainbo.html': 'apoya-los-emprendimientos-ainbo', '#apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '#apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
         '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar'
     };
 

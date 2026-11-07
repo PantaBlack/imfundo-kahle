@@ -1,0 +1,327 @@
+/* ==========================================================================
+   Dona libros (Detalle) - Imfundo Kahle
+   ========================================================================== */
+
+.dona-page {
+    overflow-x: hidden;
+    width: 100%;
+    padding-block: 24px 70px;
+    background: #ffffff;
+}
+
+.dona-hero-wrap,
+.dona-books-wrap,
+.dona-foot-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-inline: 24px;
+}
+
+/* 1. Hero Split Card */
+.dona-split-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    background: #f7dbd4; /* Tono blush suave idéntico al diseño */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.dona-split-copy {
+    padding: 44px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dona-split-title {
+    color: #cf4836; /* Coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(32px, 3.8vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 18px;
+}
+
+.dona-split-subtitle {
+    color: #151515;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(18px, 2.2vw, 22px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+.dona-split-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15px;
+    line-height: 1.62;
+    margin: 0;
+}
+
+.dona-split-visual {
+    line-height: 0;
+    position: relative;
+}
+
+.dona-split-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* 2. Sección "¿Qué libros recibimos?" */
+.dona-books-section {
+    padding-block: 54px 44px;
+}
+
+.books-heading {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin: 0 0 40px;
+}
+
+.books-heading .coral {
+    color: #cf4836;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    align-items: start;
+    max-width: 1020px;
+    margin: 0 auto;
+}
+
+.books-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.books-circle {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background-color: #deb0a7; /* Círculo rosa viejo/salmón idéntico al diseño */
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(222, 176, 167, 0.4);
+    margin-bottom: 14px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.books-circle:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(222, 176, 167, 0.55);
+}
+
+.books-circle svg {
+    width: 44px;
+    height: 44px;
+}
+
+.books-label {
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* 3. Sección Inferior */
+.dona-foot-section {
+    padding-block: 20px 30px;
+}
+
+.dona-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.dona-bottom-visual {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+}
+
+.dona-bottom-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.dona-bottom-card {
+    background: #f7dbd4;
+    border-radius: 20px;
+    padding: 42px 38px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dona-bottom-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15px;
+    line-height: 1.62;
+    margin: 0 0 26px;
+}
+
+.bottom-card-btn-wrap {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.dona-btn {
+    background: linear-gradient(180deg, #cb4735 0%, #b83726 100%);
+    color: #ffffff;
+    padding: 13px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 4px 14px rgba(184, 55, 38, 0.32);
+    display: inline-block;
+    text-align: center;
+}
+
+.dona-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(184, 55, 38, 0.45);
+    filter: brightness(1.04);
+}
+
+.dona-btn:active {
+    transform: translateY(0);
+}
+
+.dona-actions {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 960px) {
+    .dona-split-card {
+        grid-template-columns: 1fr;
+    }
+
+    .dona-split-visual {
+        max-height: 380px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 20px;
+    }
+
+    .dona-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .dona-bottom-visual img {
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 680px) {
+    .dona-page {
+        padding-block: 16px 50px;
+    }
+
+    .dona-hero-wrap,
+    .dona-books-wrap,
+    .dona-foot-wrap {
+        padding-inline: 16px;
+    }
+
+    .dona-split-copy {
+        padding: 30px 22px;
+    }
+
+    .dona-split-title {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+
+    .dona-split-subtitle {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .dona-split-desc {
+        font-size: 14px;
+    }
+
+    .dona-books-section {
+        padding-block: 36px 30px;
+    }
+
+    .books-heading {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 16px;
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+    .books-circle {
+        width: 78px;
+        height: 78px;
+        margin-bottom: 10px;
+    }
+
+    .books-circle svg {
+        width: 38px;
+        height: 38px;
+    }
+
+    .books-label {
+        font-size: 13px;
+    }
+
+    .dona-bottom-card {
+        padding: 28px 22px;
+    }
+
+    .dona-bottom-desc {
+        font-size: 13.5px;
+        margin-bottom: 20px;
+    }
+
+    .dona-bottom-visual img {
+        min-height: 220px;
+    }
+}

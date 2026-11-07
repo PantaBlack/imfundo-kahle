@@ -115,6 +115,20 @@ const pageConfigs = [
         navMatch: ['/se-un-voluntario/implementa-un-espacio-educativo', '/implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html']
     },
     {
+        id: 'dona-libros',
+        view: 'dona-libros-detalle.ejs',
+        title: 'Dona libros - Imfundo Kahle',
+        label: '📌 Detalle: Dona libros (05)',
+        navMatch: ['/se-un-voluntario/dona-libros', '/dona-libros', 'dona-libros.html']
+    },
+    {
+        id: 'apoya-los-emprendimientos-ainbo',
+        view: 'apoya-ainbo-detalle.ejs',
+        title: 'Apoya a las mujeres Ainbo - Imfundo Kahle',
+        label: '📌 Detalle: Apoya mujeres Ainbo (06)',
+        navMatch: ['/se-un-voluntario/apoya-los-emprendimientos-ainbo', '/apoya-los-emprendimientos-ainbo', 'apoya-los-emprendimientos-ainbo.html', '/se-un-voluntario/apoya-ainbo', '/apoya-ainbo', 'apoya-ainbo.html']
+    },
+    {
         id: 'como-ayudar',
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
@@ -140,6 +154,8 @@ const cssFiles = [
     'apadrina-detalle.css',
     'desayuno-detalle.css',
     'espacio-educativo-detalle.css',
+    'dona-libros-detalle.css',
+    'apoya-ainbo-detalle.css',
     'como-ayudar.css'
 ];
 
@@ -392,6 +408,20 @@ function build(isDist = false) {
             '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
             'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo',
             '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
+            
+            '/se-un-voluntario/dona-libros': 'dona-libros',
+            '/dona-libros': 'dona-libros',
+            'dona-libros.html': 'dona-libros',
+            '#dona-libros': 'dona-libros',
+            
+            '/se-un-voluntario/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
+            '/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
+            'apoya-los-emprendimientos-ainbo.html': 'apoya-los-emprendimientos-ainbo',
+            '/se-un-voluntario/apoya-ainbo': 'apoya-los-emprendimientos-ainbo',
+            '/apoya-ainbo': 'apoya-los-emprendimientos-ainbo',
+            'apoya-ainbo.html': 'apoya-los-emprendimientos-ainbo',
+            '#apoya-ainbo': 'apoya-los-emprendimientos-ainbo',
+            '#apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
             
             '/como-ayudar': 'como-ayudar',
             'como-ayudar.html': 'como-ayudar',

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Apoya a las mujeres Ainbo. Tu compra impulsa sus iniciativas emprendedoras en Imfundo Kahle.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/apoya-ainbo-detalle.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="apoya-page">
+        <!-- 1. Hero Split Card -->
+        <section class="apoya-hero-section">
+            <div class="apoya-hero-wrap">
+                <div class="apoya-split-card">
+                    <div class="apoya-split-copy">
+                        <h1 class="apoya-split-title">Apoya a las mujeres Ainbo</h1>
+                        <h2 class="apoya-split-subtitle">Tu compra impulsa sus iniciativas emprendedoras</h2>
+                        <p class="apoya-split-desc">Acompañamos a mujeres en su desarrollo personal y emprendedor mediante talleres de educación financiera, marketing, microempresa y creatividad. Estas experiencias fortalecen sus capacidades y les brindan herramientas para impulsar sus propias iniciativas. Al conocer y adquirir sus productos, valoras su trabajo y contribuyes a generar nuevas oportunidades.</p>
+                    </div>
+                    <div class="apoya-split-visual">
+                        <img src="/img/apoya%20ainbo%201.png" alt="Mujeres emprendedoras de Proyecto Ainbo" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección "¿Cómo puedes apoyarlas?" -->
+        <section class="apoya-help-section">
+            <div class="apoya-help-wrap">
+                <h2 class="apoya-heading"><span class="coral">¿Cómo puedes</span> apoyarlas?</h2>
+
+                <div class="apoya-grid">
+                    <!-- 1. Compra sus productos -->
+                    <div class="apoya-item">
+                        <div class="apoya-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 18h8l6 22h20l5-16H25" />
+                                <circle cx="30" cy="48" r="3" fill="#ffffff" stroke="none" />
+                                <circle cx="46" cy="48" r="3" fill="#ffffff" stroke="none" />
+                                <path d="M37 23c-2.5-3-6-1.5-6 1 0 3.5 6 7 6 7s6-3.5 6-7c0-2.5-3.5-4-6-1z" fill="#ffffff" stroke="none" />
+                            </svg>
+                        </div>
+                        <h3 class="apoya-label">Compra sus<br>productos</h3>
+                    </div>
+
+                    <!-- 2. Comparte sus creaciones -->
+                    <div class="apoya-item">
+                        <div class="apoya-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 28h8l14-9v26l-14-9h-8a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" fill="rgba(255,255,255,0.22)" />
+                                <path d="M22 36v8a2 2 0 0 0 2 2h3" />
+                                <path d="M43 25a7 7 0 0 1 0 14" stroke-width="2.8" />
+                                <path d="M48 20a14 14 0 0 1 0 24" stroke-width="2.8" />
+                            </svg>
+                        </div>
+                        <h3 class="apoya-label">Comparte sus<br>creaciones</h3>
+                    </div>
+
+                    <!-- 3. Recomienda a otras personas -->
+                    <div class="apoya-item">
+                        <div class="apoya-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="32" cy="27" r="14" fill="rgba(255,255,255,0.22)" />
+                                <path d="M20 27c0 0 4-4 8-1 4 3 8 0 8 0" />
+                                <path d="M23 35c3 0 5-3 9-1 3 1.5 6 0 6 0" />
+                                <path d="M14 27c0 9.9 8.1 18 18 18s18-8.1 18-18" />
+                                <path d="M32 45v7M24 52h16" stroke-width="3" />
+                            </svg>
+                        </div>
+                        <h3 class="apoya-label">Recomienda a<br>otras personas</h3>
+                    </div>
+
+                    <!-- 4. Arte y naturaleza -->
+                    <div class="apoya-item">
+                        <div class="apoya-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="#ffffff" stroke="none">
+                                <circle cx="32" cy="22" r="6" />
+                                <path d="M22 44c0-5.5 4.5-10 10-10s10 4.5 10 10v2H22v-2z" />
+                                <circle cx="18" cy="26" r="4.5" />
+                                <path d="M11 44c0-4 3.2-7.5 7.5-7.5 1.5 0 2.9.4 4 1.2-.5 1.8-.5 3.8-.5 6.3H11z" />
+                                <circle cx="46" cy="26" r="4.5" />
+                                <path d="M42 44c0-2.5 0-4.5-.5-6.3 1.1-.8 2.5-1.2 4-1.2 4.3 0 7.5 3.5 7.5 7.5H42z" />
+                            </svg>
+                        </div>
+                        <h3 class="apoya-label">Arte y<br>naturaleza</h3>
+                    </div>
+
+                    <!-- 5. ¿Tienes una empresa? Exploremos alianzas -->
+                    <div class="apoya-item">
+                        <div class="apoya-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="18" y="24" width="16" height="26" rx="2" fill="rgba(255,255,255,0.22)" />
+                                <rect x="34" y="16" width="16" height="34" rx="2" fill="rgba(255,255,255,0.22)" />
+                                <path d="M22 30h2M28 30h2M22 36h2M28 36h2M22 42h2M28 42h2" stroke-width="2.5" />
+                                <path d="M38 22h2M44 22h2M38 28h2M44 28h2M38 34h2M44 34h2M38 40h2M44 40h2" stroke-width="2.5" />
+                                <path d="M14 50h40" stroke-width="3" />
+                            </svg>
+                        </div>
+                        <h3 class="apoya-label">¿Tienes una empresa?<br>Exploremos alianzas</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Inferior -->
+        <section class="apoya-foot-section">
+            <div class="apoya-foot-wrap">
+                <div class="apoya-bottom-grid">
+                    <div class="apoya-bottom-visual">
+                        <img src="/img/apoya%20ainbo%202.png" alt="Talleres prácticos de emprendimiento y artesanía con mujeres Ainbo" loading="lazy">
+                    </div>
+                    <div class="apoya-bottom-card">
+                        <p class="apoya-bottom-desc">El siguiente paso es ayudar a que sus iniciativas encuentren nuevas oportunidades para crecer. Al conocer, comprar y recomendar sus productos, contribuyes a que su trabajo llegue a más personas, gane visibilidad y encuentre nuevos espacios de comercialización. Cada elección puede convertirse en una oportunidad para seguir avanzando.</p>
+
+                        <div class="bottom-card-btn-wrap">
+                            <a class="apoya-btn" href="https://wa.me/51954920068?text=Hola,%20deseo%20apoyar%20los%20emprendimientos%20de%20las%20mujeres%20Ainbo" target="_blank" rel="noopener noreferrer">Quiero apoyar sus emprendimientos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="apoya-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

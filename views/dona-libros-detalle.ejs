@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Dona libros a Imfundo Kahle. Compartir libros también es compartir oportunidades para niños en nuestras bibliotecas de Lima e Iquitos.">
+    <title><%= titulo %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dona-libros-detalle.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros" aria-expanded="false" aria-haspopup="true" aria-controls="about-menu">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">⌄</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario" aria-current="page">Sé un voluntario</a>
+            <a href="/como-ayudar">Cómo ayudar</a>
+        </nav>
+    </header>
+
+    <main class="dona-page">
+        <!-- 1. Hero Split Card -->
+        <section class="dona-hero-section">
+            <div class="dona-hero-wrap">
+                <div class="dona-split-card">
+                    <div class="dona-split-copy">
+                        <h1 class="dona-split-title">Dona libros</h1>
+                        <h2 class="dona-split-subtitle">Compartir libros también es compartir oportunidades</h2>
+                        <p class="dona-split-desc">Un libro puede despertar la curiosidad, abrir nuevas preguntas y acercar a los niños a otras formas de aprender. En Imfundo Kahle contamos con bibliotecas en Lima e Iquitos y queremos seguir fortaleciéndolas con nuevos materiales. Por eso, invitamos a personas, familias, instituciones y empresas a sumarse a nuestra campaña de donación de libros.</p>
+                    </div>
+                    <div class="dona-split-visual">
+                        <img src="/img/donar%20libros%201.png" alt="Voluntarios y niños compartiendo lecturas y aprendizajes" fetchpriority="high">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Sección "¿Qué libros recibimos?" -->
+        <section class="dona-books-section">
+            <div class="dona-books-wrap">
+                <h2 class="books-heading"><span class="coral">¿Qué libros</span> recibimos?</h2>
+
+                <div class="books-grid">
+                    <!-- 1. Literatura infantil y juvenil -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="12" y="34" width="28" height="6.5" rx="1.5" fill="rgba(255,255,255,0.22)" />
+                                <rect x="10" y="41" width="32" height="6.5" rx="1.5" fill="rgba(255,255,255,0.22)" />
+                                <rect x="12" y="27" width="28" height="6.5" rx="1.5" fill="rgba(255,255,255,0.22)" />
+                                <path d="M43 41h11l-2 6H45l-2-6z" fill="#ffffff" stroke="none" />
+                                <path d="M48 41c0-11 5-23 5-23s-9 8-7 23" />
+                                <path d="M46 29l4 2M47 23l4 2" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Literatura infantil<br>y juvenil</h3>
+                    </div>
+
+                    <!-- 2. Comprensión lectora -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M32 44c-5-3-11-3-18 0V22c7-3 13-3 18 0" fill="rgba(255,255,255,0.22)" />
+                                <path d="M32 44c5-3 11-3 18 0V22c-7-3-13-3-18 0" fill="rgba(255,255,255,0.22)" />
+                                <path d="M32 22v22" />
+                                <path d="M26 13a6 6 0 1 1 12 0c0 2.5-1.5 4-2.5 5h-7c-1-1-2.5-2.5-2.5-5z" fill="rgba(255,255,255,0.3)" />
+                                <path d="M28.5 18h7M30 20h4" />
+                                <path d="M32 4v2.5M21 7.5l2 2M43 7.5l-2 2M18 13h2.5M43.5 13H46" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Comprensión<br>lectora</h3>
+                    </div>
+
+                    <!-- 3. Ciencia -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M26 14h12M32 14v12l-12 20a2.5 2.5 0 0 0 2.1 3.8h23.8a2.5 2.5 0 0 0 2.1-3.8L36 26V14" />
+                                <path d="M23 41h18" />
+                                <circle cx="28" cy="44" r="1.8" fill="#ffffff" />
+                                <circle cx="36" cy="43" r="1.8" fill="#ffffff" />
+                                <circle cx="32" cy="36" r="1.8" fill="#ffffff" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Ciencia</h3>
+                    </div>
+
+                    <!-- 4. Historia y geografía -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="32" cy="27" r="14" fill="rgba(255,255,255,0.22)" />
+                                <path d="M20 27c0 0 4-4 8-1 4 3 8 0 8 0" />
+                                <path d="M23 35c3 0 5-3 9-1 3 1.5 6 0 6 0" />
+                                <path d="M14 27c0 9.9 8.1 18 18 18s18-8.1 18-18" />
+                                <path d="M32 45v7M24 52h16" stroke-width="3" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Historia y<br>geografía</h3>
+                    </div>
+
+                    <!-- 5. Arte y naturaleza -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 32c0-9 7-16 16-16s16 7 16 16c0 5-3 8-7 8-3 0-5-2-5-5 0-3-2-5-5-5-5 0-15 2-15 2z" fill="rgba(255,255,255,0.22)" />
+                                <circle cx="24" cy="24" r="2.2" fill="#ffffff" />
+                                <circle cx="32" cy="21" r="2.2" fill="#ffffff" />
+                                <circle cx="39" cy="25" r="2.2" fill="#ffffff" />
+                                <circle cx="22" cy="32" r="2.2" fill="#ffffff" />
+                                <path d="M46 12L34 36" stroke-width="2.8" />
+                                <path d="M34 36l-2 4 4-2-2-2z" fill="#ffffff" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Arte y<br>naturaleza</h3>
+                    </div>
+
+                    <!-- 6. Diccionarios y obras de consulta -->
+                    <div class="books-item">
+                        <div class="books-circle" aria-hidden="true">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="18" y="14" width="28" height="36" rx="3" fill="rgba(255,255,255,0.22)" />
+                                <path d="M24 14v36" stroke-width="2" />
+                                <path d="M38 14v10l-3-2-3 2V14" fill="#ffffff" stroke="none" />
+                                <path d="M28 28h12M28 34h12M28 40h8" />
+                            </svg>
+                        </div>
+                        <h3 class="books-label">Diccionarios y<br>obras de consulta</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Sección Inferior -->
+        <section class="dona-foot-section">
+            <div class="dona-foot-wrap">
+                <div class="dona-bottom-grid">
+                    <div class="dona-bottom-visual">
+                        <img src="/img/donar%20libros%202.png" alt="Niños leyendo en la biblioteca de Imfundo Kahle" loading="lazy">
+                    </div>
+                    <div class="dona-bottom-card">
+                        <p class="dona-bottom-desc">Un libro puede seguir inspirando mucho después de haber sido leído. Si tienes libros en buen estado que ya no utilizas, puedes darles una nueva oportunidad y ayudarnos a fortalecer nuestras bibliotecas de Lima e Iquitos. Tu donación puede acercar a más niños a nuevas historias, conocimientos y formas de aprender. Contáctanos para conocer qué materiales necesitamos y coordinar la entrega.</p>
+
+                        <div class="bottom-card-btn-wrap">
+                            <a class="dona-btn" href="https://wa.me/51954920068?text=Hola,%20deseo%20donar%20libros%20para%20las%20bibliotecas" target="_blank" rel="noopener noreferrer">Quiero donar libros</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dona-actions">
+                    <a class="button button-outline" href="/se-un-voluntario">← Volver a opciones de participación</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="#inicio" aria-label="Imfundo Kahle, volver arriba">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

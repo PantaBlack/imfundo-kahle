@@ -99,6 +99,24 @@ const pages = [
         aliases: ['se-un-voluntario/implementa-un-espacio-educativo.html', 'se-un-voluntario/implementa-un-espacio-educativo/index.html']
     },
     {
+        view: 'dona-libros-detalle.ejs',
+        title: 'Dona libros - Imfundo Kahle',
+        file: 'dona-libros.html',
+        aliases: ['se-un-voluntario/dona-libros.html', 'se-un-voluntario/dona-libros/index.html', 'dona-libros/index.html']
+    },
+    {
+        view: 'apoya-ainbo-detalle.ejs',
+        title: 'Apoya a las mujeres Ainbo - Imfundo Kahle',
+        file: 'apoya-los-emprendimientos-ainbo.html',
+        aliases: [
+            'se-un-voluntario/apoya-los-emprendimientos-ainbo.html',
+            'se-un-voluntario/apoya-los-emprendimientos-ainbo/index.html',
+            'apoya-los-emprendimientos-ainbo/index.html',
+            'se-un-voluntario/apoya-ainbo.html',
+            'apoya-ainbo.html'
+        ]
+    },
+    {
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
         file: 'como-ayudar.html',

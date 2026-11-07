@@ -20,3 +20,7 @@ imfundo_kahle_presentacion.html
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Presentaciones y diapositivas externas
+*.pptx
+Presentacion_Interactiva_Postman.html

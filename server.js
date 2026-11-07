@@ -99,6 +99,32 @@ app.get('/implementa-un-espacio-educativo', (req, res) => {
     res.render('espacio-educativo-detalle', { titulo: 'Implementa un espacio educativo - Imfundo Kahle' });
 });
 
+// Detalle para Dona libros
+app.get('/se-un-voluntario/dona-libros', (req, res) => {
+    res.render('dona-libros-detalle', { titulo: 'Dona libros - Imfundo Kahle' });
+});
+
+app.get('/dona-libros', (req, res) => {
+    res.render('dona-libros-detalle', { titulo: 'Dona libros - Imfundo Kahle' });
+});
+
+// Detalle para Apoya a las mujeres Ainbo
+app.get('/se-un-voluntario/apoya-los-emprendimientos-ainbo', (req, res) => {
+    res.render('apoya-ainbo-detalle', { titulo: 'Apoya a las mujeres Ainbo - Imfundo Kahle' });
+});
+
+app.get('/apoya-los-emprendimientos-ainbo', (req, res) => {
+    res.render('apoya-ainbo-detalle', { titulo: 'Apoya a las mujeres Ainbo - Imfundo Kahle' });
+});
+
+app.get('/se-un-voluntario/apoya-ainbo', (req, res) => {
+    res.render('apoya-ainbo-detalle', { titulo: 'Apoya a las mujeres Ainbo - Imfundo Kahle' });
+});
+
+app.get('/apoya-ainbo', (req, res) => {
+    res.render('apoya-ainbo-detalle', { titulo: 'Apoya a las mujeres Ainbo - Imfundo Kahle' });
+});
+
 // Nueva ruta para Cómo ayudar
 app.get('/como-ayudar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
