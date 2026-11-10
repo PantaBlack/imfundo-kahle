@@ -121,6 +121,12 @@ const pages = [
         title: 'Cómo ayudar - Imfundo Kahle',
         file: 'como-ayudar.html',
         aliases: ['como-ayudar/index.html']
+    },
+    {
+        view: 'tienda.ejs',
+        title: 'Tienda - Imfundo Kahle',
+        file: 'tienda.html',
+        aliases: ['tienda/index.html']
     }
 ];
 
@@ -169,11 +175,13 @@ function transformLinks(html, depth = 0) {
         { from: /href="\/proyectos\/ainbo"/g, to: `href="${prefix}ainbo.html"` },
         { from: /href="\/proyectos"/g, to: `href="${prefix}proyectos.html"` },
 
-        // Nosotros y Cómo ayudar
+        // Nosotros, Cómo ayudar y Tienda
         { from: /href="\/nosotros#/g, to: `href="${prefix}nosotros.html#` },
         { from: /href="\/nosotros"/g, to: `href="${prefix}nosotros.html"` },
         { from: /href="\/como-ayudar#/g, to: `href="${prefix}como-ayudar.html#` },
         { from: /href="\/como-ayudar"/g, to: `href="${prefix}como-ayudar.html"` },
+        { from: /href="\/tienda#/g, to: `href="${prefix}tienda.html#` },
+        { from: /href="\/tienda"/g, to: `href="${prefix}tienda.html"` },
 
         // Home
         { from: /href="\/(#.+?)"/g, to: `href="${prefix}index.html$1"` },
@@ -182,7 +190,8 @@ function transformLinks(html, depth = 0) {
         // Assets estáticos (CSS, JS, IMG)
         { from: /href="\/css\//g, to: `href="${prefix}css/` },
         { from: /src="\/js\//g, to: `src="${prefix}js/` },
-        { from: /src="\/img\//g, to: `src="${prefix}img/` }
+        { from: /src="\/img\//g, to: `src="${prefix}img/` },
+        { from: /(["'])\/img\/tienda\//g, to: `$1${prefix}img/tienda/` }
     ];
 
     for (let r of linkReplacements) {

@@ -130,6 +130,11 @@ app.get('/como-ayudar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
 });
 
+// Nueva ruta para Tienda
+app.get('/tienda', (req, res) => {
+    res.render('tienda', { titulo: 'Tienda - Imfundo Kahle' });
+});
+
 // Ruta de prueba temporal
 app.get('/', (req, res) => {
     res.render('index', { titulo: 'Inicio - Imfundo Kahle' });

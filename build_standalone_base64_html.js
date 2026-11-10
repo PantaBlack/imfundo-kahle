@@ -59,6 +59,12 @@ function replaceImagesWithBase64(text) {
         return `url('${uri}')`;
     });
 
+    // 3. Reemplazar rutas de tienda en JS
+    result = result.replace(/(["'])(?:\/|public\/)?img\/(tienda\/[^"']+)(["'])/g, (m, q1, imgName, q2) => {
+        const uri = getBase64Uri(imgName);
+        return `${q1}${uri}${q2}`;
+    });
+
     return result;
 }
 
@@ -81,14 +87,15 @@ const pageConfigs = [
     { id: 'implementa-un-espacio-educativo', view: 'espacio-educativo-detalle.ejs', title: 'Implementa un espacio educativo - Imfundo Kahle', label: '📌 Detalle: Espacio educativo (04)' },
     { id: 'dona-libros', view: 'dona-libros-detalle.ejs', title: 'Dona libros - Imfundo Kahle', label: '📌 Detalle: Dona libros (05)' },
     { id: 'apoya-los-emprendimientos-ainbo', view: 'apoya-ainbo-detalle.ejs', title: 'Apoya a las mujeres Ainbo - Imfundo Kahle', label: '📌 Detalle: Apoya mujeres Ainbo (06)' },
-    { id: 'como-ayudar', view: 'como-ayudar.ejs', title: 'Cómo ayudar - Imfundo Kahle', label: '💙 Cómo ayudar' }
+    { id: 'como-ayudar', view: 'como-ayudar.ejs', title: 'Cómo ayudar - Imfundo Kahle', label: '💙 Cómo ayudar' },
+    { id: 'tienda', view: 'tienda.ejs', title: 'Tienda - Imfundo Kahle', label: '🛍️ Tienda' }
 ];
 
 const cssFiles = [
     'style.css', 'nosotros.css', 'proyectos.css', 'casa-ainbo.css', 'sonrisas-de-navidad.css',
     'guardianes-itaya.css', 'imfundo-yoga.css', 'languages-for-hope.css', 'proyecto-butterfly.css',
     'ainbo.css', 'se-un-voluntario.css', 'voluntario-detalle.css', 'apadrina-detalle.css',
-    'desayuno-detalle.css', 'espacio-educativo-detalle.css', 'dona-libros-detalle.css', 'apoya-ainbo-detalle.css', 'como-ayudar.css'
+    'desayuno-detalle.css', 'espacio-educativo-detalle.css', 'dona-libros-detalle.css', 'apoya-ainbo-detalle.css', 'como-ayudar.css', 'tienda.css'
 ];
 
 console.log('Concatenando CSS e incrustando imágenes...');
@@ -268,10 +275,13 @@ const routerScript = `
         '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo', '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
         '/se-un-voluntario/dona-libros': 'dona-libros', '/dona-libros': 'dona-libros', 'dona-libros.html': 'dona-libros', '#dona-libros': 'dona-libros',
         '/se-un-voluntario/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-los-emprendimientos-ainbo.html': 'apoya-los-emprendimientos-ainbo', '/se-un-voluntario/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-ainbo.html': 'apoya-los-emprendimientos-ainbo', '#apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '#apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
-        '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar'
+        '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar',
+        '/tienda': 'tienda', 'tienda.html': 'tienda', '#tienda': 'tienda'
     };
 
     function switchView(targetId, targetAnchor) {
+        document.body.classList.remove('scroll-locked', 'detail-open', 'settings-open', 'cart-main-open', 'checkout-open');
+        document.documentElement.classList.remove('scroll-locked', 'detail-open', 'settings-open', 'cart-main-open', 'checkout-open');
         let activeView = null;
         pageViews.forEach(view => {
             if (view.dataset.page === targetId) {
@@ -392,7 +402,7 @@ const fullHtml = `<!DOCTYPE html>
     <title>Imfundo Kahle - Sitio Completo (Revisión)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
 ${combinedCss}
 ${previewStyles}

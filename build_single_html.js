@@ -134,6 +134,13 @@ const pageConfigs = [
         title: 'Cómo ayudar - Imfundo Kahle',
         label: '💙 Cómo ayudar',
         navMatch: ['/como-ayudar', 'como-ayudar.html']
+    },
+    {
+        id: 'tienda',
+        view: 'tienda.ejs',
+        title: 'Tienda - Imfundo Kahle',
+        label: '🛍️ Tienda',
+        navMatch: ['/tienda', 'tienda.html']
     }
 ];
 
@@ -156,7 +163,8 @@ const cssFiles = [
     'espacio-educativo-detalle.css',
     'dona-libros-detalle.css',
     'apoya-ainbo-detalle.css',
-    'como-ayudar.css'
+    'como-ayudar.css',
+    'tienda.css'
 ];
 
 function build(isDist = false) {
@@ -308,6 +316,7 @@ function build(isDist = false) {
 
         // Corregir rutas de imágenes en el contenido y forzar carga inmediata
         mainInner = mainInner.replace(/src="\/img\//g, `src="${imgPrefix}`);
+        mainInner = mainInner.replace(/(["'])\/img\/tienda\//g, `$1${imgPrefix}tienda/`);
         mainInner = mainInner.replace(/data-news-image="\/img\//g, `data-news-image="${imgPrefix}`);
         mainInner = mainInner.replace(/loading="lazy"/g, 'loading="eager"');
 
@@ -425,11 +434,17 @@ function build(isDist = false) {
             
             '/como-ayudar': 'como-ayudar',
             'como-ayudar.html': 'como-ayudar',
-            '#como-ayudar': 'como-ayudar'
+            '#como-ayudar': 'como-ayudar',
+
+            '/tienda': 'tienda',
+            'tienda.html': 'tienda',
+            '#tienda': 'tienda'
         };
 
         // Función principal para cambiar de vista
         function switchView(targetId, targetAnchor) {
+            document.body.classList.remove('scroll-locked', 'detail-open', 'settings-open', 'cart-main-open', 'checkout-open');
+            document.documentElement.classList.remove('scroll-locked', 'detail-open', 'settings-open', 'cart-main-open', 'checkout-open');
             let activeView = null;
             pageViews.forEach(view => {
                 if (view.dataset.page === targetId) {
@@ -560,7 +575,7 @@ function build(isDist = false) {
     <title>Imfundo Kahle - Sitio Completo (Revisión)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
 ${combinedCss}
 ${previewStyles}

@@ -10,6 +10,7 @@ dist/
 
 # Archivos temporales o de generación
 temp_opt_img/
+ht4/
 base64_images.json
 images_to_optimize.json
 public/img/originals_before_lines/
