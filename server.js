@@ -60,7 +60,7 @@ app.get('/proyectos/ainbo', (req, res) => {
 
 // Nueva ruta para Sé un voluntario
 app.get('/se-un-voluntario', (req, res) => {
-    res.render('se-un-voluntario', { titulo: 'Sé un voluntario - Imfundo Kahle' });
+    res.render('voluntario-detalle', { titulo: 'Sé un voluntario - Imfundo Kahle' });
 });
 
 // Detalle para Sé voluntario
