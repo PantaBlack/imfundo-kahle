@@ -120,7 +120,7 @@ const pages = [
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
         file: 'como-ayudar.html',
-        aliases: ['como-ayudar/index.html']
+        aliases: ['como-ayudar/index.html', 'donar.html', 'donar/index.html']
     },
     {
         view: 'tienda.ejs',

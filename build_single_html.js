@@ -133,7 +133,7 @@ const pageConfigs = [
         view: 'como-ayudar.ejs',
         title: 'Cómo ayudar - Imfundo Kahle',
         label: '💙 Cómo ayudar',
-        navMatch: ['/como-ayudar', 'como-ayudar.html']
+        navMatch: ['/como-ayudar', 'como-ayudar.html', '/donar', 'donar.html']
     },
     {
         id: 'tienda',

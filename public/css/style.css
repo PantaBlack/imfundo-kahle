@@ -24,6 +24,32 @@ a { color: inherit; text-decoration: none; }
 .site-nav a { transition: color .2s ease; }
 .site-nav a:hover, .text-link:hover { color: var(--coral); }
 .site-nav a[aria-current="page"], .site-nav .nav-dropdown-trigger[aria-current="page"] { color: var(--coral); }
+.site-nav .nav-btn-donar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #cf4836 0%, #b83726 100%);
+    color: #ffffff !important;
+    padding: 8px 22px !important;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(207, 72, 54, 0.28);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+    margin-left: 4px;
+}
+.site-nav .nav-btn-donar:hover {
+    background: linear-gradient(180deg, #b83726 0%, #9e2a1b 100%);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(207, 72, 54, 0.4);
+}
+.site-nav .nav-btn-donar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(207, 72, 54, 0.28);
+}
 .nav-dropdown { position: relative; }
 .nav-dropdown-trigger { padding: 0; display: inline-flex; align-items: center; gap: 7px; border: 0; color: inherit; background: transparent; font: inherit; cursor: pointer; text-decoration: none; }
 .nav-dropdown-trigger:hover, .nav-dropdown-trigger:focus-visible { color: var(--coral); }
@@ -162,6 +188,11 @@ h1, h2, h3, p { margin-top: 0; }
     .bulletin-card { width: min(250px, 40vw); }
 }
 
+@media (max-width: 960px) and (min-width: 681px) {
+    .site-nav { gap: clamp(10px, 1.4vw, 18px); font-size: 14px; }
+    .site-nav .nav-btn-donar { padding: 7px 16px !important; font-size: 13.5px; }
+}
+
 @media (max-width: 680px) {
     html { scroll-padding-top: 68px; }
     .section-wrap { width: min(100% - 38px, 500px); }
@@ -176,6 +207,24 @@ h1, h2, h3, p { margin-top: 0; }
     .site-nav.is-open { display: flex; }
     .site-nav a { padding: 13px 0; border-bottom: 1px solid #f3efed; }
     .site-nav a:last-child { border: 0; }
+    .site-nav .nav-btn-donar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+        margin-left: 0;
+        padding: 12px 20px !important;
+        border-radius: 25px;
+        color: #ffffff !important;
+        background: linear-gradient(180deg, #cf4836 0%, #b83726 100%);
+        border: 0 !important;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(207, 72, 54, 0.25);
+    }
+    .site-nav .nav-btn-donar:hover {
+        transform: none;
+        background: #b83726;
+    }
     .nav-dropdown { width: 100%; }
     .nav-dropdown-trigger { width: 100%; padding: 13px 0; justify-content: space-between; border-bottom: 1px solid #f3efed; }
     .nav-dropdown-arrow { min-width: 44px; min-height: 44px; margin: -13px 0; padding: 0 10px; font-size: 16px; cursor: pointer; }

@@ -275,7 +275,7 @@ const routerScript = `
         '/se-un-voluntario/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', '/implementa-un-espacio-educativo': 'implementa-un-espacio-educativo', 'implementa-un-espacio-educativo.html': 'implementa-un-espacio-educativo', '#implementa-un-espacio-educativo': 'implementa-un-espacio-educativo',
         '/se-un-voluntario/dona-libros': 'dona-libros', '/dona-libros': 'dona-libros', 'dona-libros.html': 'dona-libros', '#dona-libros': 'dona-libros',
         '/se-un-voluntario/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-los-emprendimientos-ainbo.html': 'apoya-los-emprendimientos-ainbo', '/se-un-voluntario/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '/apoya-ainbo': 'apoya-los-emprendimientos-ainbo', 'apoya-ainbo.html': 'apoya-los-emprendimientos-ainbo', '#apoya-ainbo': 'apoya-los-emprendimientos-ainbo', '#apoya-los-emprendimientos-ainbo': 'apoya-los-emprendimientos-ainbo',
-        '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar',
+        '/como-ayudar': 'como-ayudar', 'como-ayudar.html': 'como-ayudar', '#como-ayudar': 'como-ayudar', '/donar': 'como-ayudar', 'donar.html': 'como-ayudar', '#donar': 'como-ayudar',
         '/tienda': 'tienda', 'tienda.html': 'tienda', '#tienda': 'tienda'
     };
 

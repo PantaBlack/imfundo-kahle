@@ -128,6 +128,11 @@ app.get('/apoya-ainbo', (req, res) => {
 // Nueva ruta para Cómo ayudar
 app.get('/como-ayudar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
+
+// Ruta para Donar (muestra lo mismo que Cómo ayudar)
+app.get('/donar', (req, res) => {
+    res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
+});
 });
 
 // Nueva ruta para Tienda
