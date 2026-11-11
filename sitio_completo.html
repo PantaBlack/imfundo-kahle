@@ -2584,14 +2584,21 @@ h1, h2, h3, p { margin-top: 0; }
     }
 }
 
-/* Grilla de 6 tarjetas (3 x 2) */
+/* Grilla de 6 tarjetas con fotos (3 x 2) */
 .participar-grid {
     max-width: 1040px;
     margin: 0 auto;
     padding: 0 24px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 32px 24px;
+    align-items: stretch;
+}
+
+.part-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .part-card {
@@ -2603,12 +2610,40 @@ h1, h2, h3, p { margin-top: 0; }
     display: flex;
     flex-direction: column;
     position: relative;
+    flex: 1;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
 .part-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.13), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.part-photo {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: #fdf5f3;
+    line-height: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.part-photo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.part-photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 388 / 210;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.part-photo:hover img {
+    transform: scale(1.025);
 }
 
 .part-card-badge {
@@ -2685,7 +2720,7 @@ h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 900px) {
     .participar-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 22px;
+        gap: 28px 20px;
     }
 
     .voluntario-intro {
@@ -2700,8 +2735,16 @@ h1, h2, h3, p { margin-top: 0; }
 @media (max-width: 640px) {
     .participar-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 26px;
         padding: 0 18px;
+    }
+
+    .part-item {
+        gap: 12px;
+    }
+
+    .part-photo {
+        border-radius: 20px;
     }
 
     .participar-header-wrap {
@@ -9565,54 +9608,84 @@ html.scroll-locked { overflow: hidden; }
                 <span class="participar-line" aria-hidden="true"></span>
             </div>
 
-            <div class="participar-grid">
+                        <div class="participar-grid">
                 <!-- Tarjeta 01 -->
-                <article class="part-card">
-                    <div class="part-card-badge">01</div>
-                    <h3 class="part-card-title">Sé voluntario</h3>
-                    <p class="part-card-desc">Comparte lo que sabes. Transforma oportunidades.</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/voluntariado">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">01</div>
+                        <h3 class="part-card-title">Sé voluntario</h3>
+                        <p class="part-card-desc">Comparte lo que sabes.<br>Transforma vidas.</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/voluntariado">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/se%20voluntario%20foto%20ayuda.png" alt="Sé voluntario - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
 
                 <!-- Tarjeta 02 -->
-                <article class="part-card">
-                    <div class="part-card-badge">02</div>
-                    <h3 class="part-card-title">Apadrina un niño</h3>
-                    <p class="part-card-desc">Ayúdanos a abrir caminos a través de la educación.</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/apadrina-un-nino">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">02</div>
+                        <h3 class="part-card-title">Apadrina un niño</h3>
+                        <p class="part-card-desc">Ayúdanos a abrir caminos a través de la educación.</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/apadrina-un-nino">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/apadrina%20un%20ni%C3%B1o%20presentacion.png" alt="Apadrina un niño - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
 
                 <!-- Tarjeta 03 -->
-                <article class="part-card">
-                    <div class="part-card-badge">03</div>
-                    <h3 class="part-card-title">Contribuye con desayuno</h3>
-                    <p class="part-card-desc">¡Más niños comienzan el día alimentados!</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/contribuye-con-desayuno">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">03</div>
+                        <h3 class="part-card-title">Contribuye con desayunos</h3>
+                        <p class="part-card-desc">¡Haz que más niños comiencen el día alimentados!</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/contribuye-con-desayuno">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/contribuye%20con%20desayunos%20presentacion.png" alt="Contribuye con desayunos - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
 
                 <!-- Tarjeta 04 -->
-                <article class="part-card">
-                    <div class="part-card-badge">04</div>
-                    <h3 class="part-card-title">Implementa un espacio educativo</h3>
-                    <p class="part-card-desc">Hagamos realidad un espacio para aprender</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/implementa-un-espacio-educativo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">04</div>
+                        <h3 class="part-card-title">Implementa un espacio educativo</h3>
+                        <p class="part-card-desc">Haz realidad un espacio para aprender.</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/implementa-un-espacio-educativo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/implementa%20un%20espacio%20educativo%20presentacion.png" alt="Implementa un espacio educativo - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
 
                 <!-- Tarjeta 05 -->
-                <article class="part-card">
-                    <div class="part-card-badge">05</div>
-                    <h3 class="part-card-title">Dona libros</h3>
-                    <p class="part-card-desc">Un libro que ya leíste, puede abrir un mundo nuevo</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/dona-libros">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">05</div>
+                        <h3 class="part-card-title">Dona libros</h3>
+                        <p class="part-card-desc">Abre un mundo de imaginación para un niño, donando libros.</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/dona-libros">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/dona%20libros%20presentacion.png" alt="Dona libros - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
 
                 <!-- Tarjeta 06 -->
-                <article class="part-card">
-                    <div class="part-card-badge">06</div>
-                    <h3 class="part-card-title">Apoya los emprendimientos Ainbo</h3>
-                    <p class="part-card-desc">Tu compra impulsa sus iniciativas emprendedoras</p>
-                    <a class="part-card-btn" href="/se-un-voluntario/apoya-los-emprendimientos-ainbo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
-                </article>
+                <div class="part-item">
+                    <article class="part-card">
+                        <div class="part-card-badge">06</div>
+                        <h3 class="part-card-title">Apoya los emprendimientos Ainbo</h3>
+                        <p class="part-card-desc">Tu compra impulsa sus iniciativas emprendedoras</p>
+                        <a class="part-card-btn" href="/se-un-voluntario/apoya-los-emprendimientos-ainbo">Conocer más <span class="arrow" aria-hidden="true">⟶</span></a>
+                    </article>
+                    <div class="part-photo">
+                        <img src="public/img/apoya%20emprendimientos%20ainbo%20presentacion.png" alt="Apoya los emprendimientos Ainbo - Imfundo Kahle" loading="eager">
+                    </div>
+                </div>
             </div>
         </section>
     

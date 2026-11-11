@@ -87,14 +87,21 @@
     }
 }
 
-/* Grilla de 6 tarjetas (3 x 2) */
+/* Grilla de 6 tarjetas con fotos (3 x 2) */
 .participar-grid {
     max-width: 1040px;
     margin: 0 auto;
     padding: 0 24px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 32px 24px;
+    align-items: stretch;
+}
+
+.part-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .part-card {
@@ -106,12 +113,40 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    flex: 1;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
 
 .part-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.13), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.part-photo {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: #fdf5f3;
+    line-height: 0;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.part-photo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.part-photo img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 388 / 210;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.part-photo:hover img {
+    transform: scale(1.025);
 }
 
 .part-card-badge {
@@ -188,7 +223,7 @@
 @media (max-width: 900px) {
     .participar-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 22px;
+        gap: 28px 20px;
     }
 
     .voluntario-intro {
@@ -203,8 +238,16 @@
 @media (max-width: 640px) {
     .participar-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 26px;
         padding: 0 18px;
+    }
+
+    .part-item {
+        gap: 12px;
+    }
+
+    .part-photo {
+        border-radius: 20px;
     }
 
     .participar-header-wrap {
