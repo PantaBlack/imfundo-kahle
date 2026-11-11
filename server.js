@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const app = express();
 const path = require('path');
 
@@ -128,11 +128,36 @@ app.get('/apoya-ainbo', (req, res) => {
 // Nueva ruta para Cómo ayudar
 app.get('/como-ayudar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
+});
 
 // Ruta para Donar (muestra lo mismo que Cómo ayudar)
 app.get('/donar', (req, res) => {
     res.render('como-ayudar', { titulo: 'Cómo ayudar - Imfundo Kahle' });
 });
+
+// Rutas /como-ayudar/... (mismas páginas de detalle)
+app.get('/como-ayudar/voluntariado', (req, res) => {
+    res.render('voluntario-detalle', { titulo: 'Sé voluntario - Imfundo Kahle' });
+});
+
+app.get('/como-ayudar/apadrina-un-nino', (req, res) => {
+    res.render('apadrina-detalle', { titulo: 'Apadrina un niño - Imfundo Kahle' });
+});
+
+app.get('/como-ayudar/contribuye-con-desayuno', (req, res) => {
+    res.render('desayuno-detalle', { titulo: 'Contribuye con desayuno - Imfundo Kahle' });
+});
+
+app.get('/como-ayudar/implementa-un-espacio-educativo', (req, res) => {
+    res.render('espacio-educativo-detalle', { titulo: 'Implementa un espacio educativo - Imfundo Kahle' });
+});
+
+app.get('/como-ayudar/dona-libros', (req, res) => {
+    res.render('dona-libros-detalle', { titulo: 'Dona libros - Imfundo Kahle' });
+});
+
+app.get('/como-ayudar/apoya-los-emprendimientos-ainbo', (req, res) => {
+    res.render('apoya-ainbo-detalle', { titulo: 'Apoya a las mujeres Ainbo - Imfundo Kahle' });
 });
 
 // Nueva ruta para Tienda
