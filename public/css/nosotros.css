@@ -112,16 +112,20 @@
 }
 /* ===== Memorias Anuales - Tarjetas con botones de idioma ===== */
 .report-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .report-card-wrap {
+    flex: 0 1 calc((100% - 4.5rem) / 4);
+    min-width: 220px;
+    max-width: 260px;
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -131,49 +135,49 @@
 }
 .report-card-wrap:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.13);
 }
 
 .report-card-img-wrap {
     width: 100%;
     aspect-ratio: 3/4;
     overflow: hidden;
+    background: #f7f5f2;
 }
 .report-card-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background: #f4f1ee;
     display: block;
 }
 
 .report-year {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
+    font-size: 1.35rem;
+    font-weight: 800;
     color: #c0392b;
-    margin: 0.8rem 0 0.6rem;
+    margin: 0.85rem 0 0.65rem;
 }
 
 .report-btns {
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
-    width: 90%;
+    gap: 0.5rem;
+    width: 88%;
 }
 
 .report-btn {
     display: block;
     text-align: center;
-    padding: 0.5rem 0.8rem;
+    padding: 0.55rem 0.8rem;
     border-radius: 999px;
     font-size: 0.82rem;
-    font-weight: 600;
+    font-weight: 700;
     text-decoration: none;
     transition: opacity 0.2s, transform 0.15s;
 }
 .report-btn:hover {
-    opacity: 0.85;
+    opacity: 0.88;
     transform: translateY(-1px);
 }
 .report-btn-es {
@@ -186,7 +190,8 @@
 }
 
 @media (max-width: 600px) {
-    .report-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .report-card-wrap {
+        flex: 0 1 calc((100% - 1.5rem) / 2);
+        min-width: 140px;
     }
 }
