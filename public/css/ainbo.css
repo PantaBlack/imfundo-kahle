@@ -1,4 +1,4 @@
-/* Estilos para la página de Proyecto Ainbo (Mujeres) */
+﻿/* Estilos para la página de Proyecto Ainbo (Mujeres) */
 
 .ainbo-page-body {
     background: #ffffff;
@@ -154,18 +154,48 @@
     border-radius: 20px;
     padding: 28px 40px;
     margin: 0 auto 64px;
-    max-width: 980px;
+    max-width: 1040px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
 }
 
 .ainbo-proj-bottom-card p {
     margin: 0;
     font-family: var(--display);
-    font-size: clamp(18px, 1.8vw, 23px);
+    font-size: clamp(17px, 1.7vw, 21px);
     font-weight: 800;
     line-height: 1.45;
     color: #111111;
-    text-align: center;
+    text-align: left;
+    flex: 1;
+}
+
+.ainbo-btn-tienda {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 14px 30px;
+    border-radius: 999px;
+    background: var(--coral, #d64527);
+    color: #ffffff;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(214, 69, 39, 0.3);
+    flex-shrink: 0;
+}
+
+.ainbo-btn-tienda:hover {
+    background: #bd391e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(214, 69, 39, 0.45);
+    color: #ffffff;
 }
 
 /* ==========================================================
@@ -232,4 +262,6 @@
     .ainbo-proj-bottom-card p {
         font-size: 16px;
     }
+    .ainbo-proj-bottom-card { flex-direction: column; text-align: center; gap: 20px; }
+    .ainbo-proj-bottom-card p { text-align: center; }
 }

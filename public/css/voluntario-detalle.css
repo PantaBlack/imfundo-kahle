@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Sé voluntario (Detalle) - Imfundo Kahle
    ========================================================================== */
 
@@ -95,7 +95,7 @@
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 20px;
     align-items: start;
 }
@@ -224,7 +224,7 @@
    Responsive Breakpoints
    ========================================================================== */
 
-@media (max-width: 940px) {
+@media (max-width: 1040px) {
     .vol-split-card {
         grid-template-columns: 1fr;
     }
@@ -234,7 +234,7 @@
     }
 
     .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 28px 20px;
     }
 
