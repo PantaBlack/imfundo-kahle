@@ -1,4 +1,4 @@
-.about-page { color: var(--ink); background: #fff; }
+﻿.about-page { color: var(--ink); background: #fff; }
 .about-wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
 .about-intro { padding-block: 60px 46px; display: grid; grid-template-columns: .85fr 1.15fr; column-gap: 42px; row-gap: 20px; align-items: start; }
 .about-intro-copy { padding-top: 18px; }
@@ -132,13 +132,14 @@
 
 .report-card-img-wrap {
     width: 100%;
-    aspect-ratio: 3/4;
+    aspect-ratio: 1/1;
     overflow: hidden;
 }
 .report-card-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top center;
     display: block;
 }
 
