@@ -106,3 +106,82 @@
     .report-card > span { font-size: 18px; }
     .report-card > strong { font-size: 10px; }
 }
+/* ===== Memorias Anuales - Tarjetas con botones de idioma ===== */
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.report-card-wrap {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.report-card-wrap:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+
+.report-card-img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+.report-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.report-year {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #c0392b;
+    margin: 0.8rem 0 0.6rem;
+}
+
+.report-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    width: 90%;
+}
+
+.report-btn {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+}
+.report-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+.report-btn-es {
+    background: #c0392b;
+    color: #fff;
+}
+.report-btn-en {
+    background: #1a3a6b;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .report-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
