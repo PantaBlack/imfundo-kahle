@@ -53,124 +53,26 @@
     position: relative;
     width: 100%;
 }
-.join-inner {
-    min-height: 420px;
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    align-items: end;
-    gap: 32px;
-    margin-bottom: 0;
-}
-.join-kids-img {
-    display: block;
-    width: 100%;
-    max-width: 490px;
-    height: auto;
-    max-height: 450px;
-    object-fit: contain;
-    object-position: bottom left;
-    vertical-align: bottom;
-    margin-bottom: 0;
-    align-self: end;
-}
-.join-copy {
-    padding: 44px 10px 48px 0;
-    color: #111;
-    text-align: center;
-    align-self: center;
-}
-.join-copy h2 {
-    margin: 0 auto 20px;
-    max-width: 580px;
-    font-family: var(--display);
-    font-size: clamp(19px, 2vw, 24px);
-    font-weight: 800;
-    line-height: 1.35;
-    color: #111111;
-}
-.join-copy h3 {
-    margin: 0 0 12px;
-    font-family: var(--display);
-    font-size: clamp(28px, 3.2vw, 38px);
-    font-weight: 800;
-    color: #111111;
-}
-.join-copy h3 span {
-    color: var(--coral);
-}
-.join-copy p {
-    max-width: 540px;
-    margin: 0 auto 22px;
-    font-size: clamp(14px, 1.1vw, 16px);
-    line-height: 1.55;
-    color: #2b2b2b;
-}
-.join-copy .button {
-    font-size: 16px;
-    font-weight: 700;
-    padding: 13px 36px;
-    border-radius: 999px;
-}
-
-@media (max-width: 900px) {
-    .ainbo-intro { grid-template-columns: 1fr; }
-    .ainbo-intro > img { height: auto; }
-    .workshop-grid { gap: 38px 14px; }
-    .workshop-grid img { height: auto; }
-    .workshop-grid article:nth-child(7) img { height: 320px; }
-}
-
-@media (max-width: 680px) {
-    .ainbo-wrap { width: min(100% - 38px, 500px); }
-    .ainbo-hero > img { height: clamp(200px, 46vw, 320px); object-position: center top; }
-    .ainbo-logo { width: 100px; height: 100px; padding: 10px; margin-top: -50px; }
-    .ainbo-intro { padding-top: 10px; }
-    .ainbo-intro h1 { font-size: 30px; }
-    .ainbo-intro p { font-size: 14px; }
-    .ainbo-intro > img { height: auto; }
-    .ainbo-callout { padding: 13px 16px; gap: 12px; }
-    .ainbo-callout span { font-size: 30px; }
-    .ainbo-callout p { font-size: 15px; }
-    .ainbo-workshops { padding-block: 35px 48px; }
-    .ainbo-heading h2, .ainbo-libraries h2, .ainbo-breakfast h2, .ainbo-stories h2 { font-size: 34px; }
-    .ainbo-heading p { font-size: 13px; }
-    .workshop-grid { grid-template-columns: repeat(2, 1fr); gap: 30px 10px; }
-    .workshop-grid img { height: auto; }
-    .workshop-grid article:nth-child(7) img { height: 250px; }
-    .workshop-grid h3 { margin-left: 5px; font-size: 15px; }
-    .results-inner { grid-template-columns: 1fr; gap: 18px; }
-    .results-copy h2 { font-size: 42px; }
-    .results-copy > strong { font-size: 78px; }
-    .results-inner > img { height: auto; }
-    .library-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; align-items: start; }
-    .library-grid figure { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .library-grid figcaption { font-size: clamp(14px, 3.6vw, 18px); margin-top: 8px; line-height: 1.25; }
-    .library-grid p { grid-column: 1 / -1; font-size: clamp(28px, 7vw, 42px); line-height: 1.2; margin-top: 14px; }
-    .library-grid img { height: auto; }
-    .breakfast-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .breakfast-grid img { height: 330px; }
-    .story-grid { grid-template-columns: 1fr; gap: 18px; }
-    .story-grid article { min-height: 0; padding: 12px 12px 18px; }
-    .story-grid img { height: 210px; }
-    .story-grid p { font-size: 14px; }
-        .join-inner {
+    .join-inner {
+        width: min(100% - 32px, 540px);
         grid-template-columns: 1fr;
         min-height: auto;
         gap: 0;
     }
     .join-copy {
-        padding: 34px 12px 20px;
+        padding: 32px 10px 20px;
         order: 1;
     }
     .join-kids-img {
-        max-width: 320px;
+        max-width: 360px;
+        max-height: 340px;
         margin: 0 auto;
         order: 2;
     }
-    .join-copy h2 { font-size: 18px; margin-bottom: 14px; }
-    .join-copy h3 { font-size: 26px; }
-    .join-copy p { font-size: 13.5px; }
-    .join-copy .button { font-size: 14px; padding: 11px 28px; }
+    .join-copy h2 { font-size: 19px; margin-bottom: 14px; }
+    .join-copy h3 { font-size: 28px; }
+    .join-copy p { font-size: 14px; }
+    .join-copy .button { font-size: 14.5px; padding: 12px 30px; }
 } .join-kids .kid-boy { margin-right: -15px; }
     .join-inner > div { padding: 24px 0 28px; }
     .join-inner h2 { font-size: 16px; margin-bottom: 16px; }
