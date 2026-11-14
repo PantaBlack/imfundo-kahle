@@ -47,40 +47,70 @@
 .story-grid img { width: 100%; height: 230px; border-radius: 15px; object-fit: contain; background: #f7f5f2; }
 .story-grid p { margin: 18px 8px 16px; font-size: 16px; line-height: 1.55; }
 .story-grid strong { font-family: var(--display); font-size: 17px; line-height: 1.3; }
-.ainbo-join { overflow: hidden; background: #f7b7b0; }
-.join-inner { min-height: 360px; display: grid; grid-template-columns: 1fr 1.15fr; align-items: end; gap: 16px; margin-bottom: 0; }
-.join-kids {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 0;
-    line-height: 0;
+.ainbo-join {
+    overflow: hidden;
+    background: #fdc3c1;
+    position: relative;
+    width: 100%;
+}
+.join-inner {
+    min-height: 420px;
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: end;
+    gap: 32px;
     margin-bottom: 0;
 }
-.join-kids img {
+.join-kids-img {
     display: block;
-    height: 350px;
-    width: auto;
-    max-height: 350px;
+    width: 100%;
+    max-width: 490px;
+    height: auto;
+    max-height: 450px;
     object-fit: contain;
+    object-position: bottom left;
     vertical-align: bottom;
     margin-bottom: 0;
+    align-self: end;
 }
-.join-kids .kid-boy {
-    margin-right: -25px;
-    position: relative;
-    z-index: 2;
+.join-copy {
+    padding: 44px 10px 48px 0;
+    color: #111;
+    text-align: center;
+    align-self: center;
 }
-.join-kids .kid-girl {
-    position: relative;
-    z-index: 1;
+.join-copy h2 {
+    margin: 0 auto 20px;
+    max-width: 580px;
+    font-family: var(--display);
+    font-size: clamp(19px, 2vw, 24px);
+    font-weight: 800;
+    line-height: 1.35;
+    color: #111111;
 }
-.join-inner > div { padding: 35px 0 44px; color: #111; text-align: center; }
-.join-inner h2 { margin: 0 auto 24px; max-width: 760px; font-family: var(--display); font-size: 22px; }
-.join-inner h3 { margin: 0 0 8px; font-family: var(--display); font-size: 34px; }
-.join-inner h3 span { color: var(--coral); }
-.join-inner p { max-width: 620px; margin: 0 auto 18px; font-size: 16px; line-height: 1.5; }
-.join-inner .button { font-size: 16px; }
+.join-copy h3 {
+    margin: 0 0 12px;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.2vw, 38px);
+    font-weight: 800;
+    color: #111111;
+}
+.join-copy h3 span {
+    color: var(--coral);
+}
+.join-copy p {
+    max-width: 540px;
+    margin: 0 auto 22px;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.55;
+    color: #2b2b2b;
+}
+.join-copy .button {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 13px 36px;
+    border-radius: 999px;
+}
 
 @media (max-width: 900px) {
     .ainbo-intro { grid-template-columns: 1fr; }
@@ -123,8 +153,25 @@
     .story-grid article { min-height: 0; padding: 12px 12px 18px; }
     .story-grid img { height: 210px; }
     .story-grid p { font-size: 14px; }
-    .join-inner { grid-template-columns: .8fr 1.2fr; min-height: 300px; }
-    .join-kids img { height: 230px; max-height: 230px; } .join-kids .kid-boy { margin-right: -15px; }
+        .join-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 0;
+    }
+    .join-copy {
+        padding: 34px 12px 20px;
+        order: 1;
+    }
+    .join-kids-img {
+        max-width: 320px;
+        margin: 0 auto;
+        order: 2;
+    }
+    .join-copy h2 { font-size: 18px; margin-bottom: 14px; }
+    .join-copy h3 { font-size: 26px; }
+    .join-copy p { font-size: 13.5px; }
+    .join-copy .button { font-size: 14px; padding: 11px 28px; }
+} .join-kids .kid-boy { margin-right: -15px; }
     .join-inner > div { padding: 24px 0 28px; }
     .join-inner h2 { font-size: 16px; margin-bottom: 16px; }
     .join-inner h3 { font-size: 25px; }
