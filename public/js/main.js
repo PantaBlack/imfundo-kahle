@@ -96,6 +96,20 @@ document.querySelector('.subscribe-form')?.addEventListener('submit', (event) =>
     form.reset();
 });
 
+// Pestañas de boletines por año
+const yearButtons = document.querySelectorAll('.year-btn');
+const bulletinPanels = document.querySelectorAll('.year-bulletins-panel');
+
+yearButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const year = btn.dataset.year;
+        yearButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+        bulletinPanels.forEach((panel) => {
+            panel.classList.toggle('is-hidden', panel.id !== `panel-${year}`);
+        });
+    });
+});
+
 const newsDialog = document.querySelector('.news-dialog');
 const newsCards = [...document.querySelectorAll('.news-card-button')];
 

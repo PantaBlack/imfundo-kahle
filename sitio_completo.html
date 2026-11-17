@@ -167,10 +167,119 @@ h1, h2, h3, p { margin-top: 0; }
 .bulletin-label { position: absolute; z-index: 1; inset: auto 0 53px; color: #ffc04b; font-family: var(--display); font-size: 28px; font-weight: 800; line-height: 1.1; text-align: center; }
 .language-links { padding: 0; position: absolute; z-index: 1; right: 0; bottom: 14px; left: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .language-links a { padding: 5px 13px; border-radius: 20px; color: var(--ink); background: white; font-size: 11px; font-weight: 700; }
-.newsletter-side { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: center; }
+.newsletter-side { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
 .year-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.year-links a { min-height: 54px; display: grid; place-items: center; border-radius: 18px; color: var(--ink); background: white; font-family: var(--display); font-size: 18px; font-weight: 700; transition: transform .2s ease; }
-.year-links a:hover { transform: translateX(3px); }
+.year-links button,
+.year-links a {
+    min-height: 52px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    border: 0;
+    color: var(--ink);
+    background: white;
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.year-links button:hover,
+.year-links a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+.year-links button.is-active,
+.year-links a.is-active {
+    background: #1e1e1e;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.year-bulletins-panel {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    transition: opacity 0.2s ease;
+}
+.year-bulletins-panel.is-hidden {
+    display: none;
+}
+.bulletins-month-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+.month-pill {
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 14px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+.month-pill:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+.month-name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    color: #1a1a1a;
+    text-decoration: none;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+.month-name:hover {
+    color: var(--coral);
+}
+.month-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.month-btn-link {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+}
+.month-btn-link:hover {
+    transform: scale(1.04);
+}
+.month-btn-es {
+    background: #f1efec;
+    color: #2b2b2b;
+}
+.month-btn-es:hover {
+    background: var(--coral);
+    color: white;
+}
+.month-btn-en {
+    background: #e8eef8;
+    color: #1a4f8a;
+}
+.month-btn-en:hover {
+    background: #1a4f8a;
+    color: white;
+}
+.panel-empty-notice {
+    padding: 24px 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    color: white;
+    font-size: 15px;
+}
 .subscribe-form label { display: block; margin-bottom: 22px; font-family: var(--display); font-size: 32px; font-weight: 700; line-height: 1.12; }
 .email-field { min-height: 52px; padding: 4px 5px 4px 19px; display: flex; border-radius: 30px; background: white; }
 .email-field input { width: 100%; min-width: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font: inherit; font-size: 14px; }
@@ -286,7 +395,9 @@ h1, h2, h3, p { margin-top: 0; }
     .bulletin-label { font-size: 23px; }
     .newsletter-side { grid-template-columns: 1fr; gap: 25px; }
     .year-links { grid-template-columns: repeat(3, 1fr); gap: 9px; }
-    .year-links a { min-height: 46px; border-radius: 14px; font-size: 16px; }
+    .year-links a,
+    .year-links button { min-height: 46px; border-radius: 14px; font-size: 16px; }
+    .bulletins-month-grid { grid-template-columns: 1fr; gap: 8px; }
     .subscribe-form label { max-width: 360px; font-size: 27px; }
     .campaigns { padding-block: 58px 66px; }
     .campaign-layout { grid-template-columns: 1fr; gap: 22px; }
@@ -9143,7 +9254,86 @@ html.scroll-locked { overflow: hidden; }
                         <article class="bulletin-card"><img src="public/img/Agosto.png" alt="Boletín de agosto de 2026 de Imfundo Kahle" loading="eager"><div class="language-links"><a href="https://drive.google.com/file/d/1Zij1lnIYxWheB5D85h-NXu4wKxoM8NMc/view?usp=share_link" target="_blank" rel="noopener noreferrer">Español</a><a href="https://drive.google.com/file/d/1QHRQj9eLY3_-hg4BceNpghl-MZm7hP68/view?usp=share_link" target="_blank" rel="noopener noreferrer">Inglés</a></div></article>
                     </div>
                 </div>
-                <div class="newsletter-side"><div class="year-links" aria-label="Boletines por año"><a href="#boletines">2026</a><a href="#boletines">2025</a><a href="#boletines">2024</a></div><form class="subscribe-form"><label for="email">Déjanos tu correo para recibirlos cada mes</label><div class="email-field"><input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required><button type="submit" aria-label="Suscribirme">→</button></div><p class="form-feedback" aria-live="polite"></p></form></div>
+                <div class="newsletter-side">
+                    <div class="year-links" aria-label="Boletines por año">
+                        <button type="button" class="year-btn is-active" data-year="2026">2026</button>
+                        <button type="button" class="year-btn" data-year="2025">2025</button>
+                        <button type="button" class="year-btn" data-year="2024">2024</button>
+                    </div>
+
+                    <div class="year-bulletins-panel" id="panel-2026">
+                        <div class="bulletins-month-grid">
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1djitwRGqBic9aO7Ovq1T680TTV3a5ON3/view?usp=sharing" target="_blank" rel="noopener noreferrer">Enero - Febrero 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1djitwRGqBic9aO7Ovq1T680TTV3a5ON3/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1_UAvFfTWEC9ZVGolqXLzBmj5LPZ-IQHo/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1t__fD0zCQrxzqubiDJN-SH6PqFa4SWU1/view?usp=sharing" target="_blank" rel="noopener noreferrer">Marzo 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1t__fD0zCQrxzqubiDJN-SH6PqFa4SWU1/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1VXfwESaa2e-HtQx852IsbB0Ao_B86Mzz/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1ppgAA0uH1Q1ajL1lkuN3y2TBG1cEfP30/view?usp=sharing" target="_blank" rel="noopener noreferrer">Abril 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1ppgAA0uH1Q1ajL1lkuN3y2TBG1cEfP30/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1lQIL2Vbq5W-ZJSQaRYYc3Q-7u-wRHrnI/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1Y8TVZWkhBc4G5xinzWHLGSDbVe3bZvh9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Mayo 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1Y8TVZWkhBc4G5xinzWHLGSDbVe3bZvh9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1ovSTuKi0bKmPr4RWR9ngw7I7s4uXHPIo/view?usp=sharing" target="_blank" rel="noopener noreferrer">Junio 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1ovSTuKi0bKmPr4RWR9ngw7I7s4uXHPIo/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1DLbizgKnEdkt78_RwdvLIdHedwDWMczq/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1VLGGmhnH0ROninLYJ18ytdivjOt5D8-Z/view?usp=sharing" target="_blank" rel="noopener noreferrer">Julio 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1VLGGmhnH0ROninLYJ18ytdivjOt5D8-Z/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1Zij1lnIYxWheB5D85h-NXu4wKxoM8NMc/view?usp=sharing" target="_blank" rel="noopener noreferrer">Agosto 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1Zij1lnIYxWheB5D85h-NXu4wKxoM8NMc/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1QHRQj9eLY3_-hg4BceNpghl-MZm7hP68/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                            <div class="month-pill">
+                                <a class="month-name" href="https://drive.google.com/file/d/1v_S7zdTWpJhJhhD8f8vObSvKAGvi2Y1t/view?usp=sharing" target="_blank" rel="noopener noreferrer">Septiembre 2026</a>
+                                <div class="month-actions">
+                                    <a class="month-btn-link month-btn-es" href="https://drive.google.com/file/d/1v_S7zdTWpJhJhhD8f8vObSvKAGvi2Y1t/view?usp=sharing" target="_blank" rel="noopener noreferrer">Español</a>
+                                    <a class="month-btn-link month-btn-en" href="https://drive.google.com/file/d/1vUH2gQ6YkM-TieeX4vZEW8PbKeDKCv6n/view?usp=sharing" target="_blank" rel="noopener noreferrer">Inglés</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="year-bulletins-panel is-hidden" id="panel-2025">
+                        <div class="panel-empty-notice">
+                            <p>Los boletines del 2025 estarán disponibles próximamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="year-bulletins-panel is-hidden" id="panel-2024">
+                        <div class="panel-empty-notice">
+                            <p>Los boletines del 2024 estarán disponibles próximamente.</p>
+                        </div>
+                    </div>
+
+                    <form class="subscribe-form"><label for="email">Déjanos tu correo para recibirlos cada mes</label><div class="email-field"><input id="email" name="email" type="email" placeholder="tucorreo@ejemplo.com" required><button type="submit" aria-label="Suscribirme">→</button></div><p class="form-feedback" aria-live="polite"></p></form>
+                </div>
             </div>
         </section>
 
@@ -14137,6 +14327,20 @@ document.querySelector('.subscribe-form')?.addEventListener('submit', (event) =>
     const feedback = form.querySelector('.form-feedback');
     feedback.textContent = '¡Gracias por tu interés! Pronto habilitaremos las suscripciones.';
     form.reset();
+});
+
+// Pestañas de boletines por año
+const yearButtons = document.querySelectorAll('.year-btn');
+const bulletinPanels = document.querySelectorAll('.year-bulletins-panel');
+
+yearButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const year = btn.dataset.year;
+        yearButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
+        bulletinPanels.forEach((panel) => {
+            panel.classList.toggle('is-hidden', panel.id !== `panel-${year}`);
+        });
+    });
 });
 
 const newsDialog = document.querySelector('.news-dialog');
