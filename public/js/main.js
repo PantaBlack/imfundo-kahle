@@ -105,8 +105,41 @@ yearButtons.forEach((btn) => {
         const year = btn.dataset.year;
         yearButtons.forEach((b) => b.classList.toggle('is-active', b === btn));
         bulletinPanels.forEach((panel) => {
-            panel.classList.toggle('is-hidden', panel.id !== `panel-${year}`);
+            const isMatch = panel.id === `panel-${year}`;
+            panel.classList.toggle('is-hidden', !isMatch);
+            if (isMatch) {
+                const track = panel.querySelector('.bulletin-track');
+                if (track) track.scrollTo({ left: 0, behavior: 'smooth' });
+            }
         });
+    });
+});
+
+// Controles del carrusel de boletines
+const bulletinControls = document.querySelectorAll('.bulletin-control');
+
+bulletinControls.forEach((control) => {
+    control.addEventListener('click', () => {
+        const step = Number(control.dataset.bulletinStep);
+        const activePanel = document.querySelector('.year-bulletins-panel:not(.is-hidden)');
+        if (!activePanel) return;
+        const track = activePanel.querySelector('.bulletin-track');
+        if (!track) return;
+        const firstCard = track.querySelector('.bulletin-card');
+        if (!firstCard) return;
+
+        const style = window.getComputedStyle(track);
+        const gap = parseFloat(style.columnGap || style.gap || '22');
+        const cardStep = firstCard.getBoundingClientRect().width + gap;
+        const lastPosition = track.scrollWidth - track.clientWidth;
+
+        if (step > 0 && track.scrollLeft >= lastPosition - 5) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+        } else if (step < 0 && track.scrollLeft <= 5) {
+            track.scrollTo({ left: lastPosition, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: step * cardStep, behavior: 'smooth' });
+        }
     });
 });
 

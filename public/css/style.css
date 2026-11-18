@@ -136,135 +136,261 @@ h1, h2, h3, p { margin-top: 0; }
 .photo-strip img { width: calc(100% + 1px); max-width: none; height: 100%; object-fit: cover; }
 .photo-strip img:nth-child(2) { object-position: center 42%; }
 
-.newsletter { position: relative; overflow: hidden; color: white; background-color: var(--coral); background-image: radial-gradient(rgba(255,255,255,.11) .8px, transparent .8px); background-size: 18px 18px; }
-.newsletter-inner.section-wrap { width: min(1510px, calc(100% - 96px)); }
-.newsletter-inner { min-height: 0; padding-block: 12px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 4fr); gap: 48px; align-items: center; }
-.eyebrow-light { color: rgba(255,255,255,.82); }
-.newsletter h2 { margin-bottom: 12px; color: white; }
-.newsletter-title { text-align: center; }
-.newsletter-title > h2 { font-size: clamp(52px, 4.5vw, 58px); }
-.newsletter-title h3 { max-width: 620px; margin: 0 auto 8px; font-family: var(--display); font-size: 32px; font-weight: 800; line-height: 1.02; }
-.bulletin-cards { display: flex; justify-content: center; gap: 22px; }
-.bulletin-card { width: min(340px, calc((100% - 22px) / 2)); height: auto; position: relative; display: flex; flex-direction: column; background: transparent; }
-.bulletin-card img { width: 100%; height: auto; border-radius: 12px; object-fit: contain; box-shadow: 0 14px 25px rgba(64,26,20,.2); }
-.bulletin-card:nth-child(2) { overflow: hidden; border-radius: 12px; }
-.bulletin-card:nth-child(2) > img { transform: scaleX(1.02); transform-origin: right center; }
-.bulletin-card::after { display: none; }
-.bulletin-label { position: absolute; z-index: 1; inset: auto 0 53px; color: #ffc04b; font-family: var(--display); font-size: 28px; font-weight: 800; line-height: 1.1; text-align: center; }
-.language-links { padding: 0; position: absolute; z-index: 1; right: 0; bottom: 14px; left: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-.language-links a { padding: 5px 13px; border-radius: 20px; color: var(--ink); background: white; font-size: 11px; font-weight: 700; }
-.newsletter-side { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: start; }
-.year-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.year-links button,
-.year-links a {
-    min-height: 52px;
+.newsletter {
+    position: relative;
+    overflow: hidden;
+    color: white;
+    background-color: var(--coral);
+    background-image: radial-gradient(rgba(255, 255, 255, .11) .8px, transparent .8px);
+    background-size: 18px 18px;
+    padding-block: 60px 70px;
+}
+.newsletter-inner.section-wrap {
+    width: min(1360px, calc(100% - 64px));
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+.newsletter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.newsletter-heading {
+    text-align: left;
+}
+.newsletter-heading h2 {
+    margin: 4px 0 6px;
+    color: white;
+    font-family: var(--display);
+    font-size: clamp(40px, 4.5vw, 58px);
+    font-weight: 800;
+    line-height: 1;
+}
+.newsletter-subheading {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-family: var(--display);
+    font-size: clamp(17px, 2vw, 22px);
+    font-weight: 700;
+    line-height: 1.25;
+}
+.newsletter-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.year-links {
+    display: inline-flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.18);
+    padding: 6px;
+    border-radius: 20px;
+}
+.year-links button {
+    min-height: 44px;
+    padding: 0 24px;
     display: grid;
     place-items: center;
-    border-radius: 18px;
+    border-radius: 14px;
     border: 0;
-    color: var(--ink);
-    background: white;
+    color: white;
+    background: transparent;
     font-family: var(--display);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: transform .2s ease, background .2s ease, color .2s ease, box-shadow .2s ease;
 }
-.year-links button:hover,
-.year-links a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+.year-links button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }
-.year-links button.is-active,
-.year-links a.is-active {
-    background: #1e1e1e;
+.year-links button.is-active {
+    background: white;
+    color: var(--coral-dark, #b83726);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+.bulletin-controls {
+    display: flex;
+    gap: 10px;
+}
+.bulletin-control {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
     color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    font: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease, background .2s ease, transform .15s ease;
+}
+.bulletin-control:hover,
+.bulletin-control:focus-visible {
+    border-color: white;
+    color: var(--coral);
+    background: white;
+    transform: scale(1.05);
 }
 
+/* Carrusel y tracks */
+.bulletins-carousel-container {
+    position: relative;
+    width: 100%;
+}
 .year-bulletins-panel {
-    margin-top: 6px;
-    margin-bottom: 6px;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.25s ease;
 }
 .year-bulletins-panel.is-hidden {
     display: none;
 }
-.bulletins-month-grid {
+.bulletin-track {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - (22px * 3)) / 4);
+    gap: 22px;
+    overflow-x: auto;
+    padding-block: 6px 16px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
 }
-.month-pill {
-    background: rgba(255, 255, 255, 0.96);
-    border-radius: 14px;
-    padding: 8px 10px;
+.bulletin-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Bulletin Card */
+.bulletin-card {
+    min-width: 0;
+    scroll-snap-align: start;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    flex-direction: column;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(45, 12, 8, 0.22);
+    transition: transform .25s ease, box-shadow .25s ease;
 }
-.month-pill:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+.bulletin-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 34px rgba(45, 12, 8, 0.32);
 }
-.month-name {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: 13px;
-    color: #1a1a1a;
+.bulletin-card-media {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1.38;
+    background: #f4ede6;
+    overflow: hidden;
     text-decoration: none;
-    line-height: 1.2;
-    white-space: nowrap;
 }
-.month-name:hover {
-    color: var(--coral);
+.bulletin-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform .35s ease;
 }
-.month-actions {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-}
-.month-btn-link {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 10.5px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
-    white-space: nowrap;
-}
-.month-btn-link:hover {
+.bulletin-card:hover .bulletin-card-media img {
     transform: scale(1.04);
 }
-.month-btn-es {
-    background: #f1efec;
-    color: #2b2b2b;
+.bulletin-card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 10px;
+    background: rgba(18, 18, 18, 0.72);
+    backdrop-filter: blur(4px);
+    border-radius: 12px;
+    color: white;
+    font-family: var(--display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .4px;
 }
-.month-btn-es:hover {
+.bulletin-card-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    background: white;
+    flex-grow: 1;
+}
+.bulletin-card-title {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 16px;
+    font-weight: 800;
+    color: #1e1e1e;
+    line-height: 1.25;
+    text-align: center;
+}
+.bulletin-card-actions {
+    display: flex;
+    gap: 8px;
+}
+.bulletin-action-btn {
+    flex: 1;
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-family: var(--display);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all .2s ease;
+}
+.bulletin-btn-es {
     background: var(--coral);
     color: white;
+    box-shadow: 0 3px 8px rgba(207, 72, 54, 0.28);
 }
-.month-btn-en {
-    background: #e8eef8;
-    color: #1a4f8a;
-}
-.month-btn-en:hover {
-    background: #1a4f8a;
+.bulletin-btn-es:hover {
+    background: #b83726;
     color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 12px rgba(207, 72, 54, 0.38);
 }
-.panel-empty-notice {
-    padding: 24px 16px;
+.bulletin-btn-en {
+    background: #f1eee9;
+    color: #333333;
+    border: 1px solid #e2ddd5;
+}
+.bulletin-btn-en:hover {
+    background: #e2ddd5;
+    color: #111111;
+    transform: translateY(-1px);
+}
+
+/* Footer / Form */
+.newsletter-footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.newsletter-footer .subscribe-form {
+    max-width: 580px;
+    width: 100%;
     text-align: center;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 16px;
+}
+.newsletter-footer .subscribe-form label {
+    margin: 0 auto 14px;
+    font-size: clamp(20px, 2.5vw, 26px);
     color: white;
-    font-size: 15px;
 }
 .subscribe-form label { display: block; margin-bottom: 22px; font-family: var(--display); font-size: 32px; font-weight: 700; line-height: 1.12; }
 .email-field { min-height: 52px; padding: 4px 5px 4px 19px; display: flex; border-radius: 30px; background: white; }
@@ -292,98 +418,12 @@ h1, h2, h3, p { margin-top: 0; }
 
 @media (max-width: 900px) {
     .intro { gap: 6%; }
-    .newsletter-inner { grid-template-columns: 1fr; gap: 30px; }
-    .newsletter-side { max-width: 650px; }
-    .bulletin-card { width: min(250px, 40vw); }
-}
-
-@media (max-width: 960px) and (min-width: 681px) {
-    .site-nav { gap: clamp(10px, 1.4vw, 18px); font-size: 14px; }
-    .site-nav .nav-btn-donar { padding: 7px 16px !important; font-size: 13.5px; }
-}
-
-@media (max-width: 680px) {
-    html { scroll-padding-top: 68px; }
-    .section-wrap { width: min(100% - 38px, 500px); }
-    .newsletter-inner.section-wrap { width: min(100% - 38px, 500px); }
-    .site-header { height: 68px; padding-inline: 20px; }
-    .menu-toggle { width: 42px; height: 42px; padding: 10px; display: flex; flex-direction: column; justify-content: center; gap: 5px; border: 0; background: transparent; cursor: pointer; }
-    .menu-toggle span { width: 22px; height: 2px; display: block; background: var(--ink); transition: transform .2s ease, opacity .2s ease; }
-    .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
-    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-    .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
-    .site-nav { padding: 13px 20px 22px; position: absolute; top: 67px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; border-bottom: 1px solid #eee; background: white; }
-    .site-nav.is-open { display: flex; }
-    .site-nav a { padding: 13px 0; border-bottom: 1px solid #f3efed; }
-    .site-nav a:last-child { border: 0; }
-    .site-nav .nav-btn-donar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 14px;
-        margin-left: 0;
-        padding: 12px 20px !important;
-        border-radius: 25px;
-        color: #ffffff !important;
-        background: linear-gradient(180deg, #cf4836 0%, #b83726 100%);
-        border: 0 !important;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(207, 72, 54, 0.25);
-    }
-    .site-nav .nav-btn-donar:hover {
-        transform: none;
-        background: #b83726;
-    }
-    .nav-dropdown { width: 100%; }
-    .nav-dropdown-trigger { width: 100%; padding: 13px 0; justify-content: space-between; border-bottom: 1px solid #f3efed; }
-    .nav-dropdown-arrow { min-width: 44px; min-height: 44px; margin: -13px 0; padding: 0 10px; font-size: 16px; cursor: pointer; }
-    .nav-dropdown-menu { min-width: 0; padding: 0; position: static; transform: none; box-shadow: none; border-radius: 8px; margin-block: 4px 6px; }
-    .site-nav .nav-dropdown-menu a { padding: 12px 15px; border-bottom: 0; white-space: normal; }
-    .hero-photo { height: 390px; }
-    .hero-photo > img { object-position: 54% center; }
-    .hero-photo-caption { right: 19px; bottom: 18px; left: 19px; justify-content: flex-end; font-size: 11px; }
-    .intro { grid-template-columns: 1fr; gap: 24px; padding-block: 53px 57px; }
-    .intro h1 { max-width: 500px; font-size: clamp(43px, 12vw, 62px); }
-    .intro-copy > p { font-size: 16px; }
-    .impact-grid { grid-template-columns: repeat(2, 1fr); row-gap: 31px; padding-block: 34px; }
-    .impact-item strong { font-size: 30px; }
-    .news.section-wrap { padding: 46px 19px 54px; }
-    .section-heading { align-items: start; }
-    .section-heading h2, .newsletter h2, .campaigns h2 { font-size: 45px; }
-    .news-heading { align-items: center; gap: 14px; }
-    .news-heading h2 { font-size: 40px; }
-    .news-heading .eyebrow { font-size: 10px; }
-    .news-controls { gap: 6px; }
-    .news-control { width: 38px; height: 38px; font-size: 18px; }
-    .text-link { max-width: 116px; padding-top: 14px; font-size: 12px; line-height: 1.5; }
-    .news-grid { grid-auto-columns: 100%; grid-template-columns: none; gap: 16px; padding-bottom: 6px; }
-    .news-card { border-radius: 16px; }
-    .news-card-button { display: grid; grid-template-columns: 116px 1fr; }
-    .news-card-image-frame { height: auto; min-height: 178px; flex: none; }
-    .news-copy { min-height: 178px; padding: 15px 14px; }
-    .news-date { margin-bottom: 8px; font-size: 9px; letter-spacing: .8px; }
-    .news-title { margin-bottom: 8px; font-size: 15px; }
-    .news-summary { margin-bottom: 10px; font-size: 12px; line-height: 1.5; }
-    .news-read-more { gap: 8px; font-size: 11px; }
-    .news-dialog { width: calc(100vw - 28px); max-height: 90vh; border-radius: 17px; }
-    .news-dialog-image-frame { height: 210px; }
-    .news-dialog-content { padding: 24px 22px 25px; }
-    .photo-strip { height: 250px; gap: 0; }
-    .photo-strip img { object-position: center; }
-    .newsletter-inner { padding-block: 36px 32px; }
-    .newsletter h2 { margin-bottom: 20px; }
-    .newsletter-title > h2 { font-size: 45px; }
-    .newsletter-title h3 { font-size: 31px; }
-    .bulletin-cards { gap: 12px; }
-    .bulletin-card { height: auto; flex: 1; }
-    .language-links { right: 4px; bottom: 8px; left: 4px; flex-direction: row; justify-content: center; gap: 4px; }
-    .language-links a { padding: 4px 8px; font-size: 10px; }
-    .bulletin-label { font-size: 23px; }
-    .newsletter-side { grid-template-columns: 1fr; gap: 25px; }
-    .year-links { grid-template-columns: repeat(2, 1fr); gap: 9px; }
-    .year-links a,
-    .year-links button { min-height: 46px; border-radius: 14px; font-size: 16px; }
-    .bulletins-month-grid { grid-template-columns: 1fr; gap: 8px; }
+    .newsletter-inner { padding-block: 20px 24px; gap: 24px; }
+    .newsletter-header { flex-direction: column; align-items: stretch; gap: 16px; }
+    .newsletter-toolbar { justify-content: space-between; }
+    .year-links button { min-height: 40px; padding: 0 18px; font-size: 15px; }
+    .bulletin-control { width: 40px; height: 40px; font-size: 18px; }
+    .bulletin-track { grid-auto-columns: calc((100% - 16px) / 2); gap: 16px; }
     .subscribe-form label { max-width: 360px; font-size: 27px; }
     .campaigns { padding-block: 58px 66px; }
     .campaign-layout { grid-template-columns: 1fr; gap: 22px; }
@@ -419,4 +459,9 @@ h1, h2, h3, p { margin-top: 0; }
 .button-paypal:hover {
     background: #f0b429;
     transform: translateY(-2px);
+}
+
+
+@media (max-width: 520px) {
+    .bulletin-track { grid-auto-columns: 82%; gap: 14px; }
 }
