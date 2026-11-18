@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Conoce los proyectos educativos y comunitarios de Imfundo Kahle.">
+    <?php $titulo = 'Nuestros proyectos - Imfundo Kahle'; ?><title><?php echo htmlspecialchars($titulo); ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/proyectos.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+                <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario">Sé un voluntario</a>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/como-ayudar" aria-expanded="false" aria-haspopup="true" aria-controls="ayudar-menu">Cómo ayudar <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="ayudar-menu">
+                    <a href="/como-ayudar/voluntariado">Haz voluntariado</a>
+                    <a href="/como-ayudar/apadrina-un-nino">Apadrina un niño</a>
+                    <a href="/como-ayudar/contribuye-con-desayuno">Contribuye con un desayuno</a>
+                    <a href="/como-ayudar/implementa-un-espacio-educativo">Implementa un espacio educativo</a>
+                    <a href="/como-ayudar/dona-libros">Dona libros</a>
+                    <a href="/como-ayudar/apoya-los-emprendimientos-ainbo">Apoya los emprendimientos Ainbo</a>
+                    <a href="/como-ayudar">Ver todas las opciones</a>
+                </div>
+            </div>
+            <a href="/tienda">Tienda</a>
+            <a class="nav-btn-donar" href="/donar">Donar</a>
+        </nav>
+    </header>
+
+    <main class="projects-page">
+        <section class="projects-hero projects-wrap">
+            <h1>Nuestros <span>proyectos</span></h1>
+            <img src="/img/Nuestros%20proyectos.png" alt="Niños y educadores participan en un proyecto de Imfundo Kahle" fetchpriority="high">
+        </section>
+
+        <section class="projects-intro projects-wrap">
+            <p>Tenemos <strong>7</strong> proyectos. Detrás de cada uno hay personas, historias y sueños. En Imfundo Kahle creamos espacios de aprendizaje y acompañamiento que ayudan a niños, jóvenes, mujeres y comunidades a descubrir nuevas oportunidades para su futuro.</p>
+        </section>
+
+        <section class="project-list projects-wrap" id="proyectos" aria-label="Proyectos de Imfundo Kahle">
+            <div class="project-row">
+                <article class="project-tile tile-casa-ainbo"><img src="/img/Logo%20Casa%20Ainbo%20(1).png" alt="Casa Ainbo" id="casa-ainbo"><a href="/proyectos/casa-ainbo">Ver proyecto</a></article>
+                <article class="project-tile tile-sonrisas"><img src="/img/logo%20navidad_Mesa%20de%20trabajo%201%20%281%29.png" alt="Sonrisas de Navidad" id="sonrisas-de-navidad"><a href="/proyectos/sonrisas-de-navidad">Ver proyecto</a></article>
+                <article class="project-tile tile-guardianes"><img src="/img/guardian.png" alt="Proyecto Guardianes del Itaya" id="guardianes"><a href="/proyectos/guardianes-del-itaya">Ver proyecto</a></article>
+                <article class="project-tile tile-butterfly"><img src="/img/PROYECTO%20BUTTERFLY%20LOGO.png" alt="Proyecto Butterfly" id="butterfly"><a href="/proyectos/proyecto-butterfly">Ver proyecto</a></article>
+            </div>
+            <div class="project-row project-row-bottom">
+                <article class="project-tile tile-yoga"><img src="/img/Imfundo%20yoga.png" alt="Imfundo Yoga" id="yoga"><a href="/proyectos/imfundo-yoga">Ver proyecto</a></article>
+                <article class="project-tile tile-languages"><img class="project-logo-languages" src="/img/logo%20png.png" alt="Languages for Hope" id="languages"><a href="/proyectos/languages-for-hope">Ver proyecto</a></article>
+                <article class="project-tile tile-ainbo"><img src="/img/Logo%20Ainbo.png" alt="Ainbo" id="ainbo"><a href="/proyectos/ainbo">Ver proyecto</a></article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand brand-footer" href="/" aria-label="Imfundo Kahle, volver al inicio"><span class="brand-mark">K</span><span class="brand-name">IMFUNDO<br>KAHLE</span></a></footer>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

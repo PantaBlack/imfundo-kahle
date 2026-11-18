@@ -1,0 +1,6 @@
+# Desactivar ejecución de scripts en carpeta de subidas
+php_flag engine off
+<FilesMatch "\.(php|php5|php7|php8|phtml|cgi|pl|exe)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

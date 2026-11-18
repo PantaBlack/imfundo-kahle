@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Conoce Languages for Hope, una iniciativa de Imfundo Kahle para promover el aprendizaje del inglés y del español como herramientas de inclusión y transformación social.">
+    <?php $titulo = 'Languages for Hope - Imfundo Kahle'; ?><title><?php echo htmlspecialchars($titulo); ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/languages-for-hope.css">
+</head>
+<body class="languages-page">
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+                <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario">Sé un voluntario</a>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/como-ayudar" aria-expanded="false" aria-haspopup="true" aria-controls="ayudar-menu">Cómo ayudar <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="ayudar-menu">
+                    <a href="/como-ayudar/voluntariado">Haz voluntariado</a>
+                    <a href="/como-ayudar/apadrina-un-nino">Apadrina un niño</a>
+                    <a href="/como-ayudar/contribuye-con-desayuno">Contribuye con un desayuno</a>
+                    <a href="/como-ayudar/implementa-un-espacio-educativo">Implementa un espacio educativo</a>
+                    <a href="/como-ayudar/dona-libros">Dona libros</a>
+                    <a href="/como-ayudar/apoya-los-emprendimientos-ainbo">Apoya los emprendimientos Ainbo</a>
+                    <a href="/como-ayudar">Ver todas las opciones</a>
+                </div>
+            </div>
+            <a href="/tienda">Tienda</a>
+            <a class="nav-btn-donar" href="/donar">Donar</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1. Hero Principal y Logo Flotante -->
+        <section class="languages-hero">
+            <img src="/img/languages%20main.png" alt="Equipo y voluntarios de Languages for Hope" fetchpriority="high">
+            <div class="languages-logo">
+                <img src="/img/logo-languages-badge.png" alt="Logo Languages for Hope">
+            </div>
+        </section>
+
+        <!-- 2. Introducción y Contenido Principal -->
+        <section class="languages-wrap">
+            <div class="languages-intro">
+                <h1><span class="languages-coral">Los idiomas nos acercan,</span> la educación nos une</h1>
+                <p>En Languages for Hope, promovemos el aprendizaje del inglés y del español como herramientas de inclusión, crecimiento personal y transformación social a fin de crear puentes de solidaridad y hermandad entre personas.</p>
+            </div>
+
+            <!-- 3. Sección ¿Qué hacemos? -->
+            <div class="languages-que-hacemos">
+                <!-- Fila 1: ¿Qué hacemos? textos a la izquierda + Foto entrega diplomas a la derecha -->
+                <div class="languages-row languages-row-top">
+                    <div class="languages-col-que-hacemos">
+                        <div class="languages-section-title">
+                            <h2><span class="languages-coral">¿Qué hacemos?</span></h2>
+                            <span class="languages-teal-line" aria-hidden="true"></span>
+                        </div>
+                        <h3 class="languages-subheading">Brindamos clases de idiomas</h3>
+                        <div class="languages-intro-items">
+                            <p><strong>Inglés para niños y niñas:</strong> ofrecemos becas o clases a costo social a niños de zonas vulnerables, de manera presencial en Lima e Iquitos, y en modalidad virtual para quienes se encuentran en otros lugares.</p>
+                            <p><strong>Intercambio de idiomas:</strong> ofrecemos la posibilidad de dominar la fluidez y la conversación de diferentes idiomas a nuestros jóvenes beneficiarios</p>
+                        </div>
+                    </div>
+                    <div class="languages-photo-box">
+                        <img src="/img/mid%20languages.png" alt="Entrega de certificados de inglés a estudiantes" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Fila 2: Foto compuesta vertical (foot 1) + Textos y foto concurso (foot 2) -->
+                <div class="languages-row languages-row-bottom">
+                    <div class="languages-photo-tall">
+                        <img src="/img/foot%201%20languages.png" alt="Clases de idiomas y equipo de voluntarios en Languages for Hope" loading="lazy">
+                    </div>
+                    <div class="languages-col-right">
+                        <div class="languages-text-block">
+                            <p><strong>Español para voluntarios:</strong> brindamos clases gratuitas de español a los voluntarios de Imfundo Kahle y clases a costo social a voluntarios de otras organizaciones sociales. Así, facilitamos su integración y les ayudamos a comunicarse mejor con las comunidades a las que acompañan y sirven.</p>
+                            <p><strong>Inglés para mujeres y personas en situación de vulnerabilidad:</strong> les ofrecemos clases a costo social para que amplíen sus oportunidades laborales y construir un futuro con mayores posibilidades.</p>
+                        </div>
+                        <div class="languages-photo-concurso">
+                            <img src="/img/foot%202%20languages.png" alt="Estudiantes premiados en el concurso de inglés" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand brand-footer" href="/" aria-label="Imfundo Kahle, volver al inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+    </footer>
+
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

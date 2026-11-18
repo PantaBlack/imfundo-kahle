@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Conoce el trabajo de Imfundo Kahle, nuestros programas educativos, equipo, aliados y memorias anuales.">
+    <?php $titulo = 'Sobre nosotros - Imfundo Kahle'; ?><title><?php echo htmlspecialchars($titulo); ?></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/nosotros.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Imfundo Kahle, inicio">
+            <span class="brand-mark">K</span>
+            <span class="brand-name">IMFUNDO<br>KAHLE</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="site-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/nosotros">Sobre nosotros <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="about-menu">
+                    <a href="/nosotros#quienes-somos">¿Quiénes somos?</a>
+                    <a href="/nosotros#equipo">Nuestro Equipo</a>
+                    <a href="/nosotros#reconocimientos">Reconocimientos</a>
+                    <a href="/nosotros#memorias">Memorias Anuales</a>
+                </div>
+            </div>
+                <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/proyectos" aria-expanded="false" aria-haspopup="true" aria-controls="projects-menu">Nuestros proyectos <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="projects-menu">
+                    <a href="/proyectos/casa-ainbo">Casa Ainbo</a>
+                    <a href="/proyectos/sonrisas-de-navidad">Sonrisas de Navidad</a>
+                    <a href="/proyectos/guardianes-del-itaya">Guardianes del Itaya</a>
+                    <a href="/proyectos/imfundo-yoga">Imfundo Yoga</a>
+                    <a href="/proyectos/languages-for-hope">Languages for Hope</a>
+                    <a href="/proyectos/proyecto-butterfly">Proyecto Butterfly</a>
+                    <a href="/proyectos/ainbo">Ainbo</a>
+                    <a href="/proyectos">Ver todos los proyectos</a>
+                </div>
+            </div>
+            <a href="/se-un-voluntario">Sé un voluntario</a>
+            <div class="nav-dropdown">
+                <a class="nav-dropdown-trigger" href="/como-ayudar" aria-expanded="false" aria-haspopup="true" aria-controls="ayudar-menu">Cómo ayudar <span class="nav-dropdown-arrow" aria-hidden="true">↓</span></a>
+                <div class="nav-dropdown-menu" id="ayudar-menu">
+                    <a href="/como-ayudar/voluntariado">Haz voluntariado</a>
+                    <a href="/como-ayudar/apadrina-un-nino">Apadrina un niño</a>
+                    <a href="/como-ayudar/contribuye-con-desayuno">Contribuye con un desayuno</a>
+                    <a href="/como-ayudar/implementa-un-espacio-educativo">Implementa un espacio educativo</a>
+                    <a href="/como-ayudar/dona-libros">Dona libros</a>
+                    <a href="/como-ayudar/apoya-los-emprendimientos-ainbo">Apoya los emprendimientos Ainbo</a>
+                    <a href="/como-ayudar">Ver todas las opciones</a>
+                </div>
+            </div>
+            <a href="/tienda">Tienda</a>
+            <a class="nav-btn-donar" href="/donar">Donar</a>
+        </nav>
+    </header>
+
+    <main class="about-page">
+        <section class="about-intro about-wrap" id="quienes-somos">
+            <div class="about-intro-copy">
+                <p class="eyebrow">Educación con equidad · Lima e Iquitos</p>
+                <h1>¿Qué <span>hacemos?</span></h1>
+                <p>Imfundo Kahle significa «educación con equidad». Y eso es precisamente lo que nos inspira y nos mueve.</p>
+                <p>Somos una organización sin fines de lucro formada por personas voluntarias que creemos firmemente en el poder de la educación para transformar vidas, abrir oportunidades y construir un futuro más justo.</p>
+            </div>
+            <figure class="about-lead-image"><img src="/img/pagina%20principal%20de%20sobre%20nosotros.png" alt="El equipo de Imfundo Kahle comparte una actividad comunitaria" fetchpriority="high"></figure>
+            <div class="about-gallery" aria-label="Actividades de Imfundo Kahle">
+                <img src="/img/sobre1.png" alt="Equipo de Imfundo Kahle reunido en una cancha" loading="lazy">
+                <img src="/img/sobre2.png" alt="Equipo y voluntarios de Imfundo Kahle en una actividad" loading="lazy">
+                <img src="/img/sobre3.png" alt="Mujeres participan en una actividad de cocina comunitaria" loading="lazy">
+                <img src="/img/Navidad.png" alt="Equipo de Imfundo Kahle en una actividad navideña" loading="lazy">
+            </div>
+        </section>
+
+        <section class="about-mission about-wrap">
+            <p>La educación que fomentamos, despierta la creatividad, fortalece la confianza, promueve valores y permite que cada persona descubra su capacidad para transformar su propia realidad y contribuir positivamente a su comunidad.</p>
+            <p>En Perú hay profundas brechas educativas eso equivale a miles de niños, adolescentes y mujeres sin oportunidades. La educación necesita ser un derecho y una oportunidad para todos.</p>
+            <span class="mission-rule" aria-hidden="true"></span>
+            <p class="eyebrow">Aprender · Crear · Crecer en comunidad</p>
+        </section>
+
+        <section class="about-partners about-wrap" aria-labelledby="partners-title">
+            <div class="about-section-heading">
+                <p class="eyebrow">Alianzas que hacen posible el camino</p>
+                <h2 id="partners-title">Crecemos en comunidad</h2>
+            </div>
+            <div class="partner-logos">
+                <div class="partner-logo-row">
+                    <img src="/img/Logo%20Ainbo.png" alt="Ainbo" loading="lazy">
+                    <img src="/img/Logo%20Casa%20Ainbo%20(1).png" alt="Casa Ainbo" loading="lazy">
+                    <img src="/img/PROYECTO%20BUTTERFLY%20LOGO.png" alt="Proyecto Butterfly" loading="lazy">
+                    <img src="/img/logo%20png.png" alt="Languages for Hope" loading="lazy">
+                </div>
+                <div class="partner-logo-row partner-logo-row-centered">
+                    <img src="/img/logo%20navidad_Mesa%20de%20trabajo%201%20%281%29.png" alt="Campaña de Navidad de Imfundo Kahle" loading="lazy">
+                    <img src="/img/guardianes.jpeg" alt="Guardianes del Itaya" loading="lazy">
+                    <img src="/img/Imfundo%20yoga.png" alt="Imfundo Yoga" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-recognition about-wrap" id="reconocimientos">
+            <div class="about-section-heading">
+                <p class="eyebrow">El trabajo compartido deja huella</p>
+                <h2>Reconocimientos</h2>
+            </div>
+            <article class="recognition-row">
+                <div class="recognition-visual recognition-photo">
+                    <img src="/img/Smiling%20Award%20Ceremony%20Winners%20with%20Trophies.png" alt="Equipo de Imfundo Kahle recibe el reconocimiento Líder Amazónico en educación" loading="lazy">
+                    <span>FISGA · 2025</span>
+                </div>
+                <div class="recognition-copy">
+                    <h3>“Líder Amazónico en educación”</h3>
+                    <p>Imfundo Kahle recibió el reconocimiento por su labor educativa y su compromiso con la promoción de la identidad amazónica. Este logro refleja el trabajo de docentes y voluntarios que impulsan programas educativos, talleres culturales y actividades de desarrollo comunitario.</p>
+                    <p>Agradecemos al equipo de Casa Ainbo, a nuestra coordinadora Ericka Tello, a los profesores Stefy Tello y Renzo Barriga, y a nuestros voluntarios locales e internacionales por hacer posible este proyecto educativo.</p>
+                    <p>Seguiremos trabajando para que la educación siga transformando vidas en nuestra Amazonía.</p>
+                </div>
+            </article>
+            <article class="recognition-row recognition-row-reverse">
+                <div class="recognition-visual recognition-logos">
+                    <img src="/img/awlc.png" alt="Logo de American Women’s Literary Club of Peru" loading="lazy">
+                    <img src="/img/guardianes.jpeg" alt="Logo del proyecto Guardianes del Itaya" loading="lazy">
+                    <span>AWLC · 2026</span>
+                </div>
+                <div class="recognition-copy">
+                    <h3>Organización formadora en conciencia ecológica</h3>
+                    <p>En la 22.ª Noche de Arte, Música y Diseño, organizada por American Women’s Literary Club of Peru en el Colegio Franklin D. Roosevelt, Imfundo Kahle fue reconocida por su trabajo educativo y recibió una generosa donación para el proyecto Guardianes del Itaya.</p>
+                    <p>La iniciativa impulsa la creatividad y la creación de obras literarias entre niñas y niños de Iquitos, acercando nuevas oportunidades de aprendizaje a la comunidad.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="about-team" id="equipo">
+            <div class="about-wrap">
+                <div class="about-section-heading team-heading">
+                    <p class="eyebrow">Personas que acompañan cada aprendizaje</p>
+                    <h2>Nuestro equipo</h2>
+                </div>
+                <div class="team-admin">
+                    <h3>Equipo administrativo</h3>
+                    <div class="team-grid">
+                        <article><img src="/img/Bertha-foto.png" alt="Bertha Díaz de la Vega" loading="lazy"><h4>Bertha Díaz de la Vega</h4><p>Fundadora y directora</p></article>
+                        <article><img src="/img/Silvia-foto.png" alt="Silvia Cieza" loading="lazy"><h4>Silvia Cieza</h4><p>Administradora general de Imfundo Kahle</p></article>
+                        <article><img src="/img/Erika-foto.png" alt="Erika Tello" loading="lazy"><h4>Erika Tello</h4><p>Administradora de Casa Ainbo</p></article>
+                        <article><img src="/img/Karin-foto.png" alt="Karin Ninburg" loading="lazy"><h4>Karin Ninburg</h4><p>Gerente de proyectos</p></article>
+                        <article><img src="/img/Kaori-foto.png" alt="Kaori Maylle" loading="lazy"><h4>Kaori Maylle</h4><p>Coordinadora de comunicaciones</p></article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="annual-reports about-wrap" id="memorias">
+            <div class="about-section-heading reports-heading">
+                <p class="eyebrow">Transparencia y trabajo compartido</p>
+                <h2>Memorias anuales</h2>
+                <p>En nuestros reportes anuales reunimos acciones destacadas y logros de los programas.</p>
+            </div>
+                                    <div class="report-grid">
+
+                <!-- 2022 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2022.a04f3861.jpg" alt="Portada de la memoria anual 2022" loading="lazy">
+                    </div>
+                    <span class="report-year">2022</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1DPM-ban2_fcdetpwhbCwX5mIqixTYKVJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                        <a class="report-btn report-btn-en" href="https://drive.google.com/file/d/1SSDdFX6KTYaR_aR6RAF-8eEU_k9zkeuO/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇬🇧 Ver en Inglés</a>
+                    </div>
+                </div>
+
+                <!-- 2023 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2023.c44f7f5d.jpg" alt="Portada de la memoria anual 2023" loading="lazy">
+                    </div>
+                    <span class="report-year">2023</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1XCAFwLyksYuaWEWgkROeE23Ghki6AiBU/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                        <a class="report-btn report-btn-en" href="https://drive.google.com/file/d/1ZfateqIV5idpf6UcWyT9TCn5Rj5OfJ1D/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇬🇧 Ver en Inglés</a>
+                    </div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2024.d8de0b42-2.jpg" alt="Portada de la memoria anual 2024" loading="lazy">
+                    </div>
+                    <span class="report-year">2024</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1T9ZNXIi2yv5RUra2mTE6yRVWzPc0YZzp/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                        <a class="report-btn report-btn-en" href="https://drive.google.com/file/d/1Bpkupx-3BIjP5lW9onzxv6tRsnkoemNp/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇬🇧 Ver en Inglés</a>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/Captura%20de%20pantalla%202026-10-14%20a%20la(s)%2011.51.44%E2%80%AFa.%C2%A0m..png" alt="Portada de la memoria anual 2025" loading="lazy">
+                    </div>
+                    <span class="report-year">2025</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1XiAu_yTpi-CFvcTG_6sOrZ0mumCAfBA7/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                        <a class="report-btn report-btn-en" href="https://drive.google.com/file/d/1wJ65J6vvQvYGLqPJBzlOlIQ_Vi2hQuDr/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇬🇧 Ver en Inglés</a>
+                    </div>
+                </div>
+
+                <!-- 2019 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2019.099c7094.jpg" alt="Portada de la memoria anual 2019" loading="lazy">
+                    </div>
+                    <span class="report-year">2019</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1Pad5BQ5vZoZatrUt1Ek0H7GJArtLVOJF/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                    </div>
+                </div>
+
+                <!-- 2020 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2020.c16fedf0.jpg" alt="Portada de la memoria anual 2020" loading="lazy">
+                    </div>
+                    <span class="report-year">2020</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1HJQRxtyOGvLsEwAF5zc5MVAekLAkRQJo/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                    </div>
+                </div>
+
+                <!-- 2021 -->
+                <div class="report-card-wrap">
+                    <div class="report-card-img-wrap">
+                        <img src="/img/2021.6b60d60f.jpg" alt="Portada de la memoria anual 2021" loading="lazy">
+                    </div>
+                    <span class="report-year">2021</span>
+                    <div class="report-btns">
+                        <a class="report-btn report-btn-es" href="https://drive.google.com/file/d/1I7g2rTIVnSfaJfMwG5_lX_5ci34kcGkh/view?usp=drive_link" target="_blank" rel="noopener noreferrer">🇪🇸 Ver en Español</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand brand-footer" href="/" aria-label="Imfundo Kahle, volver al inicio"><span class="brand-mark">K</span><span class="brand-name">IMFUNDO<br>KAHLE</span></a></footer>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

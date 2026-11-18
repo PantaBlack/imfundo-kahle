@@ -1,0 +1,286 @@
+/* Estilos para la página de Imfundo Yoga */
+
+.yoga-page {
+    background: #ffffff;
+    color: #1e2022;
+}
+
+.yoga-wrap {
+    width: min(1140px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+/* 1. Hero Principal y Logo Flotante */
+.yoga-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.yoga-hero > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.yoga-logo {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    z-index: 2;
+    margin: -70px auto 0;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.16));
+    background: #ffffff;
+    border-radius: 50%;
+    border: 3.5px solid #ffffff;
+    overflow: hidden;
+}
+
+.yoga-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* 2. Introducción */
+.yoga-intro {
+    padding-top: 36px;
+    padding-bottom: 24px;
+    text-align: center;
+}
+
+.yoga-intro h1 {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(34px, 4.2vw, 52px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #111111;
+}
+
+.yoga-coral {
+    color: var(--coral);
+}
+
+.yoga-intro p {
+    margin: 0 auto;
+    max-width: 980px;
+    font-size: clamp(18px, 1.45vw, 22px);
+    line-height: 1.55;
+    font-weight: 500;
+    color: #2c2d30;
+}
+
+/* 2.1 Banner Intermedio (mid yoga) */
+.yoga-mid-banner {
+    margin: 28px auto 48px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.yoga-mid-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* 3. Lo que cultivamos a través del yoga */
+.yoga-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 36px 0 32px;
+    text-align: center;
+}
+
+.yoga-line {
+    flex: 1;
+    height: 2.5px;
+    background: #f4c2ba;
+    max-width: 140px;
+}
+
+.yoga-section-title h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 800;
+    color: #111111;
+}
+
+.yoga-cultivamos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+    margin-bottom: 48px;
+}
+
+.yoga-cultivamos-photo {
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.yoga-cultivamos-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    display: block;
+    border-radius: 22px;
+}
+
+.yoga-cultivamos-card {
+    background: #e5e5e3;
+    border-radius: 22px;
+    padding: 34px 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.cultivamos-pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.cultivamos-pillar h3 {
+    margin: 0 0 14px;
+    font-family: var(--display);
+    font-size: clamp(17px, 1.3vw, 20px);
+    font-weight: 700;
+    color: var(--coral);
+    line-height: 1.25;
+}
+
+.cultivamos-pillar p {
+    margin: 0 0 20px;
+    font-size: clamp(13.5px, 1.05vw, 15px);
+    line-height: 1.55;
+    color: #333538;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.pillar-icon {
+    width: 52px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+}
+
+.pillar-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 4. Mensaje Final de Cierre */
+.yoga-closing {
+    text-align: center;
+    padding: 24px 0 64px;
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.yoga-closing h2 {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 800;
+    color: var(--coral);
+    line-height: 1.2;
+}
+
+.yoga-closing p {
+    margin: 0 auto;
+    font-family: var(--font);
+    font-size: clamp(16px, 1.35vw, 19px);
+    font-weight: 700;
+    line-height: 1.6;
+    color: #111111;
+    max-width: 960px;
+}
+
+/* ==========================================================
+   Responsive Breakpoints
+   ========================================================== */
+
+@media (max-width: 900px) {
+    .yoga-cultivamos-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .yoga-cultivamos-photo img {
+        height: clamp(260px, 45vw, 400px);
+        min-height: auto;
+    }
+
+    .yoga-section-title h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 680px) {
+    .yoga-wrap {
+        width: min(100% - 32px, 520px);
+    }
+
+    .yoga-hero > img {
+        min-height: 190px;
+        object-fit: cover;
+    }
+
+    .yoga-logo {
+        width: 105px;
+        height: 105px;
+        margin-top: -52px;
+    }
+
+    .yoga-intro h1 {
+        font-size: 28px;
+    }
+
+    .yoga-intro p {
+        font-size: 17px;
+    }
+
+    .yoga-line {
+        display: none;
+    }
+
+    .yoga-section-title h2 {
+        font-size: 24px;
+    }
+
+    .yoga-cultivamos-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 26px 20px;
+    }
+
+    .cultivamos-pillar p {
+        text-align: center;
+    }
+
+    .yoga-closing h2 {
+        font-size: 24px;
+    }
+
+    .yoga-closing p {
+        font-size: 16px;
+    }
+}

@@ -13,6 +13,8 @@ temp_opt_img/
 ht4/
 base64_images.json
 images_to_optimize.json
+scratch_products.json
+*.zip
 public/img/originals_before_lines/
 imfundo_kahle_presentacion.html
 *.log

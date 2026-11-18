@@ -1,0 +1,463 @@
+/* Estilos exclusivos para la página de Sonrisas de Navidad */
+
+:root {
+    --navidad-red: #cf4330;
+    --navidad-red-dark: #a12317;
+    --navidad-peach: #f7b7b0;
+    --navidad-peach-soft: #fdeee9;
+    --navidad-card-bg: #efefef;
+    --navidad-divider: #f3beb6;
+}
+
+.navidad-page {
+    color: #1e2022;
+    background: #ffffff;
+}
+
+.navidad-wrap {
+    width: min(1140px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+/* 1. Hero & Overlapping Logo */
+.navidad-hero {
+    position: relative;
+    width: 100%;
+}
+
+.navidad-hero > img {
+    width: 100%;
+    height: clamp(380px, 44vw, 560px);
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+}
+
+.navidad-logo {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    z-index: 2;
+    margin: -65px auto 0;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.16));
+}
+
+.navidad-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* 2. Intro Section */
+.navidad-intro {
+    padding-top: 28px;
+    padding-bottom: 24px;
+    text-align: left;
+}
+
+.navidad-intro h1 {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(30px, 3.6vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    color: #111111;
+}
+
+.navidad-red {
+    color: var(--navidad-red);
+}
+
+.navidad-intro p {
+    margin: 0;
+    max-width: 1080px;
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.55;
+    color: #2b2b2b;
+}
+
+/* Foto doble (2da foto navidad) */
+.navidad-duo-photo-wrap {
+    margin-top: 28px;
+    margin-bottom: 36px;
+    width: 100%;
+}
+
+.navidad-duo-photo-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* 3. Section: Compartir que transforma */
+.navidad-transforma-heading {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 32px;
+}
+
+.navidad-transforma-heading h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 800;
+    color: #111111;
+    line-height: 1.15;
+}
+
+.navidad-vertical-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.navidad-vertical-grid .vertical-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.navidad-vertical-grid .vertical-card img {
+    width: 100%;
+    height: clamp(300px, 31vw, 430px);
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+}
+
+/* Impact metric & Reach Card */
+.navidad-impact-row {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    margin-top: 36px;
+    margin-bottom: 60px;
+}
+
+.navidad-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.metric-number-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.metric-double-bar {
+    width: 44px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.metric-number-group strong {
+    font-family: var(--display);
+    font-size: clamp(38px, 4.2vw, 54px);
+    font-weight: 800;
+    color: var(--navidad-red);
+    line-height: 1;
+}
+
+.metric-label {
+    margin: 6px 0 0;
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    color: #111111;
+}
+
+.navidad-reach-card {
+    flex: 1;
+    background: var(--navidad-card-bg);
+    border-radius: 20px;
+    padding: 22px 32px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+.navidad-reach-card p {
+    margin: 0;
+    font-size: clamp(15px, 1.15vw, 17px);
+    line-height: 1.5;
+    color: #2d3748;
+}
+
+/* 4. Diciembre & Marzo */
+.navidad-seasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+}
+
+.season-col h3 {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(38px, 4.2vw, 54px);
+    font-weight: 800;
+    color: var(--navidad-red);
+    line-height: 1.1;
+}
+
+.season-img-wrap img {
+    width: 100%;
+    height: clamp(250px, 25vw, 340px);
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+
+.season-col p {
+    margin: 18px 0 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: #2b2b2b;
+}
+
+/* 5. Three Pillars */
+.navidad-pillars {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 28px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+}
+
+.pillar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pillar-icon {
+    width: 68px;
+    height: 68px;
+    color: var(--navidad-red);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pillar-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.pillar-col p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.45;
+    color: #2b2b2b;
+    max-width: 280px;
+}
+
+.pillar-divider {
+    width: 1.5px;
+    background: var(--navidad-divider);
+    align-self: stretch;
+    min-height: 100px;
+}
+
+/* 6. CTA Section */
+.navidad-cta-section {
+    background: var(--navidad-peach);
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    border-radius: 36px 36px 0 0;
+}
+
+.navidad-cta-inner {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    align-items: end;
+    gap: 20px;
+    min-height: 360px;
+}
+
+.cta-girl-wrapper {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.cta-girl-wrapper img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    object-position: bottom left;
+    display: block;
+    margin-bottom: -2px;
+}
+
+.cta-content-wrapper {
+    padding: 40px 16px 46px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta-title {
+    margin: 0 0 16px;
+    font-family: var(--display);
+    font-size: clamp(28px, 3.2vw, 42px);
+    font-weight: 800;
+    color: #111111;
+    line-height: 1.15;
+}
+
+.accent-dark {
+    color: var(--navidad-red-dark);
+}
+
+.cta-quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+    max-width: 680px;
+}
+
+.cta-quote-text {
+    margin: 0;
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.5;
+    color: #1a1a1a;
+    font-weight: 500;
+}
+
+.cta-splash-icon {
+    width: 44px;
+    height: 44px;
+    color: var(--navidad-red);
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.cta-splash-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.cta-splash-right {
+    transform: scaleX(-1);
+}
+
+.button-navidad-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--navidad-red);
+    color: #ffffff !important;
+    font-family: var(--display);
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 700;
+    padding: 13px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(207, 67, 48, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.button-navidad-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(207, 67, 48, 0.45);
+    background: #ba3826;
+}
+
+/* ==========================================================
+   Responsive Breakpoints
+   ========================================================== */
+
+@media (max-width: 900px) {
+    .navidad-seasons {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .navidad-cta-inner {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .cta-girl-wrapper {
+        justify-content: center;
+    }
+
+    .cta-girl-wrapper img {
+        max-height: 320px;
+    }
+
+    .cta-content-wrapper {
+        padding: 0 16px 40px;
+    }
+}
+
+@media (max-width: 720px) {
+    .navidad-wrap {
+        width: min(100% - 32px, 520px);
+    }
+
+    .navidad-logo {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+
+    .navidad-intro h1 {
+        font-size: 28px;
+    }
+
+    .navidad-transforma-heading h2 {
+        font-size: 32px;
+    }
+
+    .navidad-vertical-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .navidad-vertical-grid .vertical-card img {
+        height: 320px;
+    }
+
+    .navidad-impact-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .navidad-reach-card {
+        padding: 18px 22px;
+    }
+
+    .navidad-pillars {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .pillar-divider {
+        display: none;
+    }
+
+    .cta-quote-container {
+        gap: 12px;
+    }
+
+    .cta-splash-icon {
+        display: none;
+    }
+}

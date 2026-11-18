@@ -1,0 +1,287 @@
+/* ==========================================================================
+   Contribuye con los desayuno (Detalle) - Imfundo Kahle
+   ========================================================================== */
+
+.desayuno-page {
+    overflow-x: hidden;
+    width: 100%;
+    padding-block: 24px 70px;
+    background: #ffffff;
+}
+
+.desayuno-hero-wrap,
+.desayuno-colab-wrap,
+.desayuno-foot-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding-inline: 24px;
+}
+
+/* 1. Hero Split Card */
+.desayuno-split-card {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    background: #f7dbd4; /* Tono rosa/blush suave idéntico al diseño */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+.desayuno-split-copy {
+    padding: 44px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.desayuno-split-title {
+    color: #cf4836; /* Coral fuerte */
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(32px, 3.8vw, 44px);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 18px;
+}
+
+.desayuno-split-subtitle {
+    color: #151515;
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(19px, 2.2vw, 24px);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 16px;
+}
+
+.desayuno-split-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15.5px;
+    line-height: 1.62;
+    margin: 0;
+}
+
+.desayuno-split-visual {
+    line-height: 0;
+    position: relative;
+}
+
+.desayuno-split-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+}
+
+/* 2. Sección "¿Cómo puedes colaborar?" */
+.desayuno-colab-section {
+    padding-block: 54px 44px;
+}
+
+.colab-heading {
+    font-family: var(--display, 'Outfit', sans-serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    font-weight: 800;
+    text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    margin: 0 0 40px;
+}
+
+.colab-heading .coral {
+    color: #cf4836;
+}
+
+.colab-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    align-items: start;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.colab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.colab-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: #deb0a7; /* Círculo rosa viejo/salmón */
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 18px rgba(222, 176, 167, 0.4);
+    margin-bottom: 14px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.colab-circle:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(222, 176, 167, 0.55);
+}
+
+.colab-circle svg {
+    width: 48px;
+    height: 48px;
+}
+
+.colab-label {
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* 3. Sección Inferior */
+.desayuno-foot-section {
+    padding-block: 20px 30px;
+}
+
+.desayuno-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 40px;
+}
+
+.desayuno-bottom-visual {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+}
+
+.desayuno-bottom-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.desayuno-bottom-card {
+    background: #f7dbd4; /* Mismo fondo rosa suave */
+    border-radius: 20px;
+    padding: 42px 38px;
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bottom-card-desc {
+    color: #292929;
+    font-family: var(--font, 'DM Sans', sans-serif);
+    font-size: 15.5px;
+    line-height: 1.62;
+    margin: 0 0 26px;
+}
+
+.bottom-card-btn-wrap {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.desayuno-btn {
+    background: linear-gradient(180deg, #cb4735 0%, #b83726 100%);
+    color: #ffffff;
+    padding: 13px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(184, 55, 38, 0.3);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.desayuno-btn:hover {
+    background: linear-gradient(180deg, #b83726 0%, #9e2a1b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(184, 55, 38, 0.4);
+    color: #ffffff;
+}
+
+.desayuno-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (max-width: 940px) {
+    .desayuno-split-card {
+        grid-template-columns: 1fr;
+    }
+
+    .desayuno-split-visual img {
+        max-height: 380px;
+    }
+
+    .colab-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 20px;
+    }
+
+    .desayuno-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+
+    .desayuno-bottom-visual img {
+        max-height: 380px;
+        min-height: auto;
+    }
+
+    .bottom-card-btn-wrap {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .desayuno-hero-wrap,
+    .desayuno-colab-wrap,
+    .desayuno-foot-wrap {
+        padding-inline: 18px;
+    }
+
+    .desayuno-split-copy,
+    .desayuno-bottom-card {
+        padding: 28px 20px;
+    }
+
+    .colab-circle {
+        width: 82px;
+        height: 82px;
+    }
+
+    .colab-circle svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .colab-label {
+        font-size: 13.5px;
+    }
+
+    .desayuno-btn {
+        width: 100%;
+    }
+}
