@@ -1577,21 +1577,21 @@
                 </div>
                 <div class="auth-row-2">
                   <div class="auth-input-group">
-                    <label for="custRegEmail">Correo electrónico</label>
+                    <label for="custRegEmail">Correo electrónico *</label>
                     <input type="email" id="custRegEmail" placeholder="tu@correo.com" required autocomplete="email">
                   </div>
                   <div class="auth-input-group">
-                    <label for="custRegPhone">Teléfono / WhatsApp</label>
-                    <input type="tel" id="custRegPhone" placeholder="9 dígitos" required autocomplete="tel">
+                    <label for="custRegPhone">Teléfono / WhatsApp (opcional)</label>
+                    <input type="tel" id="custRegPhone" placeholder="9 dígitos" autocomplete="tel">
                   </div>
                 </div>
                 <div class="auth-input-group">
-                  <label for="custRegAddress">Dirección de entrega habitual</label>
-                  <input type="text" id="custRegAddress" placeholder="Calle, número, urbanización / referencia" required autocomplete="street-address">
+                  <label for="custRegAddress">Dirección de entrega (opcional)</label>
+                  <input type="text" id="custRegAddress" placeholder="Calle, número, urbanización / referencia" autocomplete="street-address">
                 </div>
                 <div class="auth-input-group">
                   <label for="custRegCity">Ciudad / Departamento</label>
-                  <input type="text" id="custRegCity" placeholder="Ej. Lima, Iquitos, Cusco" value="Lima" required>
+                  <input type="text" id="custRegCity" placeholder="Ej. Lima" value="Lima">
                 </div>
                 <div class="auth-row-2">
                   <div class="auth-input-group">
@@ -3448,6 +3448,19 @@
       switchAuthTab('login');
     }
 
+    function showAuthMessage(el, type, text) {
+      if (!el) return;
+      el.className = 'auth-msg ' + (type === 'error' ? 'error' : 'success');
+      el.style.display = 'block';
+      el.textContent = text;
+    }
+    function hideAuthMessage(el) {
+      if (!el) return;
+      el.className = 'auth-msg';
+      el.style.display = 'none';
+      el.textContent = '';
+    }
+
     // Formulario de Inicio de Sesión
     var formCustLogin = document.getElementById('formCustLogin');
     var custLoginMsg = document.getElementById('custLoginMsg');
@@ -3455,42 +3468,43 @@
     if (formCustLogin) {
       formCustLogin.addEventListener('submit', function(e) {
         e.preventDefault();
-        var email = document.getElementById('custLoginEmail').value.trim();
-        var password = document.getElementById('custLoginPassword').value;
+        hideAuthMessage(custLoginMsg);
+
+        var email = (document.getElementById('custLoginEmail') ? document.getElementById('custLoginEmail').value : '').trim();
+        var password = document.getElementById('custLoginPassword') ? document.getElementById('custLoginPassword').value : '';
+
+        if (!email || !password) {
+          showAuthMessage(custLoginMsg, 'error', 'Por favor ingresa tu correo y contraseña.');
+          return;
+        }
 
         if (custLoginSubmit) { custLoginSubmit.disabled = true; custLoginSubmit.textContent = 'Verificando...'; }
-        if (custLoginMsg) { custLoginMsg.className = 'auth-msg'; custLoginMsg.style.display = 'none'; }
 
         fetch(API_BASE + '/api/customer/auth?action=login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, password: password })
+          body: JSON.stringify({ action: 'login', email: email, password: password })
         })
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          return r.text().then(function(text) {
+            try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
+          });
+        })
         .then(function(data) {
           if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
           if (data && data.success && data.customer) {
-            if (custLoginMsg) {
-              custLoginMsg.className = 'auth-msg success';
-              custLoginMsg.textContent = data.message || '¡Bienvenido!';
-            }
+            showAuthMessage(custLoginMsg, 'success', data.message || '¡Bienvenido!');
             setTimeout(function() {
               setCustomerLoggedIn(data.customer);
-              if (custLoginMsg) custLoginMsg.style.display = 'none';
-            }, 500);
+              hideAuthMessage(custLoginMsg);
+            }, 600);
           } else {
-            if (custLoginMsg) {
-              custLoginMsg.className = 'auth-msg error';
-              custLoginMsg.textContent = (data && data.error) ? data.error : 'Correo o contraseña incorrectos.';
-            }
+            showAuthMessage(custLoginMsg, 'error', (data && data.error) ? data.error : 'Correo o contraseña incorrectos.');
           }
         })
-        .catch(function() {
+        .catch(function(err) {
           if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
-          if (custLoginMsg) {
-            custLoginMsg.className = 'auth-msg error';
-            custLoginMsg.textContent = 'Error de conexión con el servidor. Intenta de nuevo.';
-          }
+          showAuthMessage(custLoginMsg, 'error', 'Error al conectar con el servidor: ' + (err.message || 'Intenta de nuevo'));
         });
       });
     }
@@ -3502,21 +3516,30 @@
     if (formCustRegister) {
       formCustRegister.addEventListener('submit', function(e) {
         e.preventDefault();
-        var name = document.getElementById('custRegName').value.trim();
-        var email = document.getElementById('custRegEmail').value.trim();
-        var phone = document.getElementById('custRegPhone').value.trim();
-        var address = document.getElementById('custRegAddress').value.trim();
-        var city = document.getElementById('custRegCity').value.trim();
-        var password = document.getElementById('custRegPassword').value;
-        var confirm = document.getElementById('custRegPasswordConfirm').value;
+        hideAuthMessage(custRegMsg);
 
-        if (custRegMsg) { custRegMsg.className = 'auth-msg'; custRegMsg.style.display = 'none'; }
+        var name = (document.getElementById('custRegName') ? document.getElementById('custRegName').value : '').trim();
+        var email = (document.getElementById('custRegEmail') ? document.getElementById('custRegEmail').value : '').trim();
+        var phone = (document.getElementById('custRegPhone') ? document.getElementById('custRegPhone').value : '').trim();
+        var address = (document.getElementById('custRegAddress') ? document.getElementById('custRegAddress').value : '').trim();
+        var city = (document.getElementById('custRegCity') ? document.getElementById('custRegCity').value : 'Lima').trim();
+        var password = document.getElementById('custRegPassword') ? document.getElementById('custRegPassword').value : '';
+        var confirm = document.getElementById('custRegPasswordConfirm') ? document.getElementById('custRegPasswordConfirm').value : '';
 
+        if (!name) {
+          showAuthMessage(custRegMsg, 'error', 'Por favor ingresa tu nombre completo.');
+          return;
+        }
+        if (!email || !email.includes('@')) {
+          showAuthMessage(custRegMsg, 'error', 'Por favor ingresa un correo electrónico válido.');
+          return;
+        }
+        if (password.length < 6) {
+          showAuthMessage(custRegMsg, 'error', 'La contraseña debe tener al menos 6 caracteres.');
+          return;
+        }
         if (password !== confirm) {
-          if (custRegMsg) {
-            custRegMsg.className = 'auth-msg error';
-            custRegMsg.textContent = 'Las contraseñas no coinciden.';
-          }
+          showAuthMessage(custRegMsg, 'error', 'Las contraseñas no coinciden. Por favor verifícalas.');
           return;
         }
 
@@ -3526,6 +3549,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            action: 'register',
             name: name,
             email: email,
             phone: phone,
@@ -3534,31 +3558,26 @@
             password: password
           })
         })
-        .then(function(r) { return r.json(); })
+        .then(function(r) {
+          return r.text().then(function(text) {
+            try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
+          });
+        })
         .then(function(data) {
           if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
           if (data && data.success && data.customer) {
-            if (custRegMsg) {
-              custRegMsg.className = 'auth-msg success';
-              custRegMsg.textContent = data.message || '¡Cuenta creada con éxito!';
-            }
+            showAuthMessage(custRegMsg, 'success', data.message || '¡Cuenta creada con éxito!');
             setTimeout(function() {
               setCustomerLoggedIn(data.customer);
-              if (custRegMsg) custRegMsg.style.display = 'none';
-            }, 600);
+              hideAuthMessage(custRegMsg);
+            }, 700);
           } else {
-            if (custRegMsg) {
-              custRegMsg.className = 'auth-msg error';
-              custRegMsg.textContent = (data && data.error) ? data.error : 'No se pudo crear la cuenta.';
-            }
+            showAuthMessage(custRegMsg, 'error', (data && data.error) ? data.error : 'No se pudo crear la cuenta.');
           }
         })
-        .catch(function() {
+        .catch(function(err) {
           if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
-          if (custRegMsg) {
-            custRegMsg.className = 'auth-msg error';
-            custRegMsg.textContent = 'Error de conexión con el servidor.';
-          }
+          showAuthMessage(custRegMsg, 'error', 'Error al conectar con el servidor: ' + (err.message || 'Intenta de nuevo'));
         });
       });
     }

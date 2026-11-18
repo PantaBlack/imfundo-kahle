@@ -1863,6 +1863,7 @@ for (let p of pageMappings) {
     // En tienda.php, ajustar API_BASE para ruta relativa
     if (p.file === 'tienda.php') {
         content = content.replace(/var API_BASE = 'http:\/\/localhost:3000';/g, "var API_BASE = '';");
+    content = content.replace(/var API_BASE = '';/g, "var API_BASE = '';");
     }
 
     fs.writeFileSync(path.join(phpDir, p.file), content, 'utf8');
