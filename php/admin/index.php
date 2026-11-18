@@ -4,6 +4,7 @@ require_admin_login();
 
 $db = get_db();
 $subscribersCount = 0;
+$customersCount = 0;
 $ordersCount = 0;
 $pendingOrdersCount = 0;
 $totalSales = 0.00;
@@ -14,6 +15,7 @@ if ($db) {
     try {
         $subscribersCount = (int)$db->query("SELECT COUNT(*) FROM subscribers")->fetchColumn();
         $ordersCount = (int)$db->query("SELECT COUNT(*) FROM orders")->fetchColumn();
+        $customersCount = (int)$db->query("SELECT COUNT(*) FROM customers")->fetchColumn();
         $pendingOrdersCount = (int)$db->query("SELECT COUNT(*) FROM orders WHERE status = 'pending'")->fetchColumn();
         $totalSales = (float)$db->query("SELECT COALESCE(SUM(total), 0) FROM orders WHERE status != 'cancelled'")->fetchColumn();
 
@@ -69,6 +71,7 @@ if ($db) {
         <div class="admin-menu">
             <a href="/admin/" class="active">Resumen</a>
             <a href="/admin/orders.php">Pedidos (<?php echo $ordersCount; ?>)</a>
+            <a href="/admin/customers.php">Clientes (<?php echo $customersCount; ?>)</a>
             <a href="/admin/subscribers.php">Suscriptores (<?php echo $subscribersCount; ?>)</a>
             <a href="/admin/products.php">Productos</a>
             <a href="/" target="_blank">Ver sitio web ↗</a>

@@ -162,12 +162,37 @@ const productRows = allProducts.map(p => {
 sqlContent += productRows.join(',\n') + `;\n\n`;
 
 sqlContent += `-- --------------------------------------------------------
--- 4. Tabla de Pedidos de la Tienda
+-- 4. Tabla de Clientes Compradores
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS \`customers\`;
+CREATE TABLE \`customers\` (
+  \`id\` INT(11) NOT NULL AUTO_INCREMENT,
+  \`name\` VARCHAR(150) NOT NULL,
+  \`email\` VARCHAR(150) NOT NULL UNIQUE,
+  \`password_hash\` VARCHAR(255) NOT NULL,
+  \`phone\` VARCHAR(50) DEFAULT NULL,
+  \`address\` TEXT DEFAULT NULL,
+  \`city\` VARCHAR(100) DEFAULT 'Lima',
+  \`status\` ENUM('active', 'inactive') DEFAULT 'active',
+  \`created_at\` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  \`updated_at\` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (\`id\`),
+  KEY \`idx_customers_email\` (\`email\`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Usuario de prueba para compradores: cliente@imfundokahle.org / Cliente2026!
+INSERT INTO \`customers\` (\`name\`, \`email\`, \`password_hash\`, \`phone\`, \`address\`, \`city\`)
+VALUES ('Cliente Demostración', 'cliente@imfundokahle.org', '$2y$10$w7kQ6j4zNl9XgM1l.wJt9.e3qH5Zp4oKz6s8w8mJ4xZ.u0bO9d6re', '987654321', 'Av. Larco 456, Miraflores', 'Lima')
+ON DUPLICATE KEY UPDATE \`email\` = \`email\`;
+
+-- --------------------------------------------------------
+-- 5. Tabla de Pedidos de la Tienda
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS \`orders\`;
 CREATE TABLE \`orders\` (
   \`id\` INT(11) NOT NULL AUTO_INCREMENT,
   \`order_code\` VARCHAR(40) NOT NULL UNIQUE,
+  \`customer_id\` INT(11) DEFAULT NULL,
   \`customer_name\` VARCHAR(150) NOT NULL,
   \`customer_email\` VARCHAR(150) DEFAULT NULL,
   \`customer_phone\` VARCHAR(50) NOT NULL,
@@ -183,11 +208,12 @@ CREATE TABLE \`orders\` (
   \`created_at\` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (\`id\`),
   KEY \`idx_order_code\` (\`order_code\`),
+  KEY \`idx_customer_id\` (\`customer_id\`),
   KEY \`idx_status\` (\`status\`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- 5. Tabla de Artículos por Pedido
+-- 6. Tabla de Artículos por Pedido
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS \`order_items\`;
 CREATE TABLE \`order_items\` (
@@ -455,12 +481,23 @@ try {
 
     $total = $subtotal + $shipping;
 
+    // Si el cliente está autenticado en la sesión, capturamos su customer_id
+    $customerId = !empty($_SESSION['customer_id']) ? (int)$_SESSION['customer_id'] : null;
+    if (!$customerId && !empty($email)) {
+        try {
+            $cStmt = $db->prepare("SELECT id FROM customers WHERE LOWER(email) = ? LIMIT 1");
+            $cStmt->execute([strtolower($email)]);
+            $cRow = $cStmt->fetch();
+            if ($cRow) $customerId = (int)$cRow['id'];
+        } catch (Exception $e) {}
+    }
+
     $stmt = $db->prepare("
-        INSERT INTO orders (order_code, customer_name, customer_email, customer_phone, customer_address, payment_method, subtotal, shipping, total, status, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
+        INSERT INTO orders (order_code, customer_id, customer_name, customer_email, customer_phone, customer_address, payment_method, subtotal, shipping, total, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
     ");
     $stmt->execute([
-        $orderCode, $name, $email, $phone, $address, $method, $subtotal, $shipping, $total
+        $orderCode, $customerId, $name, $email, $phone, $address, $method, $subtotal, $shipping, $total
     ]);
     $orderId = $db->lastInsertId();
 
@@ -583,6 +620,330 @@ echo json_encode([
 ]);
 `;
 fs.writeFileSync(path.join(phpDir, 'api', 'receipt.php'), apiReceiptPhp, 'utf8');
+
+
+// api/customer_auth.php
+const apiCustomerAuthPhp = `<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+require_once __DIR__ . '/../config/db.php';
+
+$action = $_GET['action'] ?? $_POST['action'] ?? '';
+$rawInput = file_get_contents('php://input');
+$data = json_decode($rawInput, true) ?: $_POST;
+
+if (empty($action) && isset($data['action'])) {
+    $action = $data['action'];
+}
+
+$db = get_db();
+
+// 1. Estado de sesión actual
+if ($action === 'status' || $action === 'me') {
+    if (empty($_SESSION['customer_id'])) {
+        echo json_encode(['success' => true, 'loggedIn' => false]);
+        exit;
+    }
+    
+    if (!$db) {
+        echo json_encode([
+            'success' => true,
+            'loggedIn' => true,
+            'customer' => [
+                'id' => $_SESSION['customer_id'],
+                'name' => $_SESSION['customer_name'] ?? 'Cliente',
+                'email' => $_SESSION['customer_email'] ?? '',
+                'phone' => $_SESSION['customer_phone'] ?? '',
+                'address' => $_SESSION['customer_address'] ?? '',
+                'city' => $_SESSION['customer_city'] ?? 'Lima'
+            ]
+        ]);
+        exit;
+    }
+    
+    try {
+        $stmt = $db->prepare("SELECT id, name, email, phone, address, city, created_at FROM customers WHERE id = ? LIMIT 1");
+        $stmt->execute([$_SESSION['customer_id']]);
+        $cust = $stmt->fetch();
+        if ($cust) {
+            $_SESSION['customer_name'] = $cust['name'];
+            $_SESSION['customer_email'] = $cust['email'];
+            echo json_encode(['success' => true, 'loggedIn' => true, 'customer' => $cust]);
+            exit;
+        } else {
+            unset($_SESSION['customer_id']);
+            echo json_encode(['success' => true, 'loggedIn' => false]);
+            exit;
+        }
+    } catch (Exception $e) {
+        echo json_encode(['success' => true, 'loggedIn' => false]);
+        exit;
+    }
+}
+
+// 2. Iniciar sesión (login)
+if ($action === 'login') {
+    $email = strtolower(trim($data['email'] ?? ''));
+    $password = (string)($data['password'] ?? '');
+    
+    if (empty($email) || empty($password)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Por favor ingresa tu correo y contraseña.']);
+        exit;
+    }
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Formato de correo electrónico inválido.']);
+        exit;
+    }
+    
+    if (!$db) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Sin conexión a base de datos MySQL.']);
+        exit;
+    }
+    
+    try {
+        $stmt = $db->prepare("SELECT * FROM customers WHERE LOWER(email) = ? LIMIT 1");
+        $stmt->execute([$email]);
+        $customer = $stmt->fetch();
+        
+        if (!$customer || !password_verify($password, $customer['password_hash'])) {
+            http_response_code(401);
+            echo json_encode(['success' => false, 'error' => 'Correo o contraseña incorrectos.']);
+            exit;
+        }
+        
+        if (isset($customer['status']) && $customer['status'] === 'inactive') {
+            http_response_code(403);
+            echo json_encode(['success' => false, 'error' => 'Esta cuenta se encuentra inactiva.']);
+            exit;
+        }
+        
+        $_SESSION['customer_id'] = (int)$customer['id'];
+        $_SESSION['customer_name'] = $customer['name'];
+        $_SESSION['customer_email'] = $customer['email'];
+        $_SESSION['customer_phone'] = $customer['phone'] ?? '';
+        $_SESSION['customer_address'] = $customer['address'] ?? '';
+        $_SESSION['customer_city'] = $customer['city'] ?? 'Lima';
+        
+        unset($customer['password_hash']);
+        echo json_encode([
+            'success' => true,
+            'message' => '¡Bienvenido de nuevo, ' . htmlspecialchars($customer['name']) . '!',
+            'customer' => $customer
+        ]);
+        exit;
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Error al procesar el inicio de sesión.']);
+        exit;
+    }
+}
+
+// 3. Crear cuenta / Registro
+if ($action === 'register') {
+    $name = trim($data['name'] ?? '');
+    $email = strtolower(trim($data['email'] ?? ''));
+    $phone = trim($data['phone'] ?? '');
+    $address = trim($data['address'] ?? '');
+    $city = trim($data['city'] ?? 'Lima');
+    $password = (string)($data['password'] ?? '');
+    
+    if (empty($name) || empty($email) || empty($password)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Por favor completa nombre, correo y contraseña.']);
+        exit;
+    }
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'Ingresa un correo electrónico válido.']);
+        exit;
+    }
+    
+    if (strlen($password) < 6) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'La contraseña debe tener al menos 6 caracteres.']);
+        exit;
+    }
+    
+    if (!$db) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Sin conexión a base de datos MySQL.']);
+        exit;
+    }
+    
+    try {
+        $check = $db->prepare("SELECT id FROM customers WHERE LOWER(email) = ? LIMIT 1");
+        $check->execute([$email]);
+        if ($check->fetch()) {
+            http_response_code(409);
+            echo json_encode(['success' => false, 'error' => 'Ya existe una cuenta con este correo. Inicia sesión directamente.']);
+            exit;
+        }
+        
+        $hash = password_hash($password, PASSWORD_BCRYPT);
+        $insert = $db->prepare("
+            INSERT INTO customers (name, email, password_hash, phone, address, city, status, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, 'active', NOW())
+        ");
+        $insert->execute([$name, $email, $hash, $phone, $address, $city]);
+        $newId = (int)$db->lastInsertId();
+        
+        $_SESSION['customer_id'] = $newId;
+        $_SESSION['customer_name'] = $name;
+        $_SESSION['customer_email'] = $email;
+        $_SESSION['customer_phone'] = $phone;
+        $_SESSION['customer_address'] = $address;
+        $_SESSION['customer_city'] = $city;
+        
+        echo json_encode([
+            'success' => true,
+            'message' => '¡Cuenta creada con éxito! Bienvenido a Imfundo Kahle.',
+            'customer' => [
+                'id' => $newId,
+                'name' => $name,
+                'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
+                'city' => $city
+            ]
+        ]);
+        exit;
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Error al registrar la cuenta: ' . $e->getMessage()]);
+        exit;
+    }
+}
+
+// 4. Actualizar datos de perfil
+if ($action === 'update') {
+    if (empty($_SESSION['customer_id'])) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión para actualizar tus datos.']);
+        exit;
+    }
+    
+    $name = trim($data['name'] ?? '');
+    $phone = trim($data['phone'] ?? '');
+    $address = trim($data['address'] ?? '');
+    $city = trim($data['city'] ?? 'Lima');
+    $password = trim($data['password'] ?? '');
+    
+    if (empty($name)) {
+        http_response_code(400);
+        echo json_encode(['success' => false, 'error' => 'El nombre no puede estar vacío.']);
+        exit;
+    }
+    
+    if (!$db) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Sin conexión a base de datos.']);
+        exit;
+    }
+    
+    try {
+        if (!empty($password)) {
+            if (strlen($password) < 6) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'error' => 'La nueva contraseña debe tener al menos 6 caracteres.']);
+                exit;
+            }
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+            $stmt = $db->prepare("UPDATE customers SET name = ?, phone = ?, address = ?, city = ?, password_hash = ? WHERE id = ?");
+            $stmt->execute([$name, $phone, $address, $city, $hash, $_SESSION['customer_id']]);
+        } else {
+            $stmt = $db->prepare("UPDATE customers SET name = ?, phone = ?, address = ?, city = ? WHERE id = ?");
+            $stmt->execute([$name, $phone, $address, $city, $_SESSION['customer_id']]);
+        }
+        
+        $_SESSION['customer_name'] = $name;
+        $_SESSION['customer_phone'] = $phone;
+        $_SESSION['customer_address'] = $address;
+        $_SESSION['customer_city'] = $city;
+        
+        echo json_encode(['success' => true, 'message' => 'Datos actualizados correctamente.']);
+        exit;
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => 'Error al guardar los datos.']);
+        exit;
+    }
+}
+
+// 5. Cerrar sesión
+if ($action === 'logout') {
+    unset($_SESSION['customer_id']);
+    unset($_SESSION['customer_name']);
+    unset($_SESSION['customer_email']);
+    unset($_SESSION['customer_phone']);
+    unset($_SESSION['customer_address']);
+    unset($_SESSION['customer_city']);
+    echo json_encode(['success' => true, 'message' => 'Sesión cerrada con éxito.']);
+    exit;
+}
+
+http_response_code(400);
+echo json_encode(['success' => false, 'error' => 'Acción no válida']);
+`;
+fs.writeFileSync(path.join(phpDir, 'api', 'customer_auth.php'), apiCustomerAuthPhp, 'utf8');
+
+// api/customer_orders.php
+const apiCustomerOrdersPhp = `<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+require_once __DIR__ . '/../config/db.php';
+
+if (empty($_SESSION['customer_id'])) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión para consultar tus pedidos.']);
+    exit;
+}
+
+$db = get_db();
+if (!$db) {
+    echo json_encode(['success' => true, 'orders' => []]);
+    exit;
+}
+
+try {
+    $customerId = (int)$_SESSION['customer_id'];
+    $customerEmail = $_SESSION['customer_email'] ?? '';
+    
+    $stmt = $db->prepare("
+        SELECT id, order_code, customer_name, customer_email, customer_phone, customer_address, 
+               payment_method, subtotal, shipping, total, status, operation_number, receipt_file, 
+               notes, created_at 
+        FROM orders 
+        WHERE customer_id = ? OR (customer_email = ? AND (customer_id IS NULL OR customer_id = 0))
+        ORDER BY created_at DESC
+    ");
+    $stmt->execute([$customerId, $customerEmail]);
+    $orders = $stmt->fetchAll();
+    
+    $itemStmt = $db->prepare("SELECT product_code, product_name, price, quantity, subtotal FROM order_items WHERE order_id = ?");
+    foreach ($orders as &$order) {
+        $itemStmt->execute([$order['id']]);
+        $order['items'] = $itemStmt->fetchAll();
+    }
+    
+    echo json_encode(['success' => true, 'orders' => $orders]);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['success' => false, 'error' => 'Error al consultar pedidos: ' . $e->getMessage()]);
+}
+`;
+fs.writeFileSync(path.join(phpDir, 'api', 'customer_orders.php'), apiCustomerOrdersPhp, 'utf8');
 
 // 7. Admin Dashboard
 console.log('Generando panel de administración PHP (admin/)...');
@@ -722,6 +1083,7 @@ require_admin_login();
 
 $db = get_db();
 $subscribersCount = 0;
+$customersCount = 0;
 $ordersCount = 0;
 $pendingOrdersCount = 0;
 $totalSales = 0.00;
@@ -732,6 +1094,7 @@ if ($db) {
     try {
         $subscribersCount = (int)$db->query("SELECT COUNT(*) FROM subscribers")->fetchColumn();
         $ordersCount = (int)$db->query("SELECT COUNT(*) FROM orders")->fetchColumn();
+        $customersCount = (int)$db->query("SELECT COUNT(*) FROM customers")->fetchColumn();
         $pendingOrdersCount = (int)$db->query("SELECT COUNT(*) FROM orders WHERE status = 'pending'")->fetchColumn();
         $totalSales = (float)$db->query("SELECT COALESCE(SUM(total), 0) FROM orders WHERE status != 'cancelled'")->fetchColumn();
 
@@ -787,6 +1150,7 @@ if ($db) {
         <div class="admin-menu">
             <a href="/admin/" class="active">Resumen</a>
             <a href="/admin/orders.php">Pedidos (<?php echo $ordersCount; ?>)</a>
+            <a href="/admin/customers.php">Clientes (<?php echo $customersCount; ?>)</a>
             <a href="/admin/subscribers.php">Suscriptores (<?php echo $subscribersCount; ?>)</a>
             <a href="/admin/products.php">Productos</a>
             <a href="/" target="_blank">Ver sitio web ↗</a>
@@ -1248,6 +1612,136 @@ if ($db) {
 `;
 fs.writeFileSync(path.join(phpDir, 'admin', 'products.php'), adminProductsPhp, 'utf8');
 
+// admin/customers.php
+const adminCustomersPhp = `<?php
+require_once __DIR__ . '/auth.php';
+require_admin_login();
+
+$db = get_db();
+
+if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=clientes_imfundo_kahle_' . date('Y-m-d') . '.csv');
+    $output = fopen('php://output', 'w');
+    fputcsv($output, ['ID', 'Nombre', 'Email', 'Telefono', 'Direccion', 'Ciudad', 'Fecha Registro']);
+    if ($db) {
+        $stmt = $db->query("SELECT id, name, email, phone, address, city, created_at FROM customers ORDER BY created_at DESC");
+        while ($row = $stmt->fetch()) {
+            fputcsv($output, [$row['id'], $row['name'], $row['email'], $row['phone'], $row['address'], $row['city'], $row['created_at']]);
+        }
+    }
+    fclose($output);
+    exit;
+}
+
+$customers = [];
+$totalCustomers = 0;
+if ($db) {
+    try {
+        $stmt = $db->query("
+            SELECT c.*, 
+                   COUNT(o.id) AS total_orders, 
+                   COALESCE(SUM(o.total), 0) AS total_spent 
+            FROM customers c 
+            LEFT JOIN orders o ON o.customer_id = c.id 
+            GROUP BY c.id 
+            ORDER BY c.created_at DESC
+        ");
+        $customers = $stmt->fetchAll();
+        $totalCustomers = count($customers);
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes Registrados - Admin Imfundo Kahle</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { background: #fdfbf8; color: #1e1e1e; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+        .admin-nav { background: white; border-bottom: 1px solid #e5e0d8; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .admin-brand { font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--coral); text-decoration: none; }
+        .admin-menu { display: flex; gap: 16px; align-items: center; }
+        .admin-menu a { color: #444; text-decoration: none; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 8px; }
+        .admin-menu a:hover, .admin-menu a.active { background: #f4ede6; color: var(--coral); }
+        .admin-user { font-size: 13px; color: #777; margin-left: 12px; border-left: 1px solid #ddd; padding-left: 14px; }
+        .admin-container { max-width: 1240px; margin: 30px auto; padding: 0 20px; }
+        .admin-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .btn-export { background: #222; color: white; padding: 10px 16px; border-radius: 10px; text-decoration: none; font-size: 13px; font-weight: 700; }
+        .panel-box { background: white; border-radius: 18px; border: 1px solid #e9e4dc; padding: 22px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid #f0ece6; }
+        .admin-table th { background: #faf8f5; font-weight: 700; color: #555; }
+    </style>
+</head>
+<body>
+    <nav class="admin-nav">
+        <a class="admin-brand" href="/admin/">IMFUNDO KAHLE <span>ADMIN</span></a>
+        <div class="admin-menu">
+            <a href="/admin/">Resumen</a>
+            <a href="/admin/orders.php">Pedidos</a>
+            <a href="/admin/customers.php" class="active">Clientes (<?php echo $totalCustomers; ?>)</a>
+            <a href="/admin/subscribers.php">Suscriptores</a>
+            <a href="/admin/products.php">Productos</a>
+            <a href="/" target="_blank">Ver sitio web ↗</a>
+            <span class="admin-user"><?php echo htmlspecialchars($_SESSION['admin_user_name'] ?? 'Admin'); ?> · <a href="/admin/logout.php" style="color:#c53030;padding:0;">Salir</a></span>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header-row">
+            <div>
+                <h1 style="margin:0 0 6px;font-family:var(--display);font-size:26px;">Clientes Compradores</h1>
+                <p style="margin:0;color:#777;font-size:14px;">Cuentas registradas para compras en la tienda solidaria.</p>
+            </div>
+            <a href="/admin/customers.php?export=csv" class="btn-export">📥 Exportar CSV</a>
+        </div>
+
+        <div class="panel-box">
+            <?php if (empty($customers)): ?>
+                <p style="color:#777;text-align:center;padding:30px;">No hay clientes registrados aún.</p>
+            <?php else: ?>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono</th>
+                            <th>Dirección habitual</th>
+                            <th>Pedidos</th>
+                            <th>Total Comprado</th>
+                            <th>Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($customers as $c): ?>
+                            <tr>
+                                <td>#<?php echo $c['id']; ?></td>
+                                <td><strong><?php echo htmlspecialchars($c['name']); ?></strong></td>
+                                <td><?php echo htmlspecialchars($c['email']); ?></td>
+                                <td><?php echo htmlspecialchars($c['phone'] ?: '-'); ?></td>
+                                <td><?php echo htmlspecialchars($c['address'] . ' (' . ($c['city'] ?: 'Lima') . ')'); ?></td>
+                                <td><span style="font-weight:700;"><?php echo (int)($c['total_orders'] ?? 0); ?></span></td>
+                                <td><strong style="color:var(--coral);">S/ <?php echo number_format($c['total_spent'] ?? 0, 2); ?></strong></td>
+                                <td style="color:#777;"><?php echo date('d/m/Y', strtotime($c['created_at'])); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>
+`;
+fs.writeFileSync(path.join(phpDir, 'admin', 'customers.php'), adminCustomersPhp, 'utf8');
+
+
 // 8. .htaccess
 console.log('Generando .htaccess y protecciones...');
 const htaccessContent = `RewriteEngine On
@@ -1264,10 +1758,13 @@ RewriteRule ^index\\.php$ / [R=301,L]
 </FilesMatch>
 
 # Rutas API específicas
+RewriteRule ^api/customer/auth/?$ api/customer_auth.php [L,QSA]
+RewriteRule ^api/customer/orders/?$ api/customer_orders.php [L,QSA]
 RewriteRule ^api/orders/([^/]+)/receipt/?$ api/receipt.php?code=$1 [L,QSA]
 RewriteRule ^api/orders/?$ api/orders.php [L,QSA]
 RewriteRule ^api/products/?$ api/products.php [L,QSA]
 RewriteRule ^api/subscribe/?$ api/subscribe.php [L,QSA]
+RewriteRule ^admin/customers/?$ admin/customers.php [L,QSA]
 
 # Rutas amigables de Proyectos
 RewriteRule ^proyectos/casa-ainbo/?$ casa-ainbo.php [L,QSA]

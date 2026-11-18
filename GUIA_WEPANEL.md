@@ -38,6 +38,8 @@ public_html/
 │   ├── config.php                 # Configuración general y constantes
 │   └── db.php                     # Conexión MySQL con PDO (EDITAR AQUÍ)
 ├── api/
+│   ├── customer_auth.php          # Login, registro, perfil y sesiones de clientes
+│   ├── customer_orders.php        # Consulta de historial de pedidos por cliente
 │   ├── subscribe.php              # Registro de correos para boletín
 │   ├── products.php               # Catálogo de productos (con fallback JSON)
 │   ├── orders.php                 # Creación de pedidos y cálculo de totales
@@ -48,6 +50,7 @@ public_html/
 │   ├── logout.php                 # Cierre seguro de sesión
 │   ├── index.php                  # Dashboard con métricas clave
 │   ├── orders.php                 # Gestión y verificación de pedidos
+│   ├── customers.php              # Gestión de clientes compradores y exportación a CSV
 │   ├── subscribers.php           # Lista y exportación a CSV de suscriptores
 │   └── products.php              # Administración de catálogo y stock
 ├── uploads/
@@ -90,9 +93,10 @@ public_html/
 5. Deja las opciones por defecto (formato SQL, UTF-8) y haz clic en el botón inferior **Continuar** o **Importar**.
 6. Aparecerá un mensaje verde confirmando la ejecución exitosa de las consultas. Se habrán creado las tablas:
    - `admin_users`: Usuario administrador con contraseña cifrada con BCrypt.
+   - `customers`: Cuentas registradas de clientes compradores (contraseña encriptada con BCrypt).
    - `subscribers`: Registro de emails suscritos al boletín mensual.
    - `products`: Catálogo completo de polos y accesorios precargados.
-   - `orders`: Pedidos de la tienda, datos de contacto, totales y estado.
+   - `orders`: Pedidos de la tienda, datos de contacto, totales y estado (asociados a `customer_id`).
    - `order_items`: Detalle de productos por cada pedido.
 
 ---
@@ -175,6 +179,22 @@ El sistema incluye un panel de control intuitivo y seguro:
 
 ---
 
+## 🛍️ Sistema de Cuentas y Login para Compradores
+
+La tienda (`/tienda`) cuenta ahora con un portal completo de autenticación para compradores:
+- **Botón "Iniciar sesión / Mi Cuenta" en el menú:** Permite a los compradores identificarse o registrarse.
+- **Botón flotante inferior (icono de usuario):** Acceso rápido al modal de cuenta desde cualquier punto de la tienda.
+- **Banner inteligente en el Checkout:** Ofrece autocompletar nombre, teléfono, correo y dirección en un solo clic si ya tiene cuenta.
+- **Historial de "Mis Pedidos":** Los clientes logueados pueden ver sus compras anteriores, el estado en tiempo real (*Pendiente*, *Verificado*, *En camino*) y adjuntar su comprobante de pago directamente.
+- **Gestión de Datos:** Pueden actualizar sus direcciones de entrega y cambiar su contraseña.
+- **Cuenta de demostración precargada en `database.sql`:**
+  - **Correo:** `cliente@imfundokahle.org`
+  - **Contraseña:** `Cliente2026!`
+- **Administración (`/admin/customers.php`):**
+  - El administrador puede ver el listado de todos los clientes registrados, cuántos pedidos han realizado y el total comprado, con opción de **Exportar a CSV**.
+
+---
+
 ## 💡 Resumen Rápido de Rutas del Sitio
 
 | Sección | URL amigable | Archivo PHP |
@@ -187,6 +207,10 @@ El sistema incluye un panel de control intuitivo y seguro:
 | Tienda Solidaria | `/tienda` | `tienda.php` |
 | Donaciones | `/donar` | `donar.php` |
 | Panel Admin | `/admin` | `admin/index.php` |
+| Admin Clientes | `/admin/customers.php` | `admin/customers.php` |
+| API Auth Cliente | `/api/customer/auth` | `api/customer_auth.php` |
+| API Pedidos Cliente | `/api/customer/orders` | `api/customer_orders.php` |
 | API Suscripción | `/api/subscribe` | `api/subscribe.php` |
 | API Pedidos | `/api/orders` | `api/orders.php` |
+| API Comprobante | `/api/orders/{codigo}/receipt` | `api/receipt.php` |
 | API Comprobante | `/api/orders/{codigo}/receipt` | `api/receipt.php` |

@@ -94,12 +94,23 @@ try {
 
     $total = $subtotal + $shipping;
 
+    // Si el cliente está autenticado en la sesión, capturamos su customer_id
+    $customerId = !empty($_SESSION['customer_id']) ? (int)$_SESSION['customer_id'] : null;
+    if (!$customerId && !empty($email)) {
+        try {
+            $cStmt = $db->prepare("SELECT id FROM customers WHERE LOWER(email) = ? LIMIT 1");
+            $cStmt->execute([strtolower($email)]);
+            $cRow = $cStmt->fetch();
+            if ($cRow) $customerId = (int)$cRow['id'];
+        } catch (Exception $e) {}
+    }
+
     $stmt = $db->prepare("
-        INSERT INTO orders (order_code, customer_name, customer_email, customer_phone, customer_address, payment_method, subtotal, shipping, total, status, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
+        INSERT INTO orders (order_code, customer_id, customer_name, customer_email, customer_phone, customer_address, payment_method, subtotal, shipping, total, status, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())
     ");
     $stmt->execute([
-        $orderCode, $name, $email, $phone, $address, $method, $subtotal, $shipping, $total
+        $orderCode, $customerId, $name, $email, $phone, $address, $method, $subtotal, $shipping, $total
     ]);
     $orderId = $db->lastInsertId();
 

@@ -90,12 +90,37 @@ INSERT INTO `products` (`code`, `name`, `frontend_name`, `price`, `old_price`, `
 ('ACC-003', 'S', 'S', 16.00, NULL, 20, 'LIMA', 'Accesorios', '/img/tienda/IzquierdaYDerecha/productos/S1.png');
 
 -- --------------------------------------------------------
--- 4. Tabla de Pedidos de la Tienda
+-- 4. Tabla de Clientes Compradores
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `customers`;
+CREATE TABLE `customers` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(150) NOT NULL,
+  `email` VARCHAR(150) NOT NULL UNIQUE,
+  `password_hash` VARCHAR(255) NOT NULL,
+  `phone` VARCHAR(50) DEFAULT NULL,
+  `address` TEXT DEFAULT NULL,
+  `city` VARCHAR(100) DEFAULT 'Lima',
+  `status` ENUM('active', 'inactive') DEFAULT 'active',
+  `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_customers_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Usuario de prueba para compradores: cliente@imfundokahle.org / Cliente2026!
+INSERT INTO `customers` (`name`, `email`, `password_hash`, `phone`, `address`, `city`)
+VALUES ('Cliente Demostración', 'cliente@imfundokahle.org', '$2y$10$w7kQ6j4zNl9XgM1l.wJt9.e3qH5Zp4oKz6s8w8mJ4xZ.u0bO9d6re', '987654321', 'Av. Larco 456, Miraflores', 'Lima')
+ON DUPLICATE KEY UPDATE `email` = `email`;
+
+-- --------------------------------------------------------
+-- 5. Tabla de Pedidos de la Tienda
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `order_code` VARCHAR(40) NOT NULL UNIQUE,
+  `customer_id` INT(11) DEFAULT NULL,
   `customer_name` VARCHAR(150) NOT NULL,
   `customer_email` VARCHAR(150) DEFAULT NULL,
   `customer_phone` VARCHAR(50) NOT NULL,
@@ -111,11 +136,12 @@ CREATE TABLE `orders` (
   `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_order_code` (`order_code`),
+  KEY `idx_customer_id` (`customer_id`),
   KEY `idx_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
--- 5. Tabla de Artículos por Pedido
+-- 6. Tabla de Artículos por Pedido
 -- --------------------------------------------------------
 DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE `order_items` (

@@ -58,6 +58,32 @@
                 </div>
             </div>
             <a href="/tienda" aria-current="page">Tienda</a>
+            <div class="nav-customer-wrap" id="navCustomerWrap">
+                <button class="nav-customer-btn" id="navCustomerBtn" type="button" aria-label="Mi Cuenta">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span id="navCustomerName">Iniciar sesión</span>
+                </button>
+                <div class="nav-customer-dropdown" id="navCustomerDropdown">
+                    <div class="customer-dropdown-header">
+                        <strong id="dropdownCustomerName">Mi Cuenta</strong>
+                        <span id="dropdownCustomerEmail">usuario@correo.com</span>
+                    </div>
+                    <div class="customer-dropdown-divider"></div>
+                    <button type="button" class="customer-dropdown-item" id="dropdownBtnOrders">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        Mis Pedidos
+                    </button>
+                    <button type="button" class="customer-dropdown-item" id="dropdownBtnProfile">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Mis Datos de Envío
+                    </button>
+                    <div class="customer-dropdown-divider"></div>
+                    <button type="button" class="customer-dropdown-item customer-dropdown-logout" id="dropdownBtnLogout">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        Cerrar Sesión
+                    </button>
+                </div>
+            </div>
             <a class="nav-btn-donar" href="/donar">Donar</a>
         </nav>
     </header>
@@ -1483,51 +1509,187 @@
   </script>
 
   <!-- Configuracion flotante -->
-  <button class="floating-settings" id="floatingSettings" type="button" aria-label="Configuracion de cuenta">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.56 1.03H21a2 2 0 1 1 0 4h-.09A1.7 1.7 0 0 0 19.4 15z"/>
+  <button class="floating-settings" id="floatingSettings" type="button" aria-label="Mi Cuenta / Iniciar sesión" title="Mi Cuenta / Iniciar sesión">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
     </svg>
   </button>
 
-  <div class="settings-overlay" id="settingsOverlay" role="dialog" aria-modal="true" aria-label="Configuracion de cuenta">
-    <div class="settings-box">
+  <div class="settings-overlay" id="settingsOverlay" role="dialog" aria-modal="true" aria-label="Mi Cuenta">
+    <div class="settings-box" id="customerPortalBox">
       <div class="settings-header">
-        <h3>Configuracion de cuenta</h3>
-        <button class="settings-close" id="settingsClose" type="button">← Volver a tienda</button>
+        <h3 id="portalTitle">Mi Cuenta</h3>
+        <button class="settings-close" id="settingsClose" type="button">← Volver a la tienda</button>
       </div>
       <div class="settings-body">
         <div class="settings-layout">
           <aside class="settings-intro">
             <div class="settings-intro-mark">IK</div>
-            <h4>Todo listo para tus próximas compras.</h4>
-            <p>Guarda tus datos una sola vez y completa tus pedidos de forma más rápida, clara y segura.</p>
-            <div class="settings-intro-notice">Tus datos se usan únicamente para gestionar tu pedido y coordinar la entrega.</div>
+            <h4 id="portalIntroTitle">Tu cuenta en Imfundo Kahle</h4>
+            <p id="portalIntroText">Inicia sesión o crea tu cuenta para guardar tus direcciones de entrega, autocompletar tus compras y revisar el estado de todos tus pedidos en tiempo real.</p>
+            <div class="settings-intro-notice" id="portalIntroNotice">Cada compra apoya directamente la educación de niños en la Amazonía peruana y Villa María del Triunfo.</div>
           </aside>
+
           <div class="settings-form-panel">
-            <h4>Datos de entrega</h4>
-            <p>Completa la información que necesitamos para preparar tu compra.</p>
-        <form class="checkout-form" id="checkoutForm">
-          <label class="checkout-field">
-            <span>Nombre completo</span>
-            <input id="checkoutName" type="text" autocomplete="name" placeholder="Cliente" required>
-          </label>
-          <label class="checkout-field">
-            <span>Telefono</span>
-            <input id="checkoutPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="9 digitos" required>
-          </label>
-          <label class="checkout-field">
-            <span>Correo</span>
-            <input id="checkoutEmail" type="email" autocomplete="email" placeholder="correo@ejemplo.com" required>
-          </label>
-          <label class="checkout-field">
-            <span>Direccion de entrega</span>
-            <input id="checkoutAddress" type="text" autocomplete="street-address" placeholder="Direccion y referencia" required>
-            <small class="checkout-note">Ejemplo: Mz. A lote 9, Av. Los Olivos 123, frente al parque.</small>
-          </label>
-          <div class="checkout-message" id="checkoutMessage" aria-live="polite"></div>
-          <button class="checkout-save-btn" id="checkoutSaveBtn" type="submit">Guardar</button>
-        </form>
+            <!-- Pestañas cuando no está logueado -->
+            <div class="auth-tabs" id="authTabsNotLogged">
+              <button class="auth-tab-btn active" type="button" data-auth-tab="login">Iniciar Sesión</button>
+              <button class="auth-tab-btn" type="button" data-auth-tab="register">Crear Cuenta</button>
+              <button class="auth-tab-btn" type="button" data-auth-tab="guest">Invitado</button>
+            </div>
+
+            <!-- Pestañas cuando SÍ está logueado -->
+            <div class="auth-tabs" id="authTabsLogged" style="display:none;">
+              <button class="auth-tab-btn active" type="button" data-auth-tab="orders">📦 Mis Pedidos</button>
+              <button class="auth-tab-btn" type="button" data-auth-tab="profile">⚙️ Mis Datos</button>
+              <button class="auth-tab-btn" type="button" id="tabBtnLogout" style="color:#c92a2a;">🚪 Cerrar Sesión</button>
+            </div>
+
+            <!-- Panel 1: Iniciar Sesión -->
+            <div class="auth-panel active" id="panelLogin">
+              <h4>Ingresa a tu cuenta</h4>
+              <p>Accede con tu correo y contraseña registrados para gestionar tus compras.</p>
+              <form class="auth-form-grid" id="formCustLogin">
+                <div class="auth-input-group">
+                  <label for="custLoginEmail">Correo electrónico</label>
+                  <input type="email" id="custLoginEmail" placeholder="tu@correo.com" required autocomplete="username">
+                </div>
+                <div class="auth-input-group">
+                  <label for="custLoginPassword">Contraseña</label>
+                  <input type="password" id="custLoginPassword" placeholder="Tu contraseña" required autocomplete="current-password">
+                </div>
+                <div class="auth-msg" id="custLoginMsg"></div>
+                <button type="submit" class="auth-submit-btn" id="custLoginSubmit">Iniciar Sesión</button>
+                <div class="auth-switch-text">
+                  ¿Aún no tienes cuenta? <button type="button" class="auth-switch-link" id="btnGoToRegister">Regístrate gratis aquí</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Panel 2: Registrarse -->
+            <div class="auth-panel" id="panelRegister">
+              <h4>Crear nueva cuenta</h4>
+              <p>Regístrate en menos de 1 minuto para comprar más rápido y rastrear tus pedidos.</p>
+              <form class="auth-form-grid" id="formCustRegister">
+                <div class="auth-input-group">
+                  <label for="custRegName">Nombre completo</label>
+                  <input type="text" id="custRegName" placeholder="Ej. Ana Lucía Pérez" required autocomplete="name">
+                </div>
+                <div class="auth-row-2">
+                  <div class="auth-input-group">
+                    <label for="custRegEmail">Correo electrónico</label>
+                    <input type="email" id="custRegEmail" placeholder="tu@correo.com" required autocomplete="email">
+                  </div>
+                  <div class="auth-input-group">
+                    <label for="custRegPhone">Teléfono / WhatsApp</label>
+                    <input type="tel" id="custRegPhone" placeholder="9 dígitos" required autocomplete="tel">
+                  </div>
+                </div>
+                <div class="auth-input-group">
+                  <label for="custRegAddress">Dirección de entrega habitual</label>
+                  <input type="text" id="custRegAddress" placeholder="Calle, número, urbanización / referencia" required autocomplete="street-address">
+                </div>
+                <div class="auth-input-group">
+                  <label for="custRegCity">Ciudad / Departamento</label>
+                  <input type="text" id="custRegCity" placeholder="Ej. Lima, Iquitos, Cusco" value="Lima" required>
+                </div>
+                <div class="auth-row-2">
+                  <div class="auth-input-group">
+                    <label for="custRegPassword">Contraseña</label>
+                    <input type="password" id="custRegPassword" placeholder="Mínimo 6 caracteres" required autocomplete="new-password">
+                  </div>
+                  <div class="auth-input-group">
+                    <label for="custRegPasswordConfirm">Confirmar contraseña</label>
+                    <input type="password" id="custRegPasswordConfirm" placeholder="Repite tu contraseña" required autocomplete="new-password">
+                  </div>
+                </div>
+                <div class="auth-msg" id="custRegMsg"></div>
+                <button type="submit" class="auth-submit-btn" id="custRegSubmit">Crear Cuenta y Comenzar</button>
+                <div class="auth-switch-text">
+                  ¿Ya tienes una cuenta? <button type="button" class="auth-switch-link" id="btnGoToLogin">Inicia sesión</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Panel 3: Invitado (formulario original sin contraseña) -->
+            <div class="auth-panel" id="panelGuest">
+              <h4>Datos de entrega como invitado</h4>
+              <p>Guarda temporalmente tus datos en este dispositivo sin crear contraseña.</p>
+              <form class="checkout-form" id="checkoutForm">
+                <label class="checkout-field">
+                  <span>Nombre completo</span>
+                  <input id="checkoutName" type="text" autocomplete="name" placeholder="Cliente" required>
+                </label>
+                <label class="checkout-field">
+                  <span>Telefono</span>
+                  <input id="checkoutPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="9 digitos" required>
+                </label>
+                <label class="checkout-field">
+                  <span>Correo</span>
+                  <input id="checkoutEmail" type="email" autocomplete="email" placeholder="correo@ejemplo.com" required>
+                </label>
+                <label class="checkout-field">
+                  <span>Direccion de entrega</span>
+                  <input id="checkoutAddress" type="text" autocomplete="street-address" placeholder="Direccion y referencia" required>
+                  <small class="checkout-note">Ejemplo: Mz. A lote 9, Av. Los Olivos 123, frente al parque.</small>
+                </label>
+                <div class="checkout-message" id="checkoutMessage" aria-live="polite"></div>
+                <button class="checkout-save-btn" id="checkoutSaveBtn" type="submit">Guardar Datos de Invitado</button>
+              </form>
+            </div>
+
+            <!-- Panel 4: Mis Pedidos (cuando está logueado) -->
+            <div class="auth-panel" id="panelOrders">
+              <div class="cust-orders-head">
+                <div>
+                  <h4>Mis Pedidos</h4>
+                  <p style="margin:0;color:#666;font-size:13px;">Historial de compras y comprobantes.</p>
+                </div>
+                <button type="button" class="cust-btn-receipt" id="btnRefreshOrders">↻ Actualizar</button>
+              </div>
+              <div class="cust-orders-list" id="custOrdersList">
+                <div class="cust-empty-orders">
+                  <p>Cargando tus pedidos...</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 5: Mis Datos de Perfil (cuando está logueado) -->
+            <div class="auth-panel" id="panelProfile">
+              <h4>Mis Datos de Envío</h4>
+              <p>Actualiza tu dirección y teléfono para tus próximas compras.</p>
+              <form class="auth-form-grid" id="formCustProfile">
+                <div class="auth-input-group">
+                  <label for="custProfName">Nombre completo</label>
+                  <input type="text" id="custProfName" required>
+                </div>
+                <div class="auth-row-2">
+                  <div class="auth-input-group">
+                    <label for="custProfEmail">Correo electrónico</label>
+                    <input type="email" id="custProfEmail" readonly style="background:#f5f5f5;cursor:not-allowed;" title="El correo no se puede modificar">
+                  </div>
+                  <div class="auth-input-group">
+                    <label for="custProfPhone">Teléfono / WhatsApp</label>
+                    <input type="tel" id="custProfPhone" required>
+                  </div>
+                </div>
+                <div class="auth-input-group">
+                  <label for="custProfAddress">Dirección de entrega</label>
+                  <input type="text" id="custProfAddress" required>
+                </div>
+                <div class="auth-input-group">
+                  <label for="custProfCity">Ciudad / Departamento</label>
+                  <input type="text" id="custProfCity" required>
+                </div>
+                <div class="auth-input-group">
+                  <label for="custProfNewPassword">Cambiar contraseña (opcional)</label>
+                  <input type="password" id="custProfNewPassword" placeholder="Dejar en blanco para mantener la actual">
+                </div>
+                <div class="auth-msg" id="custProfMsg"></div>
+                <button type="submit" class="auth-submit-btn" id="custProfSubmit">Guardar Cambios</button>
+              </form>
+            </div>
+
           </div>
         </div>
       </div>
@@ -1619,6 +1781,14 @@
 
         <section class="checkout-stage active" data-checkout-stage="cart">
           <div class="checkout-stage-card">
+            <!-- Banner de Login o Estado de Usuario -->
+            <div class="checkout-auth-banner" id="chkAuthBanner">
+              <div>
+                <strong>¿Ya tienes cuenta en Imfundo Kahle?</strong>
+                <div>Inicia sesión para autocompletar tus datos de entrega en 1 clic.</div>
+              </div>
+              <button type="button" class="checkout-auth-btn-link" id="chkOpenLoginBtn">Iniciar sesión</button>
+            </div>
             <h4>Confirma tu correo electrónico</h4>
             <p>Usaremos este correo para enviarte la confirmación y los detalles de tu pedido.</p>
             <div class="checkout-email-value" id="checkoutSavedEmail">Correo no registrado</div>
@@ -3088,6 +3258,453 @@
     })();
 
     window.imfundoOpenYapeCheckout = openYapeCheckout;
+
+    // ════════════════════════════════════════════════════════════════
+    // SISTEMA DE AUTENTICACIÓN Y CUENTAS DE CLIENTES
+    // ════════════════════════════════════════════════════════════════
+    var currentCustomer = null;
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function switchAuthTab(tabName) {
+      var allTabs = document.querySelectorAll('.auth-tab-btn');
+      var allPanels = document.querySelectorAll('.auth-panel');
+      allTabs.forEach(function(t) {
+        if (t.getAttribute('data-auth-tab') === tabName) {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+      allPanels.forEach(function(p) {
+        p.classList.remove('active');
+      });
+      var targetPanel = document.getElementById('panel' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
+      if (targetPanel) targetPanel.classList.add('active');
+    }
+
+    document.querySelectorAll('.auth-tab-btn[data-auth-tab]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var tab = btn.getAttribute('data-auth-tab');
+        switchAuthTab(tab);
+        if (tab === 'orders') loadCustomerOrders();
+      });
+    });
+
+    var btnGoToRegister = document.getElementById('btnGoToRegister');
+    if (btnGoToRegister) btnGoToRegister.addEventListener('click', function() { switchAuthTab('register'); });
+    var btnGoToLogin = document.getElementById('btnGoToLogin');
+    if (btnGoToLogin) btnGoToLogin.addEventListener('click', function() { switchAuthTab('login'); });
+
+    // Dropdown navbar de usuario
+    var navCustomerBtn = document.getElementById('navCustomerBtn');
+    var navCustomerDropdown = document.getElementById('navCustomerDropdown');
+    if (navCustomerBtn && navCustomerDropdown) {
+      navCustomerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (!currentCustomer) {
+          openSettings();
+          switchAuthTab('login');
+        } else {
+          navCustomerDropdown.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (!navCustomerDropdown.contains(e.target) && e.target !== navCustomerBtn) {
+          navCustomerDropdown.classList.remove('open');
+        }
+      });
+    }
+
+    var dropdownBtnOrders = document.getElementById('dropdownBtnOrders');
+    if (dropdownBtnOrders) dropdownBtnOrders.addEventListener('click', function() {
+      if (navCustomerDropdown) navCustomerDropdown.classList.remove('open');
+      openSettings();
+      switchAuthTab('orders');
+      loadCustomerOrders();
+    });
+
+    var dropdownBtnProfile = document.getElementById('dropdownBtnProfile');
+    if (dropdownBtnProfile) dropdownBtnProfile.addEventListener('click', function() {
+      if (navCustomerDropdown) navCustomerDropdown.classList.remove('open');
+      openSettings();
+      switchAuthTab('profile');
+    });
+
+    var dropdownBtnLogout = document.getElementById('dropdownBtnLogout');
+    if (dropdownBtnLogout) dropdownBtnLogout.addEventListener('click', function() {
+      if (navCustomerDropdown) navCustomerDropdown.classList.remove('open');
+      logoutCustomer();
+    });
+
+    var tabBtnLogout = document.getElementById('tabBtnLogout');
+    if (tabBtnLogout) tabBtnLogout.addEventListener('click', logoutCustomer);
+
+    function checkCustomerAuth() {
+      return fetch(API_BASE + '/api/customer/auth?action=status')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data && data.success && data.loggedIn && data.customer) {
+            setCustomerLoggedIn(data.customer);
+          } else {
+            setCustomerLoggedOut();
+          }
+        })
+        .catch(function() {
+          setCustomerLoggedOut();
+        });
+    }
+
+    function setCustomerLoggedIn(customer) {
+      currentCustomer = customer;
+      var navBtnText = document.getElementById('navCustomerName');
+      var dropName = document.getElementById('dropdownCustomerName');
+      var dropEmail = document.getElementById('dropdownCustomerEmail');
+      var firstName = (customer.name || 'Cliente').split(' ')[0];
+      if (navBtnText) navBtnText.textContent = 'Hola, ' + firstName;
+      if (dropName) dropName.textContent = customer.name;
+      if (dropEmail) dropEmail.textContent = customer.email;
+
+      var tabsNot = document.getElementById('authTabsNotLogged');
+      var tabsLog = document.getElementById('authTabsLogged');
+      if (tabsNot) tabsNot.style.display = 'none';
+      if (tabsLog) tabsLog.style.display = 'flex';
+
+      var introTitle = document.getElementById('portalIntroTitle');
+      var introText = document.getElementById('portalIntroText');
+      if (introTitle) introTitle.textContent = '¡Hola, ' + firstName + '!';
+      if (introText) introText.textContent = 'Rastrea tus compras, sube comprobantes y mantén tus datos de entrega actualizados para tus próximos pedidos.';
+
+      // Prellenar perfil
+      var pName = document.getElementById('custProfName');
+      var pEmail = document.getElementById('custProfEmail');
+      var pPhone = document.getElementById('custProfPhone');
+      var pAddress = document.getElementById('custProfAddress');
+      var pCity = document.getElementById('custProfCity');
+      if (pName) pName.value = customer.name || '';
+      if (pEmail) pEmail.value = customer.email || '';
+      if (pPhone) pPhone.value = customer.phone || '';
+      if (pAddress) pAddress.value = customer.address || '';
+      if (pCity) pCity.value = customer.city || 'Lima';
+
+      // Prellenar campos del checkout
+      var cName = document.getElementById('checkoutName');
+      var cPhone = document.getElementById('checkoutPhone');
+      var cEmail = document.getElementById('checkoutEmail');
+      var cAddress = document.getElementById('checkoutAddress');
+      var cStageEmail = document.getElementById('checkoutStageEmail');
+      var cSavedEmail = document.getElementById('checkoutSavedEmail');
+      if (cName && customer.name) cName.value = customer.name;
+      if (cPhone && customer.phone) cPhone.value = customer.phone;
+      if (cEmail && customer.email) cEmail.value = customer.email;
+      if (cAddress && customer.address) cAddress.value = customer.address;
+      if (cStageEmail && customer.email) cStageEmail.value = customer.email;
+      if (cSavedEmail && customer.email) cSavedEmail.textContent = customer.email;
+
+      // Banner en Checkout Flow
+      var chkBanner = document.getElementById('chkAuthBanner');
+      if (chkBanner) {
+        chkBanner.innerHTML = '<div><span>✓ Comprando como <strong>' + escapeHtml(customer.name) + '</strong> (' + escapeHtml(customer.email) + ')</span></div><button type="button" class="checkout-auth-btn-link" id="chkLogoutBtn">Cerrar sesión</button>';
+        var chkLogoutBtn = document.getElementById('chkLogoutBtn');
+        if (chkLogoutBtn) chkLogoutBtn.addEventListener('click', logoutCustomer);
+      }
+
+      switchAuthTab('orders');
+      loadCustomerOrders();
+    }
+
+    function setCustomerLoggedOut() {
+      currentCustomer = null;
+      var navBtnText = document.getElementById('navCustomerName');
+      if (navBtnText) navBtnText.textContent = 'Iniciar sesión';
+
+      var tabsNot = document.getElementById('authTabsNotLogged');
+      var tabsLog = document.getElementById('authTabsLogged');
+      if (tabsNot) tabsNot.style.display = 'flex';
+      if (tabsLog) tabsLog.style.display = 'none';
+
+      var introTitle = document.getElementById('portalIntroTitle');
+      var introText = document.getElementById('portalIntroText');
+      if (introTitle) introTitle.textContent = 'Tu cuenta en Imfundo Kahle';
+      if (introText) introText.textContent = 'Inicia sesión o crea tu cuenta para guardar tus direcciones de entrega, autocompletar tus compras y revisar el estado de todos tus pedidos en tiempo real.';
+
+      var chkBanner = document.getElementById('chkAuthBanner');
+      if (chkBanner) {
+        chkBanner.innerHTML = '<div><strong>¿Ya tienes cuenta en Imfundo Kahle?</strong><div>Inicia sesión para autocompletar tus datos de entrega en 1 clic.</div></div><button type="button" class="checkout-auth-btn-link" id="chkOpenLoginBtn">Iniciar sesión</button>';
+        var chkOpenLoginBtn = document.getElementById('chkOpenLoginBtn');
+        if (chkOpenLoginBtn) chkOpenLoginBtn.addEventListener('click', function() {
+          openSettings();
+          switchAuthTab('login');
+        });
+      }
+
+      switchAuthTab('login');
+    }
+
+    // Formulario de Inicio de Sesión
+    var formCustLogin = document.getElementById('formCustLogin');
+    var custLoginMsg = document.getElementById('custLoginMsg');
+    var custLoginSubmit = document.getElementById('custLoginSubmit');
+    if (formCustLogin) {
+      formCustLogin.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('custLoginEmail').value.trim();
+        var password = document.getElementById('custLoginPassword').value;
+
+        if (custLoginSubmit) { custLoginSubmit.disabled = true; custLoginSubmit.textContent = 'Verificando...'; }
+        if (custLoginMsg) { custLoginMsg.className = 'auth-msg'; custLoginMsg.style.display = 'none'; }
+
+        fetch(API_BASE + '/api/customer/auth?action=login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: password })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
+          if (data && data.success && data.customer) {
+            if (custLoginMsg) {
+              custLoginMsg.className = 'auth-msg success';
+              custLoginMsg.textContent = data.message || '¡Bienvenido!';
+            }
+            setTimeout(function() {
+              setCustomerLoggedIn(data.customer);
+              if (custLoginMsg) custLoginMsg.style.display = 'none';
+            }, 500);
+          } else {
+            if (custLoginMsg) {
+              custLoginMsg.className = 'auth-msg error';
+              custLoginMsg.textContent = (data && data.error) ? data.error : 'Correo o contraseña incorrectos.';
+            }
+          }
+        })
+        .catch(function() {
+          if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
+          if (custLoginMsg) {
+            custLoginMsg.className = 'auth-msg error';
+            custLoginMsg.textContent = 'Error de conexión con el servidor. Intenta de nuevo.';
+          }
+        });
+      });
+    }
+
+    // Formulario de Registro
+    var formCustRegister = document.getElementById('formCustRegister');
+    var custRegMsg = document.getElementById('custRegMsg');
+    var custRegSubmit = document.getElementById('custRegSubmit');
+    if (formCustRegister) {
+      formCustRegister.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('custRegName').value.trim();
+        var email = document.getElementById('custRegEmail').value.trim();
+        var phone = document.getElementById('custRegPhone').value.trim();
+        var address = document.getElementById('custRegAddress').value.trim();
+        var city = document.getElementById('custRegCity').value.trim();
+        var password = document.getElementById('custRegPassword').value;
+        var confirm = document.getElementById('custRegPasswordConfirm').value;
+
+        if (custRegMsg) { custRegMsg.className = 'auth-msg'; custRegMsg.style.display = 'none'; }
+
+        if (password !== confirm) {
+          if (custRegMsg) {
+            custRegMsg.className = 'auth-msg error';
+            custRegMsg.textContent = 'Las contraseñas no coinciden.';
+          }
+          return;
+        }
+
+        if (custRegSubmit) { custRegSubmit.disabled = true; custRegSubmit.textContent = 'Creando cuenta...'; }
+
+        fetch(API_BASE + '/api/customer/auth?action=register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            phone: phone,
+            address: address,
+            city: city,
+            password: password
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
+          if (data && data.success && data.customer) {
+            if (custRegMsg) {
+              custRegMsg.className = 'auth-msg success';
+              custRegMsg.textContent = data.message || '¡Cuenta creada con éxito!';
+            }
+            setTimeout(function() {
+              setCustomerLoggedIn(data.customer);
+              if (custRegMsg) custRegMsg.style.display = 'none';
+            }, 600);
+          } else {
+            if (custRegMsg) {
+              custRegMsg.className = 'auth-msg error';
+              custRegMsg.textContent = (data && data.error) ? data.error : 'No se pudo crear la cuenta.';
+            }
+          }
+        })
+        .catch(function() {
+          if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
+          if (custRegMsg) {
+            custRegMsg.className = 'auth-msg error';
+            custRegMsg.textContent = 'Error de conexión con el servidor.';
+          }
+        });
+      });
+    }
+
+    // Formulario de Perfil
+    var formCustProfile = document.getElementById('formCustProfile');
+    var custProfMsg = document.getElementById('custProfMsg');
+    var custProfSubmit = document.getElementById('custProfSubmit');
+    if (formCustProfile) {
+      formCustProfile.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('custProfName').value.trim();
+        var phone = document.getElementById('custProfPhone').value.trim();
+        var address = document.getElementById('custProfAddress').value.trim();
+        var city = document.getElementById('custProfCity').value.trim();
+        var password = document.getElementById('custProfNewPassword').value.trim();
+
+        if (custProfSubmit) { custProfSubmit.disabled = true; custProfSubmit.textContent = 'Guardando...'; }
+        if (custProfMsg) { custProfMsg.className = 'auth-msg'; custProfMsg.style.display = 'none'; }
+
+        fetch(API_BASE + '/api/customer/auth?action=update', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            address: address,
+            city: city,
+            password: password
+          })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (custProfSubmit) { custProfSubmit.disabled = false; custProfSubmit.textContent = 'Guardar Cambios'; }
+          if (data && data.success) {
+            if (custProfMsg) {
+              custProfMsg.className = 'auth-msg success';
+              custProfMsg.textContent = 'Datos actualizados con éxito.';
+            }
+            if (currentCustomer) {
+              currentCustomer.name = name;
+              currentCustomer.phone = phone;
+              currentCustomer.address = address;
+              currentCustomer.city = city;
+              setCustomerLoggedIn(currentCustomer);
+            }
+          } else {
+            if (custProfMsg) {
+              custProfMsg.className = 'auth-msg error';
+              custProfMsg.textContent = (data && data.error) ? data.error : 'Error al actualizar.';
+            }
+          }
+        })
+        .catch(function() {
+          if (custProfSubmit) { custProfSubmit.disabled = false; custProfSubmit.textContent = 'Guardar Cambios'; }
+          if (custProfMsg) {
+            custProfMsg.className = 'auth-msg error';
+            custProfMsg.textContent = 'Error de conexión.';
+          }
+        });
+      });
+    }
+
+    function logoutCustomer() {
+      fetch(API_BASE + '/api/customer/auth?action=logout', { method: 'POST' })
+        .finally(function() {
+          setCustomerLoggedOut();
+        });
+    }
+
+    // Cargar Mis Pedidos
+    var btnRefreshOrders = document.getElementById('btnRefreshOrders');
+    if (btnRefreshOrders) btnRefreshOrders.addEventListener('click', loadCustomerOrders);
+
+    function loadCustomerOrders() {
+      var container = document.getElementById('custOrdersList');
+      if (!container) return;
+      container.innerHTML = '<div class="cust-empty-orders"><p>Cargando pedidos...</p></div>';
+
+      fetch(API_BASE + '/api/customer/orders')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (!data || !data.success || !Array.isArray(data.orders) || data.orders.length === 0) {
+            container.innerHTML = '<div class="cust-empty-orders">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' +
+              '<p><strong>Aún no tienes pedidos registrados.</strong><br>Tus compras solidarias aparecerán aquí con el detalle de seguimiento.</p>' +
+            '</div>';
+            return;
+          }
+
+          var statusMap = {
+            pending: { label: 'Pendiente de comprobante', cls: 'pending' },
+            verified: { label: 'Pago Verificado ✓', cls: 'verified' },
+            shipped: { label: 'En camino 🚚', cls: 'shipped' },
+            cancelled: { label: 'Cancelado', cls: 'cancelled' }
+          };
+
+          var html = '';
+          data.orders.forEach(function(ord) {
+            var st = statusMap[ord.status] || { label: ord.status, cls: 'pending' };
+            var dateStr = ord.created_at ? ord.created_at.replace('T', ' ').substring(0, 16) : '';
+            var itemsHtml = '';
+            if (Array.isArray(ord.items)) {
+              itemsHtml = ord.items.map(function(it) {
+                return '<div class="cust-order-item-line"><span>' + escapeHtml(it.product_name) + ' × ' + it.quantity + '</span><span>S/ ' + parseFloat(it.subtotal).toFixed(2) + '</span></div>';
+              }).join('');
+            }
+
+            var receiptBtn = '';
+            if (ord.receipt_file) {
+              receiptBtn = '<a href="' + escapeHtml(ord.receipt_file) + '" target="_blank" class="cust-btn-receipt">📄 Ver comprobante</a>';
+            } else if (ord.status === 'pending') {
+              receiptBtn = '<button type="button" class="cust-btn-receipt" onclick="promptUploadReceipt(\'' + ord.order_code + '\')">📎 Subir comprobante</button>';
+            }
+
+            html += '<article class="cust-order-card">' +
+              '<div class="cust-order-header">' +
+                '<div><div class="cust-order-code">' + escapeHtml(ord.order_code) + '</div><div class="cust-order-date">' + escapeHtml(dateStr) + ' • Pago: ' + escapeHtml(ord.payment_method) + '</div></div>' +
+                '<span class="cust-status-badge ' + st.cls + '">' + st.label + '</span>' +
+              '</div>' +
+              '<div class="cust-order-items">' + itemsHtml + '</div>' +
+              '<div class="cust-order-footer">' +
+                '<div class="cust-order-total">Total: <span>S/ ' + parseFloat(ord.total).toFixed(2) + '</span></div>' +
+                '<div>' + receiptBtn + '</div>' +
+              '</div>' +
+            '</article>';
+          });
+
+          container.innerHTML = html;
+        })
+        .catch(function() {
+          container.innerHTML = '<div class="cust-empty-orders"><p>No se pudo cargar la lista de pedidos. Revisa tu conexión.</p></div>';
+        });
+    }
+
+    window.promptUploadReceipt = function(orderCode) {
+      closeSettings();
+      openCheckoutFlow();
+      setCheckoutPayment('transfer');
+      var codeEl = document.getElementById('transferOrderCode');
+      if (codeEl) codeEl.textContent = orderCode;
+    };
+
+    // Verificar estado de sesión al cargar la tienda
+    checkCustomerAuth();
+
   })();
 
   // ── Yape Modal ────────────────────────────────────────────────

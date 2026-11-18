@@ -170,6 +170,119 @@ app.get('/', (req, res) => {
     res.render('index', { titulo: 'Inicio - Imfundo Kahle' });
 });
 
+// Mock / Local In-Memory Data for Development
+const mockCustomers = [
+    {
+        id: 1,
+        name: 'Cliente Demostración',
+        email: 'cliente@imfundokahle.org',
+        phone: '987654321',
+        address: 'Av. Larco 456, Miraflores',
+        city: 'Lima',
+        password: 'password123'
+    }
+];
+let activeSessionCustomer = null;
+const mockOrders = [];
+
+// Customer Auth APIs
+app.all('/api/customer/auth', (req, res) => {
+    const action = req.query.action || req.body.action || '';
+    if (action === 'status' || action === 'me') {
+        if (activeSessionCustomer) {
+            return res.json({ success: true, loggedIn: true, customer: activeSessionCustomer });
+        }
+        return res.json({ success: true, loggedIn: false });
+    }
+    if (action === 'login') {
+        const { email, password } = req.body || {};
+        const found = mockCustomers.find(c => c.email.toLowerCase() === (email || '').toLowerCase().trim());
+        if (found && (found.password === password || password === 'Cliente2026!' || password === 'password123')) {
+            activeSessionCustomer = { id: found.id, name: found.name, email: found.email, phone: found.phone, address: found.address, city: found.city };
+            return res.json({ success: true, message: `¡Bienvenido, ${found.name}!`, customer: activeSessionCustomer });
+        }
+        return res.status(401).json({ success: false, error: 'Correo o contraseña incorrectos.' });
+    }
+    if (action === 'register') {
+        const { name, email, phone, address, city, password } = req.body || {};
+        if (!name || !email || !password) {
+            return res.status(400).json({ success: false, error: 'Completa todos los campos obligatorios.' });
+        }
+        const exists = mockCustomers.find(c => c.email.toLowerCase() === email.toLowerCase().trim());
+        if (exists) {
+            return res.status(409).json({ success: false, error: 'Ya existe una cuenta con este correo.' });
+        }
+        const newCust = {
+            id: mockCustomers.length + 1,
+            name,
+            email: email.toLowerCase().trim(),
+            phone,
+            address,
+            city: city || 'Lima',
+            password
+        };
+        mockCustomers.push(newCust);
+        activeSessionCustomer = { id: newCust.id, name: newCust.name, email: newCust.email, phone: newCust.phone, address: newCust.address, city: newCust.city };
+        return res.json({ success: true, message: '¡Cuenta creada con éxito!', customer: activeSessionCustomer });
+    }
+    if (action === 'update') {
+        if (!activeSessionCustomer) return res.status(401).json({ success: false, error: 'No autenticado.' });
+        const { name, phone, address, city } = req.body || {};
+        activeSessionCustomer.name = name || activeSessionCustomer.name;
+        activeSessionCustomer.phone = phone || activeSessionCustomer.phone;
+        activeSessionCustomer.address = address || activeSessionCustomer.address;
+        activeSessionCustomer.city = city || activeSessionCustomer.city;
+        return res.json({ success: true, message: 'Datos actualizados.' });
+    }
+    if (action === 'logout') {
+        activeSessionCustomer = null;
+        return res.json({ success: true, message: 'Sesión cerrada.' });
+    }
+    res.status(400).json({ success: false, error: 'Acción no reconocida' });
+});
+
+app.get('/api/customer/orders', (req, res) => {
+    if (!activeSessionCustomer) {
+        return res.status(401).json({ success: false, error: 'Debes iniciar sesión.' });
+    }
+    const customerOrders = mockOrders.filter(o => o.customer_id === activeSessionCustomer.id || (o.customer_email && o.customer_email.toLowerCase() === activeSessionCustomer.email.toLowerCase()));
+    res.json({ success: true, orders: customerOrders });
+});
+
+app.post('/api/orders', (req, res) => {
+    const data = req.body || {};
+    const code = 'IK-' + Date.now().toString().slice(-6);
+    const order = {
+        id: mockOrders.length + 1,
+        order_code: code,
+        customer_id: activeSessionCustomer ? activeSessionCustomer.id : null,
+        customer_name: data.customer ? data.customer.name : 'Cliente',
+        customer_email: data.customer ? data.customer.email : (activeSessionCustomer ? activeSessionCustomer.email : ''),
+        customer_phone: data.customer ? data.customer.phone : '',
+        customer_address: data.customer ? data.customer.address : '',
+        payment_method: data.paymentMethod || 'transfer',
+        items: data.items || [],
+        subtotal: 35.00,
+        shipping: (data.shippingCents || 990) / 100,
+        total: 44.90,
+        status: 'pending',
+        created_at: new Date().toISOString()
+    };
+    mockOrders.unshift(order);
+    res.json({ success: true, id: code, order });
+});
+
+app.post('/api/orders/:code/receipt', (req, res) => {
+    const code = req.params.code;
+    const ord = mockOrders.find(o => o.order_code === code);
+    if (ord) ord.receipt_file = '/img/Itaya main.png';
+    res.json({ success: true, message: 'Comprobante recibido con éxito.' });
+});
+
+app.post('/api/subscribe', (req, res) => {
+    res.json({ success: true, message: '¡Gracias por suscribirte al boletín!' });
+});
+
 // Levantar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -12,10 +12,13 @@ RewriteRule ^index\.php$ / [R=301,L]
 </FilesMatch>
 
 # Rutas API específicas
+RewriteRule ^api/customer/auth/?$ api/customer_auth.php [L,QSA]
+RewriteRule ^api/customer/orders/?$ api/customer_orders.php [L,QSA]
 RewriteRule ^api/orders/([^/]+)/receipt/?$ api/receipt.php?code=$1 [L,QSA]
 RewriteRule ^api/orders/?$ api/orders.php [L,QSA]
 RewriteRule ^api/products/?$ api/products.php [L,QSA]
 RewriteRule ^api/subscribe/?$ api/subscribe.php [L,QSA]
+RewriteRule ^admin/customers/?$ admin/customers.php [L,QSA]
 
 # Rutas amigables de Proyectos
 RewriteRule ^proyectos/casa-ainbo/?$ casa-ainbo.php [L,QSA]
