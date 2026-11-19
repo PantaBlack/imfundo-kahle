@@ -2139,9 +2139,23 @@ html.scroll-locked { overflow: hidden; }
     .checkout-stage-payment .payment-tabs { margin-bottom: 18px; }
     .checkout-flow-box { border-radius: 8px !important; }
 
-    .checkout-stage-payment > .payment-tabs,
-    .checkout-stage-payment > .payment-panel { display: none !important; }
-    .payment-method-list { display: grid; gap: 14px; max-width: 680px; margin: 0 auto; }
+    .checkout-stage-payment > .payment-tabs {
+      display: flex !important;
+      margin: 0 auto 20px auto !important;
+      justify-content: center;
+      gap: 10px;
+      max-width: 680px;
+    }
+    .checkout-stage-payment > .payment-panel {
+      display: none !important;
+    }
+    .checkout-stage-payment > .payment-panel.active {
+      display: block !important;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .payment-method-list { display: none !important; }
+    .payment-method-list_unused { display: grid; gap: 14px; max-width: 680px; margin: 0 auto; }
     .payment-method-list h4 { margin: 0 0 4px; color: #1A1A1A; font-size: 21px; }
     .payment-method-list > p { margin: 0 0 8px; color: #6B6B6B; font-size: 14px; }
     .payment-method-dropdown { overflow: hidden; border: 1px solid #E1E1E1; border-radius: 9px; background: #FFFFFF; }
@@ -3452,7 +3466,7 @@ html.scroll-locked { overflow: hidden; }
     @media (max-width: 400px) {
       .yape-qr-img { width: 180px; height: 180px; }
     }
-/* -- Navegaci�n de Clientes y Login de Compradores -- */
+/* -- Navegaci�n de Clientes y Login de Compradores -- */
 .nav-customer-wrap {
   position: relative;
   display: inline-flex;
@@ -3581,7 +3595,7 @@ html.scroll-locked { overflow: hidden; }
   background: #d83c31;
 }
 
-/* -- Pesta�as del Modal de Cuenta / Auth -- */
+/* -- Pesta�as del Modal de Cuenta / Auth -- */
 .auth-tabs {
   display: flex;
   gap: 8px;
@@ -3856,4 +3870,306 @@ html.scroll-locked { overflow: hidden; }
   background: #b91c1c;
   color: #ffffff;
   border-left: 6px solid #f87171;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   ESTILOS DE PASARELA CULQI Y MODAL DE ÉXITO CON WHATSAPP
+   ════════════════════════════════════════════════════════════════ */
+.culqi-checkout-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+.culqi-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 20px;
+}
+.culqi-logo-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.culqi-icon-shield {
+  font-size: 28px;
+  background: #FEF2F2;
+  border-radius: 12px;
+  padding: 6px 10px;
+}
+.culqi-logo-text strong {
+  display: block;
+  font-size: 17px;
+  color: #1e293b;
+  font-weight: 700;
+}
+.culqi-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+.culqi-pill-rec {
+  background: #DC2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.culqi-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.culqi-method-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+.culqi-method-icon {
+  font-size: 22px;
+}
+.culqi-method-item strong {
+  display: block;
+  font-size: 13px;
+  color: #1e293b;
+}
+.culqi-method-item small {
+  display: block;
+  font-size: 11px;
+  color: #64748b;
+}
+.culqi-amount-banner {
+  background: #fdf2f2;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.culqi-amount-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #991b1b;
+}
+.culqi-amount-val {
+  font-size: 22px;
+  font-weight: 800;
+  color: #b91c1c;
+}
+.culqi-whatsapp-notice {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+.culqi-wa-icon {
+  color: #059669;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.culqi-wa-text strong {
+  display: block;
+  font-size: 13.5px;
+  color: #065f46;
+  margin-bottom: 4px;
+}
+.culqi-wa-text p {
+  font-size: 12.5px;
+  color: #047857;
+  line-height: 1.45;
+  margin: 0;
+}
+.culqi-actions {
+  margin-top: 10px;
+}
+.culqi-btn-pay {
+  width: 100%;
+  background: #EA4335;
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(234, 67, 53, 0.35);
+}
+.culqi-btn-pay:hover {
+  background: #d93829;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 67, 53, 0.45);
+}
+.culqi-btn-pay:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+.culqi-error-box {
+  background: #fee2e2;
+  border-left: 4px solid #ef4444;
+  color: #b91c1c;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  margin-bottom: 16px;
+}
+.culqi-security-foot {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Modal de Éxito / Confirmación con WhatsApp */
+.order-success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+.order-success-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.order-success-modal {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 520px;
+  width: 100%;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.order-success-overlay.open .order-success-modal {
+  transform: scale(1);
+}
+.order-success-icon {
+  font-size: 52px;
+  margin-bottom: 12px;
+}
+.order-success-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 8px;
+}
+.order-success-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 24px;
+}
+.order-success-details {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 22px;
+  border: 1px solid #e2e8f0;
+}
+.order-success-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: #475569;
+}
+.order-success-row strong {
+  color: #0f172a;
+}
+.status-verified {
+  color: #16a34a !important;
+  background: #dcfce7;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+.order-success-wa-card {
+  background: #ecfdf5;
+  border: 1.5px solid #6ee7b7;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.order-success-wa-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #047857;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+.order-success-wa-card p {
+  font-size: 13px;
+  color: #065f46;
+  margin: 0 0 16px;
+  line-height: 1.45;
+}
+.order-success-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25D366;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  transition: all 0.2s ease;
+}
+.order-success-wa-btn:hover {
+  background: #20ba59;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+}
+.order-success-close-btn {
+  background: transparent;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+.order-success-close-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
 }

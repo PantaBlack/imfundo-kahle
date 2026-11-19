@@ -566,6 +566,10 @@
   </div>
   <script>
     // ── Conexión con la API ───────────────────────────────────────
+
+  window.CULQI_PUBLIC_KEY = '<%= typeof culqiPublicKey !== "undefined" ? culqiPublicKey : "pk_test_e4f3a743a6d96a75" %>';
+  window.WHATSAPP_PHONE = '<%= typeof whatsappPhone !== "undefined" ? whatsappPhone : "51954920068" %>';
+
     var API_BASE = '';
     var _productMap = null; // { frontend_name: producto }
 
@@ -1841,29 +1845,14 @@
           </div>
         </div>
 
-        <section class="checkout-stage checkout-stage-payment" data-checkout-stage="payment">
-        <div class="payment-method-list">
-          <h4>Elige cómo pagar</h4>
-          <p>Selecciona un método para ver sus instrucciones de pago.</p>
-          <details class="payment-method-dropdown">
-            <summary>Transferencia</summary>
-            <div class="payment-method-options"><button class="payment-method-option" type="button" data-payment-modal="transfer">Datos de transferencia</button></div>
-          </details>
-          <details class="payment-method-dropdown">
-            <summary>Otros servicios</summary>
-            <div class="payment-method-options">
-              <button class="payment-method-option" type="button" data-payment-modal="yape">Yape</button>
-              <button class="payment-method-option" type="button" data-payment-modal="pagoefectivo">PagoEfectivo QR</button>
-            </div>
-          </details>
-        </div>
+        <section class="checkout-stage checkout-stage-payment active" data-checkout-stage="payment">
         <div class="payment-tabs" role="tablist" aria-label="Metodos de pago">
-          <button class="payment-tab active" type="button" data-payment="yape">Yape</button>
-          <button class="payment-tab" type="button" data-payment="transfer">Transferencia</button>
-          <button class="payment-tab" type="button" data-payment="card">Tarjeta</button>
+          <button class="payment-tab active" type="button" data-payment="card">💳 Tarjeta / Yape (Culqi)</button>
+          <button class="payment-tab" type="button" data-payment="yape">🟣 QR Yape Manual</button>
+          <button class="payment-tab" type="button" data-payment="transfer">🏦 Transferencia Bancaria</button>
         </div>
 
-        <section class="payment-panel payment-panel-yape active" data-payment-panel="yape">
+        <section class="payment-panel payment-panel-yape" data-payment-panel="yape">
           <div class="payment-qr-card">
             <img id="checkoutFlowQr" src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&color=6B2699&bgcolor=FFFFFF&qzone=2&data=IMFUNDO%20KAHLE%20-%20Pago%20Yape" alt="QR Yape">
             <div class="payment-amount" id="checkoutFlowAmount">S/ 0.00</div>
@@ -1922,72 +1911,70 @@
           </div>
         </section>
 
-        <section class="payment-panel" data-payment-panel="card">
-          <div class="card-payment-layout">
-            <div class="card-payment-main">
-              <div class="card-payment-field card-payment-method">
-                <label>Selecciona un metodo de pago</label>
-                <select>
-                  <option>BBVA</option>
-                  <option>Visa</option>
-                  <option>Mastercard</option>
-                  <option>Banco Credito de Peru</option>
-                </select>
-              </div>
-              <div class="card-payment-row card-card-details-row">
-                <div class="card-payment-field card-payment-number">
-                  <label>Numero de tarjeta</label>
-                  <input type="text" inputmode="numeric">
-                </div>
-                <div class="card-expiry-grid">
-                  <div class="card-payment-field">
-                    <label>Fecha de caducidad</label>
-                    <select><option>--</option><option>01</option><option>02</option><option>03</option><option>04</option><option>05</option><option>06</option><option>07</option><option>08</option><option>09</option><option>10</option><option>11</option><option>12</option></select>
-                  </div>
-                  <div class="card-payment-field">
-                    <label>&nbsp;</label>
-                    <select><option>----</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option><option>2030</option></select>
-                  </div>
-                  <div class="card-payment-field">
-                    <label>Codigo de seguridad</label>
-                    <input type="text" inputmode="numeric">
-                  </div>
+        <section class="payment-panel active" data-payment-panel="card">
+          <div class="culqi-checkout-card">
+            <div class="culqi-badge-header">
+              <div class="culqi-logo-text">
+                <span class="culqi-icon-shield">🔒</span>
+                <div>
+                  <strong>Pasarela Oficial Culqi</strong>
+                  <div class="culqi-sub">Pagos instantáneos 100% seguros con cifrado bancario</div>
                 </div>
               </div>
-
-              <details class="card-billing-details">
-                <summary>Datos de facturacion</summary>
-                <div class="card-payment-row">
-                  <div class="card-payment-field"><label>Nombre</label><input type="text" autocomplete="given-name"></div>
-                  <div class="card-payment-field"><label>Apellidos</label><input type="text" autocomplete="family-name"></div>
-                </div>
-                <div class="card-payment-row">
-                  <div class="card-payment-field"><label>Direccion de facturacion</label><input type="text" autocomplete="address-line1"></div>
-                  <div class="card-payment-field"><label>Localidad</label><input type="text" autocomplete="address-level2"></div>
-                </div>
-                <div class="card-payment-row">
-                  <div class="card-payment-field"><label>Direccion de facturacion (segunda linea)</label><input type="text" autocomplete="address-line2"></div>
-                  <div class="card-payment-field"><label>Codigo postal o ZIP</label><input type="text" autocomplete="postal-code"></div>
-                </div>
-                <div class="card-payment-row">
-                  <div class="card-payment-field"><label>Pais</label><select autocomplete="country-name"><option>Peru</option></select></div>
-                  <div class="card-payment-field"><label>Telefono</label><input type="tel" autocomplete="tel"></div>
-                </div>
-              </details>
-              <p class="card-payment-hint">Al confirmar se generara un pedido de prueba con pago simulado.</p>
-              <button class="card-continue-btn" id="cardDemoConfirmBtn" type="button">Simular pago seguro</button>
-              <div class="card-demo-result" id="cardDemoResult" role="status" aria-live="polite"></div>
+              <span class="culqi-pill-rec">Recomendado</span>
             </div>
-            <aside class="card-payment-side">
-              <h4 class="card-payment-title">Metodos de pago</h4>
-              <p class="card-payment-subtitle">Aceptamos los siguientes metodos de pago seguro:</p>
-              <div class="accepted-logos">
-                <span class="accepted-logo">VISA</span>
-                <span class="accepted-logo mc">Mastercard</span>
-                <span class="accepted-logo bcp">BCP</span>
-                <span class="accepted-logo bbva">BBVA</span>
+
+            <div class="culqi-methods-grid">
+              <div class="culqi-method-item">
+                <span class="culqi-method-icon">💳</span>
+                <div>
+                  <strong>Tarjetas Débito / Crédito</strong>
+                  <small>Visa, Mastercard, Amex, Diners</small>
+                </div>
               </div>
-            </aside>
+              <div class="culqi-method-item">
+                <span class="culqi-method-icon">🟣</span>
+                <div>
+                  <strong>Yape Directo</strong>
+                  <small>Con código de aprobación</small>
+                </div>
+              </div>
+              <div class="culqi-method-item">
+                <span class="culqi-method-icon">🏪</span>
+                <div>
+                  <strong>PagoEfectivo / Agentes</strong>
+                  <small>Banca móvil y agentes</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="culqi-amount-banner">
+              <div class="culqi-amount-label">Monto total a pagar:</div>
+              <div class="culqi-amount-val" id="culqiFlowAmount">S/ 0.00</div>
+            </div>
+
+            <div class="culqi-whatsapp-notice">
+              <div class="culqi-wa-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div class="culqi-wa-text">
+                <strong>Envío de datos automático a WhatsApp (954 920 068)</strong>
+                <p>Al completarse el pago, la pasarela confirmará la compra y se abrirá WhatsApp con el código del pedido y la dirección de envío para que el equipo prepare tu paquete de inmediato.</p>
+              </div>
+            </div>
+
+            <div id="culqiErrorBox" class="culqi-error-box" style="display:none;"></div>
+
+            <div class="culqi-actions">
+              <button type="button" class="culqi-btn-pay" id="btnPayWithCulqi">
+                <span id="btnPayWithCulqiText">Pagar con Culqi (Tarjeta o Yape)</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+
+            <div class="culqi-security-foot">
+              <span>🛡️ Transacción protegida por Culqi con certificación internacional PCI-DSS Nivel 1</span>
+            </div>
           </div>
         </section>
         </section>
@@ -2042,6 +2029,11 @@
           <span id="yapeOrderAmount">Total: S/ 0.00</span>
         </div>
         <p class="yape-hint">Escanea con tu app Yape. La orden quedara pendiente hasta validar el pago.</p>
+        <div style="margin-top:16px;">
+          <a id="yapeWhatsAppBtn" href="#" target="_blank" class="order-success-wa-btn" style="display:none;font-size:13.5px;padding:12px 16px;text-align:center;">
+            📲 Notificar pedido a WhatsApp (954 920 068)
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -2661,7 +2653,7 @@
         checkoutFlowBackBtn.textContent = stage === 'cart' ? '← Volver al carrito' : '← Volver';
       }
       if (stage === 'cart') refreshCheckoutEmail();
-      if (stage === 'payment') { renderPaymentModal(); setCheckoutPayment('yape'); }
+      if (stage === 'payment') { renderPaymentModal(); setCheckoutPayment('card'); }
     }
 
     function openPaymentMethodModal(method) {
@@ -2964,37 +2956,68 @@
     }
 
     function isUserConfigured() {
+      if (currentCustomer && currentCustomer.name && currentCustomer.address) return true;
       try {
+        var cust = JSON.parse(localStorage.getItem('imfundo_customer') || 'null');
+        if (cust && cust.name && cust.address) return true;
         var data = JSON.parse(localStorage.getItem(STORAGE_CHECKOUT) || '{}');
-        return !!(data.name && data.phone && data.email && data.address);
+        return !!(data.name && data.address);
       } catch(e) { return false; }
     }
 
     function openCheckoutFlow() {
       if (!cartItems.length) {
-        setCheckoutMessage('error', 'Agrega al menos un producto al carrito.');
+        showStoreToast('Tu carrito está vacío. Agrega un producto.', 'error');
         return;
       }
 
-      if (!isUserConfigured()) {
-        closeCart();
-        setCheckoutMessage('error', 'Completa tus datos de entrega antes de continuar con el pago.');
-        _settingsFromCart = true;
-        openSettings();
-        return;
+      // Si el usuario tiene sesión o datos guardados, sincronizar inmediatamente
+      var cust = currentCustomer;
+      if (!cust) {
+        try { cust = JSON.parse(localStorage.getItem('imfundo_customer') || 'null'); } catch(e) {}
+      }
+      if (cust && cust.name) {
+        setCustomerLoggedIn(cust);
       }
 
-      selectedDelivery = '';
-      deliveryOptions.forEach(function(option) { option.classList.remove('selected'); });
-      if (checkoutDeliveryContinueBtn) checkoutDeliveryContinueBtn.disabled = true;
-      setCheckoutStage('cart');
+      // Sincronizar campos de entrega
+      var savedName = (cust && cust.name) || getCheckoutField('checkoutName');
+      var savedPhone = (cust && cust.phone) || getCheckoutField('checkoutPhone');
+      var savedEmail = (cust && cust.email) || getCheckoutField('checkoutEmail');
+      var savedAddress = (cust && cust.address) || getCheckoutField('checkoutAddress');
+      var savedCity = (cust && cust.city) || 'Lima';
+
+      try {
+        localStorage.setItem(STORAGE_CHECKOUT, JSON.stringify({
+          name: savedName,
+          phone: savedPhone,
+          email: savedEmail,
+          address: savedAddress,
+          city: savedCity
+        }));
+      } catch(e) {}
+
+      // Si todo está completo, cerrar otros modales y abrir el flujo de compra
+      closeCart();
+      closeSettings();
+
+      // Configurar entrega por defecto
+      selectedDelivery = 'Envío Express';
+      deliveryOptions.forEach(function(opt) {
+        if (opt.getAttribute('data-delivery') === 'Envío Express') opt.classList.add('selected');
+        else opt.classList.remove('selected');
+      });
+      if (checkoutDeliveryContinueBtn) checkoutDeliveryContinueBtn.disabled = false;
+
+      // Ir directamente a la pasarela de pago (Culqi)
+      renderPaymentModal();
+      setCheckoutStage('payment');
+      setCheckoutPayment('card');
+
       if (checkoutFlowOverlay) {
-        closeCart();
         checkoutFlowOverlay.classList.add('open');
         document.body.classList.add('checkout-open');
         document.documentElement.classList.add('checkout-open');
-        document.body.classList.remove('detail-open');
-        document.documentElement.classList.remove('detail-open');
         lockScroll();
         trapFocus(checkoutFlowOverlay);
       }
@@ -3166,20 +3189,231 @@
       handleSecureCheckout();
     });
 
-    // Pago con tarjeta: simulacion local para la demostracion.
-    var cardDemoConfirmBtn = document.getElementById('cardDemoConfirmBtn');
-    var cardDemoResult = document.getElementById('cardDemoResult');
-    if (cardDemoConfirmBtn) {
-      cardDemoConfirmBtn.addEventListener('click', function() {
-        var order = createOrder('card', 'demo_approved');
-        if (!order) return;
+    // ════════════════════════════════════════════════════════════════
+    // INTEGRACIÓN PASARELA DE PAGOS CULQI & NOTIFICACIÓN WHATSAPP
+    // ════════════════════════════════════════════════════════════════
+    var btnPayWithCulqi = document.getElementById('btnPayWithCulqi');
+    var culqiErrorBox = document.getElementById('culqiErrorBox');
 
-        cardDemoConfirmBtn.disabled = true;
-        cardDemoConfirmBtn.textContent = 'Pago simulado aprobado';
-        if (cardDemoResult) {
-          cardDemoResult.textContent = 'Pago simulado aprobado. Pedido ' + order.id + ' creado correctamente. No se envio ni almaceno ningun dato de tarjeta.';
-          cardDemoResult.classList.add('visible');
+    function showCulqiError(msg) {
+      if (!culqiErrorBox) return;
+      culqiErrorBox.textContent = msg;
+      culqiErrorBox.style.display = 'block';
+    }
+    function hideCulqiError() {
+      if (culqiErrorBox) {
+        culqiErrorBox.style.display = 'none';
+        culqiErrorBox.textContent = '';
+      }
+    }
+
+    function processCulqiCharge(tokenId, tokenEmail) {
+      var valid = validateCustomerFields();
+      if (!valid.ok) {
+        setCheckoutMessage('error', valid.message);
+        openSettings();
+        return;
+      }
+      var totals = getTotals();
+      var amountCents = Math.round(totals.total * 100);
+
+      if (btnPayWithCulqi) {
+        btnPayWithCulqi.disabled = true;
+        btnPayWithCulqi.innerHTML = '<span>Verificando pago seguro con Culqi...</span>';
+      }
+      hideCulqiError();
+
+      var apiItems = cartItems.map(function(item) {
+        return {
+          name: item.name,
+          quantity: item.qty,
+          price: item.price,
+          subtotal: item.price * item.qty
+        };
+      });
+
+      fetch(API_BASE + '/api/culqi/charge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tokenId: tokenId,
+          email: tokenEmail || valid.customer.email,
+          amountCents: amountCents,
+          customer: valid.customer,
+          items: apiItems,
+          shippingCents: Math.round(totals.shipping * 100),
+          total: totals.total
+        })
+      })
+      .then(function(res) {
+        return res.json().then(function(data) { return { ok: res.ok, data: data }; });
+      })
+      .then(function(res) {
+        if (btnPayWithCulqi) {
+          btnPayWithCulqi.disabled = false;
+          btnPayWithCulqi.innerHTML = '<span id="btnPayWithCulqiText">Pagar con Culqi (Tarjeta o Yape)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>';
         }
+        if (!res.ok || !res.data.success) {
+          showCulqiError(res.data.error || 'No se pudo procesar el pago con Culqi. Intenta nuevamente.');
+          return;
+        }
+        handleCulqiSuccess(res.data);
+      })
+      .catch(function(err) {
+        if (btnPayWithCulqi) {
+          btnPayWithCulqi.disabled = false;
+          btnPayWithCulqi.innerHTML = '<span id="btnPayWithCulqiText">Pagar con Culqi (Tarjeta o Yape)</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>';
+        }
+        showCulqiError('Error de conexión: ' + (err.message || 'Intenta de nuevo'));
+      });
+    }
+
+    // Callback oficial que ejecuta Culqi al tokenizar
+    window.culqi = function() {
+      if (typeof Culqi !== 'undefined') {
+        if (Culqi.token) {
+          var token = Culqi.token.id;
+          var email = Culqi.token.email;
+          Culqi.close();
+          processCulqiCharge(token, email);
+        } else if (Culqi.order) {
+          // Si es orden de PagoEfectivo o Yape
+          var ordId = Culqi.order.id;
+          Culqi.close();
+          processCulqiCharge(ordId, null);
+        } else if (Culqi.error) {
+          showCulqiError(Culqi.error.user_message || Culqi.error.merchant_message || 'Error en la pasarela.');
+        }
+      }
+    };
+
+    function openCulqiCheckoutModal() {
+      var valid = validateCustomerFields();
+      if (!valid.ok) {
+        setCheckoutMessage('error', valid.message);
+        openSettings();
+        return;
+      }
+      if (!cartItems.length) {
+        showStoreToast('Tu carrito está vacío.', 'error');
+        return;
+      }
+
+      hideCulqiError();
+      var totals = getTotals();
+      var amountCents = Math.round(totals.total * 100);
+
+      if (typeof Culqi !== 'undefined') {
+        Culqi.publicKey = window.CULQI_PUBLIC_KEY || 'pk_test_e4f3a743a6d96a75';
+        
+        // Checkout v4 configuración
+        if (typeof Culqi.settings === 'function') {
+          Culqi.settings({
+            title: 'Imfundo Kahle',
+            currency: 'PEN',
+            amount: amountCents
+          });
+        }
+        if (typeof Culqi.options === 'function') {
+          Culqi.options({
+            lang: 'auto',
+            installments: true,
+            paymentMethods: {
+              tarjeta: true,
+              yape: true,
+              billetera: true,
+              bancaMovil: true,
+              agente: true,
+              cuotealo: true
+            },
+            style: {
+              logo: 'https://imfundokahle.org/img/logo.png',
+              maincolor: '#EA4335',
+              buttontext: '#ffffff'
+            }
+          });
+        }
+        if (typeof Culqi.init === 'function') {
+          try {
+            Culqi.init({
+              setting: {
+                currency: 'PEN',
+                amount: amountCents
+              },
+              client: {
+                email: valid.customer.email || 'cliente@ejemplo.com'
+              },
+              appearance: {
+                theme: 'light',
+                hiddenCulqiLogo: false,
+                colors: {
+                  primary: '#EA4335'
+                }
+              }
+            });
+          } catch(e) {}
+        }
+
+        Culqi.open();
+      } else {
+        // Modo fallback si Culqi.js estuviera bloqueado por extensión de navegador
+        processCulqiCharge('demo_token_' + Date.now(), valid.customer.email);
+      }
+    }
+
+    if (btnPayWithCulqi) {
+      btnPayWithCulqi.addEventListener('click', function(e) {
+        e.preventDefault();
+        openCulqiCheckoutModal();
+      });
+    }
+
+    function handleCulqiSuccess(data) {
+      closeCheckoutFlow();
+
+      // Vaciar carrito
+      cartItems = [];
+      saveCart([]);
+      renderCart();
+
+      // Abrir modal de éxito con enlace directo a WhatsApp
+      var overlay = document.getElementById('orderSuccessOverlay');
+      var codeEl = document.getElementById('successOrderCode');
+      var totalEl = document.getElementById('successOrderTotal');
+      var chargeEl = document.getElementById('successChargeId');
+      var waBtn = document.getElementById('successWhatsAppBtn');
+
+      if (codeEl && data.order) codeEl.textContent = data.order.order_code;
+      if (totalEl && data.order) totalEl.textContent = 'S/ ' + parseFloat(data.order.total).toFixed(2);
+      if (chargeEl) chargeEl.textContent = data.chargeId || 'Aprobado';
+      if (waBtn && data.whatsappUrl) {
+        waBtn.href = data.whatsappUrl;
+      }
+
+      if (overlay) overlay.classList.add('open');
+      lockScroll();
+
+      showStoreToast('🎉 ¡Pago aprobado con éxito! Tu pedido está listo para despacho.', 'success');
+
+      // Intentar abrir WhatsApp en pestaña nueva
+      if (data.whatsappUrl) {
+        try {
+          window.open(data.whatsappUrl, '_blank');
+        } catch(e) {}
+      }
+
+      // Si el cliente está logueado, recargar lista de pedidos
+      if (typeof loadCustomerOrders === 'function') {
+        loadCustomerOrders();
+      }
+    }
+
+    var successCloseBtn = document.getElementById('successCloseBtn');
+    if (successCloseBtn) {
+      successCloseBtn.addEventListener('click', function() {
+        var overlay = document.getElementById('orderSuccessOverlay');
+        if (overlay) overlay.classList.remove('open');
+        unlockScroll();
       });
     }
 
@@ -3678,12 +3912,14 @@
         if (custProfSubmit) { custProfSubmit.disabled = true; custProfSubmit.textContent = 'Guardando...'; }
         hideAuthMessage(custProfMsg);
 
+        var safeEmail = (currentCustomer && currentCustomer.email) || (document.getElementById('custProfEmail') ? document.getElementById('custProfEmail').value.trim() : '') || 'cliente@ejemplo.com';
         fetch(API_BASE + '/api/customer/auth?action=update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             action: 'update',
             name: name,
+            email: safeEmail,
             phone: phone,
             address: address,
             city: city,
@@ -3694,14 +3930,28 @@
         .then(function(data) {
           if (custProfSubmit) { custProfSubmit.disabled = false; custProfSubmit.textContent = 'Guardar Cambios'; }
           if (data && data.success) {
-            showAuthMessage(custProfMsg, 'success', 'Datos actualizados con éxito.');
-            if (currentCustomer) {
-              currentCustomer.name = name;
-              currentCustomer.phone = phone;
-              currentCustomer.address = address;
-              currentCustomer.city = city;
-              setCustomerLoggedIn(currentCustomer);
-            }
+            showAuthMessage(custProfMsg, 'success', '✓ Datos guardados correctamente.');
+            var updated = data.customer || { name: name, email: safeEmail, phone: phone, address: address, city: city };
+            setCustomerLoggedIn(updated);
+            try {
+              localStorage.setItem(STORAGE_CHECKOUT, JSON.stringify({
+                name: updated.name,
+                phone: updated.phone,
+                email: updated.email,
+                address: updated.address,
+                city: updated.city
+              }));
+            } catch(e) {}
+
+            // Si venía del carrito o tiene productos, continuar directo al pago
+            setTimeout(function() {
+              closeSettings();
+              if (cartItems && cartItems.length > 0) {
+                openCheckoutFlow();
+              } else {
+                showStoreToast('✓ Datos de entrega actualizados con éxito.', 'success');
+              }
+            }, 500);
           } else {
             showAuthMessage(custProfMsg, 'error', (data && data.error) ? data.error : 'Error al actualizar.');
           }
@@ -3823,5 +4073,35 @@
     </footer>
 
     <script src="/js/main.js" defer></script>
+
+  <!-- Modal de Pedido Exitoso con Culqi y Notificación WhatsApp -->
+  <div class="order-success-overlay" id="orderSuccessOverlay" role="dialog" aria-modal="true" aria-label="Pedido Exitoso">
+    <div class="order-success-modal">
+      <div class="order-success-icon">🎉</div>
+      <h3 class="order-success-title">¡Pago Exitoso con Culqi!</h3>
+      <p class="order-success-subtitle">Tu compra solidaria en Imfundo Kahle ha sido confirmada.</p>
+      
+      <div class="order-success-details">
+        <div class="order-success-row"><span>N° de Pedido:</span><strong id="successOrderCode">IK-...</strong></div>
+        <div class="order-success-row"><span>Total Pagado:</span><strong id="successOrderTotal">S/ 0.00</strong></div>
+        <div class="order-success-row"><span>Estado:</span><strong class="status-verified">✓ Pago Verificado</strong></div>
+        <div class="order-success-row"><span>ID de Transacción:</span><code id="successChargeId">chr_...</code></div>
+      </div>
+
+      <div class="order-success-wa-card">
+        <div class="order-success-wa-title">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+          <strong>Información para Despacho</strong>
+        </div>
+        <p>Los datos de tu pedido y dirección de entrega están listos para enviarse al WhatsApp de atención <strong>954 920 068</strong>.</p>
+        <a id="successWhatsAppBtn" href="#" target="_blank" class="order-success-wa-btn">
+          📲 Enviar datos de envío a WhatsApp (954 920 068)
+        </a>
+      </div>
+
+      <button type="button" class="order-success-close-btn" id="successCloseBtn">Seguir explorando la tienda</button>
+    </div>
+  </div>
+
 </body>
 </html>

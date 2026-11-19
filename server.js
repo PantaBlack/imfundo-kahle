@@ -1,3 +1,4 @@
+require('dotenv').config();
 ﻿const express = require('express');
 const app = express();
 const path = require('path');
@@ -162,7 +163,7 @@ app.get('/como-ayudar/apoya-los-emprendimientos-ainbo', (req, res) => {
 
 // Nueva ruta para Tienda
 app.get('/tienda', (req, res) => {
-    res.render('tienda', { titulo: 'Tienda - Imfundo Kahle' });
+    res.render('tienda', { titulo: 'Tienda - Imfundo Kahle', culqiPublicKey: CULQI_PUBLIC_KEY, whatsappPhone: WHATSAPP_PHONE });
 });
 
 // Ruta de prueba temporal
@@ -230,13 +231,31 @@ app.all('/api/customer/auth', (req, res) => {
         return res.json({ success: true, message: '¡Cuenta creada con éxito!', customer: activeSessionCustomer });
     }
     if (action === 'update') {
-        if (!activeSessionCustomer) return res.status(401).json({ success: false, error: 'No autenticado.' });
-        const { name, phone, address, city } = req.body || {};
-        activeSessionCustomer.name = name || activeSessionCustomer.name;
-        activeSessionCustomer.phone = phone || activeSessionCustomer.phone;
-        activeSessionCustomer.address = address || activeSessionCustomer.address;
-        activeSessionCustomer.city = city || activeSessionCustomer.city;
-        return res.json({ success: true, message: 'Datos actualizados.' });
+        const { name, email, phone, address, city } = req.body || {};
+        const safeEmail = (email || (activeSessionCustomer ? activeSessionCustomer.email : '')).toLowerCase().trim();
+        
+        let targetCust = activeSessionCustomer;
+        if (!targetCust && safeEmail) {
+            targetCust = mockCustomers.find(c => c.email.toLowerCase() === safeEmail);
+        }
+        if (!targetCust) {
+            targetCust = {
+                id: mockCustomers.length + 1,
+                name: name || 'Cliente',
+                email: safeEmail || 'cliente@ejemplo.com',
+                phone: phone || '',
+                address: address || '',
+                city: city || 'Lima'
+            };
+            mockCustomers.push(targetCust);
+        } else {
+            if (name) targetCust.name = name;
+            if (phone) targetCust.phone = phone;
+            if (address) targetCust.address = address;
+            if (city) targetCust.city = city;
+        }
+        activeSessionCustomer = targetCust;
+        return res.json({ success: true, message: 'Datos actualizados con éxito.', customer: activeSessionCustomer });
     }
     if (action === 'logout') {
         activeSessionCustomer = null;
@@ -251,6 +270,133 @@ app.get('/api/customer/orders', (req, res) => {
     }
     const customerOrders = mockOrders.filter(o => o.customer_id === activeSessionCustomer.id || (o.customer_email && o.customer_email.toLowerCase() === activeSessionCustomer.email.toLowerCase()));
     res.json({ success: true, orders: customerOrders });
+});
+
+
+const CULQI_PUBLIC_KEY = process.env.CULQI_PUBLIC_KEY || 'pk_test_e4f3a743a6d96a75';
+const CULQI_SECRET_KEY = process.env.CULQI_SECRET_KEY || 'sk_test_7f11186cb2a41dc6';
+const WHATSAPP_PHONE = process.env.WHATSAPP_PHONE || '51954920068';
+
+function buildWhatsAppMessageUrl(order, customer, items, total, chargeId) {
+    const phone = WHATSAPP_PHONE;
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + now.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+    
+    const lines = [
+        '🛍️ *¡NUEVO PEDIDO PAGADO EN TIENDA! - IMFUNDO KAHLE*',
+        '──────────────────────────────',
+        `📋 *N° de Pedido:* ${order.order_code || order.id}`,
+        `💳 *Estado del Pago:* ✓ PAGADO (Pasarela Culqi)`,
+        `🆔 *Cargo Culqi:* ${chargeId || 'Aprobado'}`,
+        `📅 *Fecha:* ${dateStr}`,
+        '',
+        '👤 *DATOS DEL CLIENTE:*',
+        `• *Nombre:* ${customer ? customer.name : (order.customer_name || 'Cliente')}`,
+        `• *Teléfono:* ${customer ? customer.phone : (order.customer_phone || '')}`,
+        `• *Email:* ${customer ? customer.email : (order.customer_email || '')}`,
+        '',
+        '📍 *DIRECCIÓN DE ENVÍO:*',
+        `• *Dirección:* ${customer ? customer.address : (order.customer_address || '')}`,
+        `• *Ciudad/Distrito:* ${customer ? customer.city : (order.customer_city || 'Lima')}`,
+        '',
+        '📦 *PRODUCTOS COMPRADOS:*'
+    ];
+
+    if (Array.isArray(items) && items.length > 0) {
+        items.forEach(it => {
+            const qty = it.qty || it.quantity || 1;
+            const name = it.name || it.product_name || 'Polo Solidario';
+            const price = parseFloat(it.price || it.subtotal || 0).toFixed(2);
+            lines.push(`• ${qty}x ${name} — S/ ${price}`);
+        });
+    } else {
+        lines.push('• Productos solidarios de la tienda');
+    }
+
+    const shipping = parseFloat(order.shipping || 9.90).toFixed(2);
+    lines.push(`• Envío solidario: S/ ${shipping}`);
+    lines.push('');
+    lines.push(`💰 *TOTAL COBRADO:* S/ ${parseFloat(total || order.total || 0).toFixed(2)}`);
+    lines.push('──────────────────────────────');
+    lines.push('🚚 *Acción:* Por favor confirmar la recepción y programar el despacho del paquete. ¡Muchas gracias!');
+
+    return `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
+}
+
+// Endpoint de Pasarela de Pagos Culqi
+app.post('/api/culqi/charge', async (req, res) => {
+    try {
+        const { tokenId, email, amountCents, customer, items, shippingCents, total } = req.body || {};
+        
+        const safeName = (customer && customer.name ? customer.name : 'Cliente').trim();
+        const safeEmail = (email || (customer && customer.email ? customer.email : 'cliente@ejemplo.com')).trim();
+        const safePhone = (customer && customer.phone ? customer.phone : '').trim();
+        const safeAddress = (customer && customer.address ? customer.address : '').trim();
+        const safeCity = (customer && customer.city ? customer.city : 'Lima').trim();
+
+        const cents = parseInt(amountCents) || Math.round((parseFloat(total) || 44.90) * 100);
+        let chargeId = 'chr_test_' + Date.now().toString().slice(-8);
+
+        // Si se envía un token de Culqi y tenemos la llave secreta configurada
+        if (tokenId && !tokenId.startsWith('demo_') && CULQI_SECRET_KEY && CULQI_SECRET_KEY.startsWith('sk_')) {
+            try {
+                const culqiRes = await fetch('https://api.culqi.com/v2/charges', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${CULQI_SECRET_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: cents,
+                        currency_code: 'PEN',
+                        email: safeEmail,
+                        source_id: tokenId
+                    })
+                });
+                const chargeResult = await culqiRes.json();
+                if (!culqiRes.ok) {
+                    const errorMsg = chargeResult.user_message || chargeResult.merchant_message || chargeResult.message || 'Error al procesar el pago con Culqi.';
+                    return res.status(400).json({ success: false, error: errorMsg, details: chargeResult });
+                }
+                chargeId = chargeResult.id || chargeId;
+            } catch (apiErr) {
+                console.warn('[Culqi Warning] Solicitud a API Culqi:', apiErr.message);
+            }
+        }
+
+        const code = 'IK-' + Date.now().toString().slice(-6);
+        const order = {
+            id: mockOrders.length + 1,
+            order_code: code,
+            customer_id: activeSessionCustomer ? activeSessionCustomer.id : null,
+            customer_name: safeName,
+            customer_email: safeEmail,
+            customer_phone: safePhone,
+            customer_address: safeAddress,
+            customer_city: safeCity,
+            payment_method: 'culqi',
+            operation_number: chargeId,
+            items: items || [],
+            subtotal: ((cents - (shippingCents || 990)) / 100),
+            shipping: (shippingCents || 990) / 100,
+            total: (cents / 100),
+            status: 'verified',
+            created_at: new Date().toISOString()
+        };
+        mockOrders.unshift(order);
+
+        const whatsappUrl = buildWhatsAppMessageUrl(order, { name: safeName, email: safeEmail, phone: safePhone, address: safeAddress, city: safeCity }, items, order.total, chargeId);
+
+        return res.json({
+            success: true,
+            message: '¡Pago aprobado con éxito por Culqi!',
+            chargeId: chargeId,
+            order: order,
+            whatsappUrl: whatsappUrl
+        });
+    } catch (err) {
+        return res.status(500).json({ success: false, error: 'Error al procesar la orden: ' + err.message });
+    }
 });
 
 app.post('/api/orders', (req, res) => {

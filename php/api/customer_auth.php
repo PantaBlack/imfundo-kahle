@@ -217,10 +217,16 @@ if ($action === 'register') {
 
 // 4. Actualizar datos de perfil
 if ($action === 'update') {
-    if (empty($_SESSION['customer_id'])) {
-        http_response_code(401);
-        echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión para actualizar tus datos.']);
-        exit;
+    $email = strtolower(trim($data['email'] ?? ''));
+    if (empty($_SESSION['customer_id']) && !empty($email) && $db) {
+        $stmt = $db->prepare("SELECT id, name FROM customers WHERE LOWER(email) = ? LIMIT 1");
+        $stmt->execute([$email]);
+        $found = $stmt->fetch();
+        if ($found) {
+            $_SESSION['customer_id'] = (int)$found['id'];
+            $_SESSION['customer_name'] = $found['name'];
+            $_SESSION['customer_email'] = $email;
+        }
     }
     
     $name = trim($data['name'] ?? '');
@@ -228,6 +234,12 @@ if ($action === 'update') {
     $address = trim($data['address'] ?? '');
     $city = trim($data['city'] ?? 'Lima');
     $password = trim($data['password'] ?? '');
+
+    if (empty($_SESSION['customer_id']) && empty($email)) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión para actualizar tus datos.']);
+        exit;
+    }
     
     if (empty($name)) {
         http_response_code(400);
