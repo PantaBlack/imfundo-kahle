@@ -3820,3 +3820,40 @@ html.scroll-locked { overflow: hidden; }
   color: #ccc;
   margin-bottom: 12px;
 }
+
+/* -- Toast de Tienda y Notificaciones Flotantes -- */
+.store-toast {
+  position: fixed;
+  top: 92px;
+  right: 24px;
+  background: #1e1e1e;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-16px);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.store-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.store-toast.success {
+  background: #15803d;
+  color: #ffffff;
+  border-left: 6px solid #4ade80;
+}
+.store-toast.error {
+  background: #b91c1c;
+  color: #ffffff;
+  border-left: 6px solid #f87171;
+}

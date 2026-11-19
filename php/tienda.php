@@ -3260,7 +3260,7 @@
     window.imfundoOpenYapeCheckout = openYapeCheckout;
 
     // ════════════════════════════════════════════════════════════════
-    // SISTEMA DE AUTENTICACIÓN Y CUENTAS DE CLIENTES
+    // SISTEMA DE AUTENTICACIÓN Y CUENTAS DE CLIENTES (FLUJO OPTIMIZADO)
     // ════════════════════════════════════════════════════════════════
     var currentCustomer = null;
 
@@ -3271,6 +3271,35 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    // Notificación Toast flotante sobre la tienda
+    function showStoreToast(msg, type) {
+      var toast = document.getElementById('storeToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'storeToast';
+        toast.className = 'store-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.className = 'store-toast show ' + (type || 'success');
+      setTimeout(function() {
+        if (toast) toast.className = 'store-toast';
+      }, 4500);
+    }
+
+    function showAuthMessage(el, type, text) {
+      if (!el) return;
+      el.className = 'auth-msg ' + (type === 'error' ? 'error' : 'success');
+      el.style.display = 'block';
+      el.textContent = text;
+    }
+    function hideAuthMessage(el) {
+      if (!el) return;
+      el.className = 'auth-msg';
+      el.style.display = 'none';
+      el.textContent = '';
     }
 
     function switchAuthTab(tabName) {
@@ -3354,16 +3383,32 @@
           if (data && data.success && data.loggedIn && data.customer) {
             setCustomerLoggedIn(data.customer);
           } else {
+            try {
+              var local = JSON.parse(localStorage.getItem('imfundo_customer') || 'null');
+              if (local && local.email) {
+                setCustomerLoggedIn(local);
+                return;
+              }
+            } catch(e) {}
             setCustomerLoggedOut();
           }
         })
         .catch(function() {
+          try {
+            var local = JSON.parse(localStorage.getItem('imfundo_customer') || 'null');
+            if (local && local.email) {
+              setCustomerLoggedIn(local);
+              return;
+            }
+          } catch(e) {}
           setCustomerLoggedOut();
         });
     }
 
     function setCustomerLoggedIn(customer) {
       currentCustomer = customer;
+      try { localStorage.setItem('imfundo_customer', JSON.stringify(customer)); } catch(e) {}
+
       var navBtnText = document.getElementById('navCustomerName');
       var dropName = document.getElementById('dropdownCustomerName');
       var dropEmail = document.getElementById('dropdownCustomerEmail');
@@ -3415,13 +3460,27 @@
         var chkLogoutBtn = document.getElementById('chkLogoutBtn');
         if (chkLogoutBtn) chkLogoutBtn.addEventListener('click', logoutCustomer);
       }
+    }
 
-      switchAuthTab('orders');
-      loadCustomerOrders();
+    // Función clave: tras login o registro exitoso, cerrar modal y volver a la tienda
+    function handleAuthSuccess(customer, message) {
+      setCustomerLoggedIn(customer);
+      closeSettings();
+      var firstName = (customer.name || 'Cliente').split(' ')[0];
+      showStoreToast('🎉 ¡Hola, ' + firstName + '! Tu cuenta está activa. Ya puedes elegir productos y comprar.', 'success');
+
+      // Si el cliente estaba en el carrito o checkout, continuar
+      if (_settingsFromCart) {
+        _settingsFromCart = false;
+        setTimeout(function() {
+          openMainCart();
+        }, 350);
+      }
     }
 
     function setCustomerLoggedOut() {
       currentCustomer = null;
+      try { localStorage.removeItem('imfundo_customer'); } catch(e) {}
       var navBtnText = document.getElementById('navCustomerName');
       if (navBtnText) navBtnText.textContent = 'Iniciar sesión';
 
@@ -3448,141 +3507,162 @@
       switchAuthTab('login');
     }
 
-    function showAuthMessage(el, type, text) {
-      if (!el) return;
-      el.className = 'auth-msg ' + (type === 'error' ? 'error' : 'success');
-      el.style.display = 'block';
-      el.textContent = text;
-    }
-    function hideAuthMessage(el) {
-      if (!el) return;
-      el.className = 'auth-msg';
-      el.style.display = 'none';
-      el.textContent = '';
-    }
-
-    // Formulario de Inicio de Sesión
+    // ── Enviar Formulario de Inicio de Sesión ──
     var formCustLogin = document.getElementById('formCustLogin');
     var custLoginMsg = document.getElementById('custLoginMsg');
     var custLoginSubmit = document.getElementById('custLoginSubmit');
+
+    function executeLogin() {
+      hideAuthMessage(custLoginMsg);
+      var emailEl = document.getElementById('custLoginEmail');
+      var passEl = document.getElementById('custLoginPassword');
+      var email = (emailEl ? emailEl.value : '').trim();
+      var password = passEl ? passEl.value : '';
+
+      if (!email || !password) {
+        showAuthMessage(custLoginMsg, 'error', 'Por favor ingresa tu correo y contraseña.');
+        return;
+      }
+
+      if (custLoginSubmit) { custLoginSubmit.disabled = true; custLoginSubmit.textContent = 'Verificando...'; }
+
+      fetch(API_BASE + '/api/customer/auth?action=login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', email: email, password: password })
+      })
+      .then(function(r) {
+        return r.text().then(function(text) {
+          try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
+        });
+      })
+      .then(function(data) {
+        if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
+        if (data && data.success && data.customer) {
+          showAuthMessage(custLoginMsg, 'success', data.message || '¡Bienvenido!');
+          setTimeout(function() {
+            handleAuthSuccess(data.customer, data.message);
+            hideAuthMessage(custLoginMsg);
+          }, 400);
+        } else {
+          showAuthMessage(custLoginMsg, 'error', (data && data.error) ? data.error : 'Correo o contraseña incorrectos.');
+        }
+      })
+      .catch(function(err) {
+        if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
+        showAuthMessage(custLoginMsg, 'error', 'Error al conectar: ' + (err.message || 'Intenta de nuevo'));
+      });
+    }
+
     if (formCustLogin) {
       formCustLogin.addEventListener('submit', function(e) {
         e.preventDefault();
-        hideAuthMessage(custLoginMsg);
-
-        var email = (document.getElementById('custLoginEmail') ? document.getElementById('custLoginEmail').value : '').trim();
-        var password = document.getElementById('custLoginPassword') ? document.getElementById('custLoginPassword').value : '';
-
-        if (!email || !password) {
-          showAuthMessage(custLoginMsg, 'error', 'Por favor ingresa tu correo y contraseña.');
-          return;
-        }
-
-        if (custLoginSubmit) { custLoginSubmit.disabled = true; custLoginSubmit.textContent = 'Verificando...'; }
-
-        fetch(API_BASE + '/api/customer/auth?action=login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'login', email: email, password: password })
-        })
-        .then(function(r) {
-          return r.text().then(function(text) {
-            try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
-          });
-        })
-        .then(function(data) {
-          if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
-          if (data && data.success && data.customer) {
-            showAuthMessage(custLoginMsg, 'success', data.message || '¡Bienvenido!');
-            setTimeout(function() {
-              setCustomerLoggedIn(data.customer);
-              hideAuthMessage(custLoginMsg);
-            }, 600);
-          } else {
-            showAuthMessage(custLoginMsg, 'error', (data && data.error) ? data.error : 'Correo o contraseña incorrectos.');
-          }
-        })
-        .catch(function(err) {
-          if (custLoginSubmit) { custLoginSubmit.disabled = false; custLoginSubmit.textContent = 'Iniciar Sesión'; }
-          showAuthMessage(custLoginMsg, 'error', 'Error al conectar con el servidor: ' + (err.message || 'Intenta de nuevo'));
-        });
+        executeLogin();
+      });
+    }
+    if (custLoginSubmit) {
+      custLoginSubmit.addEventListener('click', function(e) {
+        e.preventDefault();
+        executeLogin();
       });
     }
 
-    // Formulario de Registro
+    // ── Enviar Formulario de Registro ──
     var formCustRegister = document.getElementById('formCustRegister');
     var custRegMsg = document.getElementById('custRegMsg');
     var custRegSubmit = document.getElementById('custRegSubmit');
-    if (formCustRegister) {
-      formCustRegister.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideAuthMessage(custRegMsg);
 
-        var name = (document.getElementById('custRegName') ? document.getElementById('custRegName').value : '').trim();
-        var email = (document.getElementById('custRegEmail') ? document.getElementById('custRegEmail').value : '').trim();
-        var phone = (document.getElementById('custRegPhone') ? document.getElementById('custRegPhone').value : '').trim();
-        var address = (document.getElementById('custRegAddress') ? document.getElementById('custRegAddress').value : '').trim();
-        var city = (document.getElementById('custRegCity') ? document.getElementById('custRegCity').value : 'Lima').trim();
-        var password = document.getElementById('custRegPassword') ? document.getElementById('custRegPassword').value : '';
-        var confirm = document.getElementById('custRegPasswordConfirm') ? document.getElementById('custRegPasswordConfirm').value : '';
+    function executeRegister() {
+      hideAuthMessage(custRegMsg);
+      var nameEl = document.getElementById('custRegName');
+      var emailEl = document.getElementById('custRegEmail');
+      var phoneEl = document.getElementById('custRegPhone');
+      var addressEl = document.getElementById('custRegAddress');
+      var cityEl = document.getElementById('custRegCity');
+      var passEl = document.getElementById('custRegPassword');
+      var confEl = document.getElementById('custRegPasswordConfirm');
 
-        if (!name) {
-          showAuthMessage(custRegMsg, 'error', 'Por favor ingresa tu nombre completo.');
-          return;
-        }
-        if (!email || !email.includes('@')) {
-          showAuthMessage(custRegMsg, 'error', 'Por favor ingresa un correo electrónico válido.');
-          return;
-        }
-        if (password.length < 6) {
-          showAuthMessage(custRegMsg, 'error', 'La contraseña debe tener al menos 6 caracteres.');
-          return;
-        }
-        if (password !== confirm) {
-          showAuthMessage(custRegMsg, 'error', 'Las contraseñas no coinciden. Por favor verifícalas.');
-          return;
-        }
+      var name = (nameEl ? nameEl.value : '').trim();
+      var email = (emailEl ? emailEl.value : '').trim();
+      var phone = (phoneEl ? phoneEl.value : '').trim();
+      var address = (addressEl ? addressEl.value : '').trim();
+      var city = (cityEl ? cityEl.value : 'Lima').trim();
+      var password = passEl ? passEl.value : '';
+      var confirm = confEl ? confEl.value : '';
 
-        if (custRegSubmit) { custRegSubmit.disabled = true; custRegSubmit.textContent = 'Creando cuenta...'; }
+      if (!name) {
+        showAuthMessage(custRegMsg, 'error', 'Por favor ingresa tu nombre completo.');
+        if (nameEl) nameEl.focus();
+        return;
+      }
+      if (!email || !email.includes('@')) {
+        showAuthMessage(custRegMsg, 'error', 'Por favor ingresa un correo electrónico válido.');
+        if (emailEl) emailEl.focus();
+        return;
+      }
+      if (password && password.length < 6) {
+        showAuthMessage(custRegMsg, 'error', 'La contraseña debe tener al menos 6 caracteres.');
+        if (passEl) passEl.focus();
+        return;
+      }
+      if (password && confirm && password !== confirm) {
+        showAuthMessage(custRegMsg, 'error', 'Las contraseñas no coinciden. Por favor verifícalas.');
+        if (confEl) confEl.focus();
+        return;
+      }
 
-        fetch(API_BASE + '/api/customer/auth?action=register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            action: 'register',
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
-            city: city,
-            password: password
-          })
+      if (custRegSubmit) { custRegSubmit.disabled = true; custRegSubmit.textContent = 'Creando cuenta...'; }
+
+      fetch(API_BASE + '/api/customer/auth?action=register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'register',
+          name: name,
+          email: email,
+          phone: phone,
+          address: address,
+          city: city,
+          password: password || '123456'
         })
-        .then(function(r) {
-          return r.text().then(function(text) {
-            try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
-          });
-        })
-        .then(function(data) {
-          if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
-          if (data && data.success && data.customer) {
-            showAuthMessage(custRegMsg, 'success', data.message || '¡Cuenta creada con éxito!');
-            setTimeout(function() {
-              setCustomerLoggedIn(data.customer);
-              hideAuthMessage(custRegMsg);
-            }, 700);
-          } else {
-            showAuthMessage(custRegMsg, 'error', (data && data.error) ? data.error : 'No se pudo crear la cuenta.');
-          }
-        })
-        .catch(function(err) {
-          if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
-          showAuthMessage(custRegMsg, 'error', 'Error al conectar con el servidor: ' + (err.message || 'Intenta de nuevo'));
+      })
+      .then(function(r) {
+        return r.text().then(function(text) {
+          try { return JSON.parse(text); } catch(err) { return { success: false, error: 'Error del servidor (' + r.status + ')' }; }
         });
+      })
+      .then(function(data) {
+        if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
+        if (data && data.success && data.customer) {
+          showAuthMessage(custRegMsg, 'success', data.message || '¡Cuenta creada con éxito!');
+          setTimeout(function() {
+            handleAuthSuccess(data.customer, data.message);
+            hideAuthMessage(custRegMsg);
+          }, 400);
+        } else {
+          showAuthMessage(custRegMsg, 'error', (data && data.error) ? data.error : 'No se pudo crear la cuenta.');
+        }
+      })
+      .catch(function(err) {
+        if (custRegSubmit) { custRegSubmit.disabled = false; custRegSubmit.textContent = 'Crear Cuenta y Comenzar'; }
+        showAuthMessage(custRegMsg, 'error', 'Error al conectar: ' + (err.message || 'Intenta de nuevo'));
       });
     }
 
-    // Formulario de Perfil
+    if (formCustRegister) {
+      formCustRegister.addEventListener('submit', function(e) {
+        e.preventDefault();
+        executeRegister();
+      });
+    }
+    if (custRegSubmit) {
+      custRegSubmit.addEventListener('click', function(e) {
+        e.preventDefault();
+        executeRegister();
+      });
+    }
+
+    // ── Formulario de Perfil ──
     var formCustProfile = document.getElementById('formCustProfile');
     var custProfMsg = document.getElementById('custProfMsg');
     var custProfSubmit = document.getElementById('custProfSubmit');
@@ -3596,12 +3676,13 @@
         var password = document.getElementById('custProfNewPassword').value.trim();
 
         if (custProfSubmit) { custProfSubmit.disabled = true; custProfSubmit.textContent = 'Guardando...'; }
-        if (custProfMsg) { custProfMsg.className = 'auth-msg'; custProfMsg.style.display = 'none'; }
+        hideAuthMessage(custProfMsg);
 
         fetch(API_BASE + '/api/customer/auth?action=update', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            action: 'update',
             name: name,
             phone: phone,
             address: address,
@@ -3613,10 +3694,7 @@
         .then(function(data) {
           if (custProfSubmit) { custProfSubmit.disabled = false; custProfSubmit.textContent = 'Guardar Cambios'; }
           if (data && data.success) {
-            if (custProfMsg) {
-              custProfMsg.className = 'auth-msg success';
-              custProfMsg.textContent = 'Datos actualizados con éxito.';
-            }
+            showAuthMessage(custProfMsg, 'success', 'Datos actualizados con éxito.');
             if (currentCustomer) {
               currentCustomer.name = name;
               currentCustomer.phone = phone;
@@ -3625,18 +3703,12 @@
               setCustomerLoggedIn(currentCustomer);
             }
           } else {
-            if (custProfMsg) {
-              custProfMsg.className = 'auth-msg error';
-              custProfMsg.textContent = (data && data.error) ? data.error : 'Error al actualizar.';
-            }
+            showAuthMessage(custProfMsg, 'error', (data && data.error) ? data.error : 'Error al actualizar.');
           }
         })
         .catch(function() {
           if (custProfSubmit) { custProfSubmit.disabled = false; custProfSubmit.textContent = 'Guardar Cambios'; }
-          if (custProfMsg) {
-            custProfMsg.className = 'auth-msg error';
-            custProfMsg.textContent = 'Error de conexión.';
-          }
+          showAuthMessage(custProfMsg, 'error', 'Error de conexión.');
         });
       });
     }
@@ -3645,10 +3717,12 @@
       fetch(API_BASE + '/api/customer/auth?action=logout', { method: 'POST' })
         .finally(function() {
           setCustomerLoggedOut();
+          closeSettings();
+          showStoreToast('Has cerrado sesión correctamente.', 'success');
         });
     }
 
-    // Cargar Mis Pedidos
+    // ── Cargar Mis Pedidos ──
     var btnRefreshOrders = document.getElementById('btnRefreshOrders');
     if (btnRefreshOrders) btnRefreshOrders.addEventListener('click', loadCustomerOrders);
 

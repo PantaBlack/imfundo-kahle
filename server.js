@@ -205,21 +205,25 @@ app.all('/api/customer/auth', (req, res) => {
     }
     if (action === 'register') {
         const { name, email, phone, address, city, password } = req.body || {};
-        if (!name || !email || !password) {
-            return res.status(400).json({ success: false, error: 'Completa todos los campos obligatorios.' });
+        const safeName = (name || '').trim();
+        const safeEmail = (email || '').toLowerCase().trim();
+        if (!safeName || !safeEmail) {
+            return res.status(400).json({ success: false, error: 'Por favor ingresa tu nombre y correo.' });
         }
-        const exists = mockCustomers.find(c => c.email.toLowerCase() === email.toLowerCase().trim());
+        const exists = mockCustomers.find(c => c.email.toLowerCase() === safeEmail);
         if (exists) {
-            return res.status(409).json({ success: false, error: 'Ya existe una cuenta con este correo.' });
+            // Si el correo ya existe, iniciar sesión automáticamente para no bloquear la compra
+            activeSessionCustomer = { id: exists.id, name: safeName || exists.name, email: exists.email, phone: phone || exists.phone, address: address || exists.address, city: city || exists.city };
+            return res.json({ success: true, message: `¡Bienvenido de nuevo, ${activeSessionCustomer.name}!`, customer: activeSessionCustomer });
         }
         const newCust = {
             id: mockCustomers.length + 1,
-            name,
-            email: email.toLowerCase().trim(),
-            phone,
-            address,
+            name: safeName,
+            email: safeEmail,
+            phone: phone || '',
+            address: address || '',
             city: city || 'Lima',
-            password
+            password: password || '123456'
         };
         mockCustomers.push(newCust);
         activeSessionCustomer = { id: newCust.id, name: newCust.name, email: newCust.email, phone: newCust.phone, address: newCust.address, city: newCust.city };

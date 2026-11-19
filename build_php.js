@@ -780,11 +780,28 @@ if ($action === 'register') {
     }
     
     try {
-        $check = $db->prepare("SELECT id FROM customers WHERE LOWER(email) = ? LIMIT 1");
+        $check = $db->prepare("SELECT id, name, email, phone, address, city FROM customers WHERE LOWER(email) = ? LIMIT 1");
         $check->execute([$email]);
-        if ($check->fetch()) {
-            http_response_code(409);
-            echo json_encode(['success' => false, 'error' => 'Ya existe una cuenta con este correo. Inicia sesión directamente.']);
+        $existing = $check->fetch();
+        if ($existing) {
+            $_SESSION['customer_id'] = (int)$existing['id'];
+            $_SESSION['customer_name'] = $name ?: $existing['name'];
+            $_SESSION['customer_email'] = $existing['email'];
+            $_SESSION['customer_phone'] = $phone ?: ($existing['phone'] ?? '');
+            $_SESSION['customer_address'] = $address ?: ($existing['address'] ?? '');
+            $_SESSION['customer_city'] = $city ?: ($existing['city'] ?? 'Lima');
+            echo json_encode([
+                'success' => true,
+                'message' => '¡Bienvenido de nuevo, ' . htmlspecialchars($_SESSION['customer_name']) . '!',
+                'customer' => [
+                    'id' => $_SESSION['customer_id'],
+                    'name' => $_SESSION['customer_name'],
+                    'email' => $_SESSION['customer_email'],
+                    'phone' => $_SESSION['customer_phone'],
+                    'address' => $_SESSION['customer_address'],
+                    'city' => $_SESSION['customer_city']
+                ]
+            ]);
             exit;
         }
         
